@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { X, TrendingUp, Target, Zap } from 'lucide-react';
+import { Button } from '@/components/ui';
 import { useTranslation } from '@/hooks/useTranslation';
 import { EvolutionChart } from './EvolutionChart';
 import { DistributionChart } from './DistributionChart';
@@ -69,14 +70,15 @@ export function AdvancedStatsModal({ isOpen, onClose }: AdvancedStatsModalProps)
               {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-gray-700">
                 <h2 className="text-2xl font-bold text-primary">{t.advancedStats.title}</h2>
-                <button
-                  type="button"
+                <Button
                   onClick={onClose}
-                  className="text-gray-400 hover:text-white transition-colors"
+                  variant="ghost"
+                  size="icon"
+                  className="text-gray-400 hover:text-white"
                   aria-label={t.advancedStats.close}
                 >
                   <X size={24} />
-                </button>
+                </Button>
               </div>
 
               {/* Tabs */}
@@ -85,18 +87,19 @@ export function AdvancedStatsModal({ isOpen, onClose }: AdvancedStatsModalProps)
                   const Icon = tab.icon;
                   const isActive = activeTab === tab.id;
                   return (
-                    <button
-                      type="button"
+                    <Button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`
-                        flex items-center gap-2 px-4 py-3 border-b-2 transition-colors
-                        ${isActive ? 'border-primary text-primary' : 'border-transparent text-gray-400 hover:text-white'}
-                      `}
+                      variant="ghost"
+                      className={`flex items-center gap-2 px-4 py-3 border-b-2 rounded-none ${
+                        isActive
+                          ? 'border-primary text-primary'
+                          : 'border-transparent text-gray-400 hover:text-white'
+                      }`}
                     >
                       <Icon size={18} />
                       <span className="hidden sm:inline">{tab.label}</span>
-                    </button>
+                    </Button>
                   );
                 })}
               </div>

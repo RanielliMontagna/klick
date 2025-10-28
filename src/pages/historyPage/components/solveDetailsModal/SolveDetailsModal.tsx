@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Copy, Clock, Calendar, AlertTriangle } from 'lucide-react';
+import { Button } from '@/components/ui';
 import { useI18nStore } from '@/stores/i18nStore';
 import { formatTime } from '@/utils/formatTime';
 import { scale } from '@/utils/animations';
@@ -44,13 +45,14 @@ export function SolveDetailsModal({ isOpen, onClose, solve, solveNumber }: Solve
                 <h2 className="text-2xl font-bold text-white">
                   {t.solveTable.details.title} #{solveNumber}
                 </h2>
-                <button
-                  type="button"
+                <Button
                   onClick={onClose}
-                  className="text-gray-400 hover:text-white transition-colors rounded-lg p-1 hover:bg-gray-700"
+                  variant="ghost"
+                  size="icon"
+                  className="text-gray-400 hover:text-white hover:bg-gray-700"
                 >
                   <X size={24} />
-                </button>
+                </Button>
               </div>
 
               <div className="overflow-y-auto p-6 space-y-6">
@@ -92,14 +94,15 @@ export function SolveDetailsModal({ isOpen, onClose, solve, solveNumber }: Solve
                     <h3 className="text-lg font-bold text-white">
                       {t.solveTable.details.scramble}
                     </h3>
-                    <button
-                      type="button"
+                    <Button
                       onClick={copyScramble}
-                      className="flex items-center gap-2 px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors text-sm"
+                      variant="secondary"
+                      size="sm"
+                      className="flex items-center gap-2 px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-white border-none text-sm"
                     >
                       <Copy size={16} />
                       {copied ? t.scramble.copySuccess : t.scramble.copy}
-                    </button>
+                    </Button>
                   </div>
                   <p className="text-gray-300 font-mono text-sm sm:text-base leading-relaxed wrap-break-word">
                     {solve.scramble}
@@ -116,13 +119,13 @@ export function SolveDetailsModal({ isOpen, onClose, solve, solveNumber }: Solve
               </div>
 
               <div className="p-6 border-t border-gray-700 shrink-0">
-                <button
-                  type="button"
+                <Button
                   onClick={onClose}
-                  className="w-full px-4 py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors"
+                  variant="secondary"
+                  className="w-full px-4 py-3 bg-gray-700 hover:bg-gray-600 text-white border-none font-medium"
                 >
                   {t.actions.close}
-                </button>
+                </Button>
               </div>
             </motion.div>
           </div>

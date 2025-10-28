@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { X, Book } from 'lucide-react';
+import { Button } from '@/components/ui';
 import { useI18nStore } from '../../stores/i18nStore';
 
 type ScrambleGuideModalProps = {
@@ -54,14 +55,15 @@ export const ScrambleGuideModal = ({ isOpen, onClose }: ScrambleGuideModalProps)
                 <Book className="h-5 w-5 text-blue-400" />
                 <h2 className="text-xl font-bold text-white">{t.scramble.guideModal.title}</h2>
               </div>
-              <button
-                type="button"
+              <Button
                 onClick={onClose}
-                className="rounded p-1 text-gray-400 transition-colors hover:bg-gray-700 hover:text-white"
+                variant="ghost"
+                size="icon"
+                className="text-gray-400 hover:text-white hover:bg-gray-700"
                 aria-label={t.actions.close}
               >
                 <X className="h-5 w-5" />
-              </button>
+              </Button>
             </div>
 
             {/* Description */}

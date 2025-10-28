@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { AlertTriangle, X } from 'lucide-react';
+import { Button } from '@/components/ui';
 import { scale } from '@/utils/animations';
 
 interface ConfirmDialogProps {
@@ -28,12 +29,12 @@ export function ConfirmDialog({
       case 'danger':
         return {
           iconColor: 'text-red-500',
-          confirmBg: 'bg-red-600 hover:bg-red-700',
+          buttonVariant: 'danger' as const,
         };
       case 'warning':
         return {
           iconColor: 'text-yellow-500',
-          confirmBg: 'bg-yellow-600 hover:bg-yellow-700',
+          buttonVariant: 'warning' as const,
         };
     }
   };
@@ -74,13 +75,14 @@ export function ConfirmDialog({
                   <AlertTriangle className={`${styles.iconColor} shrink-0`} size={24} />
                   <h2 className="text-xl font-bold text-white">{title}</h2>
                 </div>
-                <button
-                  type="button"
+                <Button
                   onClick={onClose}
-                  className="text-gray-400 hover:text-white transition-colors rounded-lg p-1 hover:bg-gray-700"
+                  variant="ghost"
+                  size="icon"
+                  className="text-gray-400 hover:text-white hover:bg-gray-700"
                 >
                   <X size={20} />
-                </button>
+                </Button>
               </div>
 
               {/* Content */}
@@ -90,20 +92,20 @@ export function ConfirmDialog({
 
               {/* Actions */}
               <div className="flex gap-3 p-6 border-t border-gray-700">
-                <button
-                  type="button"
+                <Button
                   onClick={onClose}
-                  className="flex-1 px-4 py-2.5 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors"
+                  variant="secondary"
+                  className="flex-1 px-4 py-2.5 bg-gray-700 hover:bg-gray-600 text-white border-none"
                 >
                   {cancelText}
-                </button>
-                <button
-                  type="button"
+                </Button>
+                <Button
                   onClick={handleConfirm}
-                  className={`flex-1 px-4 py-2.5 ${styles.confirmBg} text-white rounded-lg font-medium transition-colors`}
+                  variant={styles.buttonVariant}
+                  className="flex-1 px-4 py-2.5"
                 >
                   {confirmText}
-                </button>
+                </Button>
               </div>
             </motion.div>
           </div>

@@ -4,6 +4,7 @@ import { Trash2, Eye } from 'lucide-react';
 import { useI18nStore } from '@/stores/i18nStore';
 import { useSessionsStore } from '@/stores/sessionsStore';
 import { ConfirmDialog } from '@/components';
+import { Button } from '@/components/ui';
 import { formatTime } from '@/utils/formatTime';
 import { fadeIn } from '@/utils/animations';
 import type { Solve } from '@/types';
@@ -164,22 +165,24 @@ export function SolveTable({ onViewDetails }: SolveTableProps) {
                     </td>
                     <td className="px-4 py-3 text-right">
                       <div className="flex items-center justify-end gap-2">
-                        <button
-                          type="button"
+                        <Button
                           onClick={() => onViewDetails?.(solve)}
-                          className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+                          variant="ghost"
+                          size="icon"
+                          className="text-gray-400 hover:text-white hover:bg-gray-700 focus-visible:ring-offset-gray-900"
                           title={t.actions.viewDetails}
                         >
                           <Eye size={16} />
-                        </button>
-                        <button
-                          type="button"
+                        </Button>
+                        <Button
                           onClick={() => handleDelete(solve)}
-                          className="p-2 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+                          variant="ghost"
+                          size="icon"
+                          className="text-red-400 hover:text-red-300 hover:bg-red-500/10 focus-visible:ring-red-500 focus-visible:ring-offset-gray-900"
                           title={t.actions.delete}
                         >
                           <Trash2 size={16} />
-                        </button>
+                        </Button>
                       </div>
                     </td>
                   </tr>

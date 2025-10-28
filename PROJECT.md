@@ -498,9 +498,9 @@ Implementação atual:
       - `scramble.guide`: "Como ler o embaralhamento"
       - `scramble.guideModal.title`: "Guia de Embaralhamento"
       - **Faces**: Descrições detalhadas (R/L/U/D/F/B) com orientação espacial
-      - **Modifiers**: Explicação clara de rotações (nenhum = 90° horário, ' = anti-horário, 2 = 180°)
-      - **Examples**: Exemplos práticos (R, R', R2, sequência completa)
-      - **Tips**: 4 dicas importantes (ordem, orientação, prática, padrão WCA 25 movimentos)
+      - **Modificadores**: explicação clara das rotações (nenhum = 90° horário, ' = anti-horário, 2 = 180°)
+      - **Exemplos**: casos práticos (R, R', R2, sequência completa)
+      - **Dicas**: 4 recomendações chave (ordem, orientação, prática, padrão WCA de 25 movimentos)
     - **Componentes criados:**
       - `/src/components/scrambleGuideModal/ScrambleGuideModal.tsx`
       - `/src/components/scrambleGuideModal/useScrambleGuideModal.ts`
@@ -518,20 +518,13 @@ Implementação atual:
       - Integrado com settingsStore para persistência
     - **Toggle de tema no SettingsModal:**
       - Botão animado com ícones Sun (claro) / Moon (escuro)
-      - Cores dinâmicas (amarelo para light, azul para dark)
-      - Feedback visual imediato ao alternar
-      - Removido placeholder "coming soon"
-    - **Persistência:**
-      - Tema salvo em localStorage via settingsStore
-      - Tema aplicado automaticamente ao carregar app
-      - Type-safe com 'dark' | 'light' em Settings
-    - **Traduções:**
-      - settings.theme.label, description, dark, light
-      - Completo em pt-BR, en-US, es-ES
-    - **Performance:**
-      - Build otimizado: ~404 KB (gzip: ~123 KB)
-      - Sem impacto na performance de renderização
-      - Color-scheme CSS para otimização de browser
+
+19. **Biblioteca de UI Reutilizável (Fase 6.1):** ✅
+    - **Componente base `Button`:** variantes `primary`, `secondary`, `ghost`, `danger`, `success`, `warning` e tamanhos `sm`, `md`, `lg`, `icon`, com helper interno `cls` e tipo forte `ButtonProps`.
+    - **Migração total dos botões:** substituição de todos os `<button>` da aplicação por `Button` (modais, dropdowns, toasts, histórico, home, tutorial, configurações), preservando comportamentos especiais via `className`.
+    - **Compatibilidade com casos específicos:** toggles deslizantes, botões ícone-only, abas com borda customizada e estados desativados.
+    - **Export centralizado:** `src/components/ui/index.ts` agrega componentes reutilizáveis.
+    - **Build validado:** `pnpm build` executado com sucesso após a migração.
 
 19. **Estatísticas Avançadas (Fase 7):** ✅
     - **Métricas avançadas** (`/src/features/stats/advanced.ts`):
@@ -749,6 +742,7 @@ Implementação atual:
 
 ### Próximas fases
 
+- **Biblioteca de UI compartilhada:** consolidar padrões (botões, chips, toggles, modais-base) em `src/components/ui/*`, padronizando tokens, estados de foco e níveis de elevação para acelerar novas telas.
 - **Sincronização opcional:** investigar integração com armazenamento na nuvem (ex.: Supabase) mantendo local-first, incluindo merge de sessões e autenticação leve.
 - **Modo de treino por casos:** habilitar coleções focadas (PLL, OLL, F2L) com contadores de repetição, checkpoints e notas rápidas, ajudando o iniciante a praticar algoritmos específicos.
 

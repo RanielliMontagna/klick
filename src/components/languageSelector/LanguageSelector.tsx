@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { Languages, Check } from 'lucide-react';
 import { useI18nStore } from '@/stores/i18nStore';
 import { HeaderDropdownButton, HeaderDropdownMenu } from '@/components';
+import { Button } from '@/components/ui';
 import type { Language } from '@/i18n/translations';
 
 export function LanguageSelector() {
@@ -59,11 +60,11 @@ export function LanguageSelector() {
             {t.language.title}
           </div>
           {languages.map((lang) => (
-            <button
+            <Button
               key={lang.code as string}
-              type="button"
               onClick={() => handleLanguageChange(lang.code)}
-              className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm transition-colors hover:bg-gray-700 focus:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+              variant="ghost"
+              className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm hover:bg-gray-700 focus-visible:ring-primary/40"
             >
               <div className="flex items-center gap-3">
                 <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-gray-700 text-xs font-semibold uppercase tracking-wide text-gray-200">
@@ -77,7 +78,7 @@ export function LanguageSelector() {
               {language === lang.code && (
                 <Check size={18} className="text-primary" aria-label="Selected" />
               )}
-            </button>
+            </Button>
           ))}
         </div>
       </HeaderDropdownMenu>

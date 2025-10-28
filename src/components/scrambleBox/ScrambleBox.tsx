@@ -1,10 +1,13 @@
 import { Copy, RefreshCw, Check, HelpCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Button } from '@/components/ui';
 import { useI18nStore } from '@/stores/i18nStore';
 import { slideDown } from '@/utils/animations';
 import { useScrambleBox } from './useScrambleBox';
 import { ScrambleGuideModal } from '../scrambleGuideModal/ScrambleGuideModal';
 import { useScrambleGuideModal } from '../scrambleGuideModal/useScrambleGuideModal';
+
+const MotionButton = motion(Button);
 
 interface ScrambleBoxProps {
   scramble: string;
@@ -30,22 +33,25 @@ export function ScrambleBox({ scramble, onNewScramble }: ScrambleBoxProps) {
               <h2 className="text-base sm:text-lg font-semibold text-gray-300">
                 {t.scramble.title}
               </h2>
-              <motion.button
+              <MotionButton
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={openGuide}
-                className="text-gray-400 hover:text-blue-400 transition-colors p-1 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800"
+                variant="ghost"
+                size="icon"
+                className="text-gray-400 hover:text-blue-400 p-1 focus-visible:ring-blue-400 focus-visible:ring-offset-gray-800"
                 title={t.scramble.guide}
               >
                 <HelpCircle size={18} />
-              </motion.button>
+              </MotionButton>
             </div>
             <div className="flex gap-2 w-full sm:w-auto">
-              <motion.button
+              <MotionButton
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={copyToClipboard}
-                className="flex items-center justify-center gap-2 px-3 py-2 text-sm bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors flex-1 sm:flex-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+                variant="secondary"
+                className="flex items-center justify-center gap-2 px-3 py-2 text-sm bg-gray-700 hover:bg-gray-600 flex-1 sm:flex-none border-none"
                 title={t.scramble.copy}
               >
                 {copied ? (
@@ -59,17 +65,18 @@ export function ScrambleBox({ scramble, onNewScramble }: ScrambleBoxProps) {
                     <span className="hidden sm:inline">{t.scramble.copy}</span>
                   </>
                 )}
-              </motion.button>
-              <motion.button
+              </MotionButton>
+              <MotionButton
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={onNewScramble}
-                className="flex items-center justify-center gap-2 px-3 py-2 text-sm bg-primary hover:bg-purple-600 rounded-lg transition-colors font-medium flex-1 sm:flex-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+                variant="primary"
+                className="flex items-center justify-center gap-2 px-3 py-2 text-sm flex-1 sm:flex-none font-medium"
                 title={`${t.scramble.new} (N)`}
               >
                 <RefreshCw size={16} />
                 <span className="hidden sm:inline">{t.scramble.new}</span>
-              </motion.button>
+              </MotionButton>
             </div>
           </div>
 

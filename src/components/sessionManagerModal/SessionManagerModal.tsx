@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Plus, Edit2, Trash2, FolderOpen } from 'lucide-react';
 import { useI18nStore } from '@/stores/i18nStore';
 import { Toast, ConfirmDialog } from '@/components';
+import { Button } from '@/components/ui';
 import { scale } from '@/utils/animations';
 import { useSessionManagerModal } from './useSessionManagerModal';
 
@@ -70,14 +71,15 @@ export function SessionManagerModal({ isOpen, onClose }: SessionManagerModalProp
                   <FolderOpen className="text-primary" size={24} />
                   <h2 className="text-xl font-bold text-white">{t.sessions.manage}</h2>
                 </div>
-                <button
-                  type="button"
+                <Button
                   onClick={onClose}
-                  className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                  variant="ghost"
+                  size="icon"
+                  className="hover:bg-gray-700"
                   aria-label={t.actions.close}
                 >
                   <X size={20} className="text-gray-400" />
-                </button>
+                </Button>
               </div>
 
               {/* Content */}
@@ -100,15 +102,14 @@ export function SessionManagerModal({ isOpen, onClose }: SessionManagerModalProp
                       placeholder={t.sessions.namePlaceholder}
                       className="flex-1 px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary"
                     />
-                    <button
-                      type="button"
+                    <Button
                       onClick={handleCreate}
                       disabled={!newSessionName.trim()}
-                      className="px-4 py-2 bg-primary hover:bg-primary-hover disabled:bg-gray-600 disabled:cursor-not-allowed text-white rounded-lg transition-colors flex items-center gap-2"
+                      className="flex items-center gap-2 px-4 py-2"
                     >
                       <Plus size={18} />
                       <span className="hidden sm:inline">{t.actions.create}</span>
-                    </button>
+                    </Button>
                   </div>
                 </div>
 
@@ -138,30 +139,32 @@ export function SessionManagerModal({ isOpen, onClose }: SessionManagerModalProp
                               onKeyDown={(e) => handleKeyDown(e, handleSaveEdit)}
                               className="flex-1 px-3 py-2 bg-gray-600 border border-gray-500 rounded-lg text-white focus:outline-none focus:border-primary"
                             />
-                            <button
-                              type="button"
+                            <Button
                               onClick={handleSaveEdit}
-                              className="px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
+                              variant="success"
+                              size="sm"
+                              className="px-3 py-2"
                             >
                               {t.actions.save}
-                            </button>
-                            <button
-                              type="button"
+                            </Button>
+                            <Button
                               onClick={handleCancelEdit}
-                              className="px-3 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded-lg transition-colors"
+                              variant="secondary"
+                              size="sm"
+                              className="px-3 py-2 bg-gray-600 hover:bg-gray-500 text-white border-none"
                             >
                               {t.actions.cancel}
-                            </button>
+                            </Button>
                           </div>
                         ) : (
                           // View Mode
                           <div className="flex items-center justify-between">
-                            <button
-                              type="button"
+                            <Button
                               onClick={() => {
                                 setActiveSession(session.id);
                               }}
-                              className="flex-1 text-left"
+                              variant="ghost"
+                              className="flex-1 w-full justify-start text-left text-white"
                             >
                               <div className="flex items-center gap-2">
                                 <p className="font-medium text-white">{session.name}</p>
@@ -179,24 +182,26 @@ export function SessionManagerModal({ isOpen, onClose }: SessionManagerModalProp
                                   t.sessions.solveCount,
                                 )}
                               </p>
-                            </button>
+                            </Button>
                             <div className="flex gap-1 ml-2">
-                              <button
-                                type="button"
+                              <Button
                                 onClick={() => handleStartEdit(session.id, session.name)}
-                                className="p-2 hover:bg-gray-600 rounded-lg transition-colors"
+                                variant="ghost"
+                                size="icon"
+                                className="hover:bg-gray-600"
                                 title={t.sessions.rename}
                               >
                                 <Edit2 size={16} className="text-gray-400" />
-                              </button>
-                              <button
-                                type="button"
+                              </Button>
+                              <Button
                                 onClick={() => setDeletingId(session.id)}
-                                className="p-2 hover:bg-red-600/20 rounded-lg transition-colors"
+                                variant="ghost"
+                                size="icon"
+                                className="text-red-400 hover:bg-red-600/20"
                                 title={t.sessions.delete}
                               >
                                 <Trash2 size={16} className="text-red-400" />
-                              </button>
+                              </Button>
                             </div>
                           </div>
                         )}
@@ -208,13 +213,13 @@ export function SessionManagerModal({ isOpen, onClose }: SessionManagerModalProp
 
               {/* Footer */}
               <div className="p-6 border-t border-gray-700 flex justify-end">
-                <button
-                  type="button"
+                <Button
                   onClick={onClose}
-                  className="px-6 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors"
+                  variant="secondary"
+                  className="px-6 py-2 bg-gray-700 hover:bg-gray-600 text-white border-none"
                 >
                   {t.actions.close}
-                </button>
+                </Button>
               </div>
             </motion.div>
           </div>

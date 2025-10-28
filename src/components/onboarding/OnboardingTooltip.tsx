@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import { Button } from '@/components/ui';
 import { useTranslation } from '@/hooks/useTranslation';
 import { useOnboardingStore, type OnboardingStep } from '@/stores/onboardingStore';
 import { ONBOARDING_STEPS } from '@/features/onboarding/config';
@@ -196,14 +197,15 @@ export function OnboardingTooltip({ step }: OnboardingTooltipProps) {
     >
       {/* Close button */}
       {stepConfig.allowSkip && (
-        <button
-          type="button"
+        <Button
           onClick={skipOnboarding}
-          className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-white transition-colors"
+          variant="ghost"
+          size="icon"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-white"
           aria-label={t.advancedStats.close}
         >
           <X size={18} className="sm:w-5 sm:h-5" />
-        </button>
+        </Button>
       )}
 
       {/* Progress */}
@@ -226,37 +228,36 @@ export function OnboardingTooltip({ step }: OnboardingTooltipProps) {
       {/* Actions */}
       <div className="flex items-center justify-between gap-2 sm:gap-3">
         {!isFirst && (
-          <button
-            type="button"
+          <Button
             onClick={previousStep}
-            className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors text-sm sm:text-base"
+            variant="secondary"
+            size="sm"
+            className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white border-none text-sm sm:text-base"
           >
             <ChevronLeft size={16} className="sm:w-[18px] sm:h-[18px]" />
             <span className="hidden sm:inline">{t.onboarding.previous}</span>
             <span className="sm:hidden">Ant.</span>
-          </button>
+          </Button>
         )}
 
         <div className="flex-1" />
 
         {isLast ? (
-          <button
-            type="button"
+          <Button
             onClick={nextStep}
-            className="flex items-center gap-2 px-4 sm:px-6 py-2 bg-primary hover:bg-primary/80 text-white rounded-lg font-medium transition-colors text-sm sm:text-base"
+            className="flex items-center gap-2 px-4 sm:px-6 py-2 text-sm sm:text-base"
           >
             {t.onboarding.finish}
-          </button>
+          </Button>
         ) : (
-          <button
-            type="button"
+          <Button
             onClick={nextStep}
-            className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 bg-primary hover:bg-primary/80 text-white rounded-lg transition-colors text-sm sm:text-base"
+            className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 text-sm sm:text-base"
           >
             <span className="hidden sm:inline">{t.onboarding.next}</span>
             <span className="sm:hidden">Próx.</span>
             <ChevronRight size={16} className="sm:w-[18px] sm:h-[18px]" />
-          </button>
+          </Button>
         )}
       </div>
     </motion.div>

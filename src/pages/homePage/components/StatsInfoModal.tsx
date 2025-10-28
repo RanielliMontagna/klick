@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Target, TrendingUp, Award, Trophy } from 'lucide-react';
+import { Button } from '@/components/ui';
 import { useI18nStore } from '@/stores/i18nStore';
 import { scale } from '@/utils/animations';
 
@@ -73,13 +74,14 @@ export function StatsInfoModal({ isOpen, onClose }: StatsInfoModalProps) {
             >
               <div className="flex items-center justify-between p-6 border-b border-gray-700 shrink-0">
                 <h2 className="text-2xl font-bold text-white">{t.stats.info.title}</h2>
-                <button
-                  type="button"
+                <Button
                   onClick={onClose}
-                  className="text-gray-400 hover:text-white transition-colors rounded-lg p-1 hover:bg-gray-700"
+                  variant="ghost"
+                  size="icon"
+                  className="text-gray-400 hover:text-white hover:bg-gray-700"
                 >
                   <X size={24} />
-                </button>
+                </Button>
               </div>
 
               <div className="overflow-y-auto p-6 space-y-6">
@@ -136,13 +138,12 @@ export function StatsInfoModal({ isOpen, onClose }: StatsInfoModalProps) {
               </div>
 
               <div className="p-6 border-t border-gray-700 shrink-0">
-                <button
-                  type="button"
+                <Button
                   onClick={onClose}
-                  className="w-full px-4 py-3 bg-primary hover:bg-primary/80 text-white rounded-lg font-medium transition-colors"
+                  className="w-full px-4 py-3 font-medium"
                 >
                   {t.actions.close}
-                </button>
+                </Button>
               </div>
             </motion.div>
           </div>

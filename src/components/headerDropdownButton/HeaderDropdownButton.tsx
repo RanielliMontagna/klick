@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { forwardRef, type ReactNode } from 'react';
+import { Button } from '@/components';
 
 interface HeaderDropdownButtonProps {
   isOpen: boolean;
@@ -26,17 +27,18 @@ export const HeaderDropdownButton = forwardRef<HTMLButtonElement, HeaderDropdown
     ref,
   ) {
     return (
-      <button
+      <Button
         ref={ref}
-        type="button"
         onClick={onClick}
-        className="flex items-center gap-1.5 sm:gap-2 px-2.5 py-2 sm:px-3 sm:py-2 md:px-4 md:py-2.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg sm:rounded-xl transition-colors min-w-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
         aria-label={ariaLabel}
         aria-expanded={isOpen}
+        variant="secondary"
+        size="sm"
+        className="flex items-center gap-1.5 sm:gap-2 px-2.5 py-2 sm:px-3 sm:py-2.5 md:px-4 md:py-2.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg sm:rounded-xl min-w-0 text-white"
       >
         <span className="shrink-0 text-primary">{icon}</span>
         <span
-          className={`text-xs sm:text-sm font-medium text-white inline-flex items-center gap-1.5 ${
+          className={`text-xs sm:text-sm font-medium inline-flex items-center gap-1.5 ${
             truncateLabel ? `truncate ${maxWidth} min-w-0` : ''
           }`}
         >
@@ -49,7 +51,7 @@ export const HeaderDropdownButton = forwardRef<HTMLButtonElement, HeaderDropdown
         >
           <ChevronDown size={14} className="text-gray-400 sm:w-4 sm:h-4" />
         </motion.div>
-      </button>
+      </Button>
     );
   },
 );

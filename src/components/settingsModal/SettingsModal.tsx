@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Settings as SettingsIcon, X, Download, Upload, Sun, Moon } from 'lucide-react';
 import { useRef, useState } from 'react';
+import { Button } from '@/components/ui';
 import { useSettingsStore } from '@/stores/settingsStore';
 import { useSessionsStore } from '@/stores/sessionsStore';
 import { useI18nStore } from '@/stores/i18nStore';
@@ -129,14 +130,15 @@ export const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                 <SettingsIcon className="h-5 w-5 text-blue-400" />
                 <h2 className="text-xl font-bold text-white">{t.settings.title}</h2>
               </div>
-              <button
-                type="button"
+              <Button
                 onClick={onClose}
-                className="rounded p-1 text-gray-400 transition-colors hover:bg-gray-700 hover:text-white"
+                variant="ghost"
+                size="icon"
+                className="text-gray-400 hover:text-white hover:bg-gray-700"
                 aria-label={t.actions.close}
               >
                 <X className="h-5 w-5" />
-              </button>
+              </Button>
             </div>
 
             {/* Settings Form */}
@@ -180,13 +182,15 @@ export const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                   </label>
                   <p className="text-xs text-gray-400">{t.settings.soundsEnabled.description}</p>
                 </div>
-                <button
+                <Button
                   id="sounds-enabled"
-                  type="button"
                   onClick={handleSoundsToggle}
-                  className={`relative h-6 w-11 rounded-full transition-colors ${
+                  variant="ghost"
+                  size="icon"
+                  className={`relative h-6 w-11 rounded-full transition-colors p-0 justify-start ${
                     settings.soundsEnabled ? 'bg-blue-500' : 'bg-gray-600'
                   }`}
+                  aria-pressed={settings.soundsEnabled}
                   aria-label={t.settings.soundsEnabled.label}
                 >
                   <motion.div
@@ -196,7 +200,7 @@ export const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                     }}
                     transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                   />
-                </button>
+                </Button>
               </div>
 
               {/* Auto Inspection Penalty */}
@@ -212,13 +216,15 @@ export const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                     {t.settings.autoInspectionPenalty.description}
                   </p>
                 </div>
-                <button
+                <Button
                   id="auto-inspection-penalty"
-                  type="button"
                   onClick={handleAutoInspectionPenaltyToggle}
-                  className={`relative h-6 w-11 rounded-full transition-colors ${
+                  variant="ghost"
+                  size="icon"
+                  className={`relative h-6 w-11 rounded-full transition-colors p-0 justify-start ${
                     settings.autoInspectionPenalty ? 'bg-blue-500' : 'bg-gray-600'
                   }`}
+                  aria-pressed={settings.autoInspectionPenalty}
                   aria-label={t.settings.autoInspectionPenalty.label}
                 >
                   <motion.div
@@ -228,7 +234,7 @@ export const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                     }}
                     transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                   />
-                </button>
+                </Button>
               </div>
 
               {/* Theme */}
@@ -239,11 +245,12 @@ export const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                   </label>
                   <p className="text-xs text-gray-400">{t.settings.theme.description}</p>
                 </div>
-                <button
+                <Button
                   id="theme"
-                  type="button"
                   onClick={toggleTheme}
-                  className={`relative h-6 w-11 rounded-full transition-colors ${
+                  variant="ghost"
+                  size="icon"
+                  className={`relative h-6 w-11 rounded-full transition-colors p-0 justify-start ${
                     theme === 'light' ? 'bg-yellow-500' : 'bg-blue-600'
                   }`}
                   aria-label={t.settings.theme.label}
@@ -261,7 +268,7 @@ export const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                       <Moon className="h-3 w-3 text-blue-600" />
                     )}
                   </motion.div>
-                </button>
+                </Button>
               </div>
 
               {/* Export/Import */}
@@ -288,22 +295,20 @@ export const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
 
                 {/* Export buttons */}
                 <div className="mb-4 space-y-2">
-                  <button
-                    type="button"
+                  <Button
                     onClick={handleExportCurrent}
-                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+                    className="flex w-full items-center justify-center gap-2 px-4 py-2 text-sm font-medium"
                   >
                     <Download className="h-4 w-4" />
                     {t.settings.exportImport.exportCurrent}
-                  </button>
-                  <button
-                    type="button"
+                  </Button>
+                  <Button
                     onClick={handleExportAll}
-                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+                    className="flex w-full items-center justify-center gap-2 px-4 py-2 text-sm font-medium"
                   >
                     <Download className="h-4 w-4" />
                     {t.settings.exportImport.exportAll}
-                  </button>
+                  </Button>
                 </div>
 
                 {/* Import mode selector */}
@@ -312,28 +317,30 @@ export const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                     {t.settings.exportImport.importMode}
                   </div>
                   <div className="flex gap-2">
-                    <button
-                      type="button"
+                    <Button
                       onClick={() => setImportMode('merge')}
-                      className={`flex-1 rounded-lg px-3 py-2 text-xs font-medium transition-colors ${
+                      variant={importMode === 'merge' ? 'primary' : 'secondary'}
+                      size="sm"
+                      className={`flex-1 px-3 py-2 text-xs font-medium ${
                         importMode === 'merge'
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                          ? ''
+                          : 'bg-gray-700 text-gray-300 hover:bg-gray-600 border-none'
                       }`}
                     >
                       {t.settings.exportImport.merge}
-                    </button>
-                    <button
-                      type="button"
+                    </Button>
+                    <Button
                       onClick={() => setImportMode('replace')}
-                      className={`flex-1 rounded-lg px-3 py-2 text-xs font-medium transition-colors ${
+                      variant={importMode === 'replace' ? 'primary' : 'secondary'}
+                      size="sm"
+                      className={`flex-1 px-3 py-2 text-xs font-medium ${
                         importMode === 'replace'
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                          ? ''
+                          : 'bg-gray-700 text-gray-300 hover:bg-gray-600 border-none'
                       }`}
                     >
                       {t.settings.exportImport.replace}
-                    </button>
+                    </Button>
                   </div>
                 </div>
 
@@ -345,14 +352,14 @@ export const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                   onChange={handleFileChange}
                   className="hidden"
                 />
-                <button
-                  type="button"
+                <Button
                   onClick={handleImportClick}
-                  className="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-600 bg-gray-700 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-600"
+                  variant="secondary"
+                  className="flex w-full items-center justify-center gap-2 border border-gray-600 bg-gray-700 px-4 py-2 text-sm font-medium text-white hover:bg-gray-600"
                 >
                   <Upload className="h-4 w-4" />
                   {t.settings.exportImport.import}
-                </button>
+                </Button>
               </div>
             </div>
           </motion.div>

@@ -1,5 +1,6 @@
 import { useEffect, useState, type ReactNode, type RefObject } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Button } from '@/components/ui';
 import { slideDown } from '@/utils/animations';
 
 interface HeaderDropdownMenuProps {
@@ -99,10 +100,10 @@ export function HeaderDropdownMenu({
       {isOpen && (
         <>
           {/* Backdrop */}
-          <button
-            type="button"
-            className="fixed inset-0 z-40 cursor-default"
+          <Button
             onClick={onClose}
+            variant="ghost"
+            className="fixed inset-0 z-40 cursor-default p-0 rounded-none focus-visible:outline-none focus-visible:ring-0"
             onKeyDown={(e) => {
               if (e.key === 'Escape') onClose();
             }}

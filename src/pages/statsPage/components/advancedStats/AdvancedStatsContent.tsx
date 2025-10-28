@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { TrendingUp, Target, Zap } from 'lucide-react';
+import { Button } from '@/components/ui';
 import { useTranslation } from '@/hooks/useTranslation';
 import { EvolutionChart } from './EvolutionChart';
 import { DistributionChart } from './DistributionChart';
@@ -48,18 +49,19 @@ export function AdvancedStatsContent() {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
           return (
-            <button
-              type="button"
+            <Button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`
-                flex items-center gap-2 px-4 py-3 border-b-2 transition-all duration-200
-                ${isActive ? 'border-primary text-primary' : 'border-transparent text-text-secondary hover:text-text-primary'}
-              `}
+              variant="ghost"
+              className={`flex items-center gap-2 px-4 py-3 border-b-2 rounded-none transition-all duration-200 ${
+                isActive
+                  ? 'border-primary text-primary'
+                  : 'border-transparent text-text-secondary hover:text-text-primary'
+              }`}
             >
               <Icon size={18} />
               <span className="hidden sm:inline font-medium">{tab.label}</span>
-            </button>
+            </Button>
           );
         })}
       </div>

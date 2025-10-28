@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Menu, X, Home, History, TrendingUp, BookOpen, Settings } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Button } from '@/components/ui';
 import { useTranslation } from '../../hooks/useTranslation';
 
 export function MobileNav() {
@@ -20,14 +21,15 @@ export function MobileNav() {
 
   return (
     <div className="md:hidden">
-      <button
-        type="button"
+      <Button
         onClick={() => setIsOpen(!isOpen)}
-        className="p-2 text-text-secondary hover:text-text-primary hover:bg-surface rounded-lg transition-colors"
+        variant="ghost"
+        size="icon"
+        className="text-text-secondary hover:text-text-primary hover:bg-surface"
         aria-label="Menu"
       >
         <Menu className="w-6 h-6" />
-      </button>
+      </Button>
 
       <AnimatePresence>
         {isOpen && (
@@ -54,14 +56,15 @@ export function MobileNav() {
                 {/* Header */}
                 <div className="flex items-center justify-between p-4 border-b border-border bg-surface/50">
                   <h2 className="text-lg font-bold text-text-primary">{t.app.title}</h2>
-                  <button
-                    type="button"
+                  <Button
                     onClick={handleClose}
-                    className="p-2 text-text-secondary hover:text-text-primary hover:bg-surface rounded-lg transition-colors"
+                    variant="ghost"
+                    size="icon"
+                    className="text-text-secondary hover:text-text-primary hover:bg-surface"
                     aria-label="Fechar menu"
                   >
                     <X className="w-5 h-5" />
-                  </button>
+                  </Button>
                 </div>
 
                 {/* Navigation items */}

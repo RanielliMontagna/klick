@@ -1,5 +1,6 @@
 import { Download, Upload, Sun, Moon } from 'lucide-react';
 import { useRef, useState } from 'react';
+import { Button } from '@/components/ui';
 import { useSettingsStore } from '@/stores/settingsStore';
 import { useSessionsStore } from '@/stores/sessionsStore';
 import { useI18nStore } from '@/stores/i18nStore';
@@ -140,19 +141,21 @@ export function SettingsContent() {
             </div>
             <p className="text-xs text-text-secondary">{t.settings.soundsEnabled.description}</p>
           </div>
-          <button
-            type="button"
+          <Button
             onClick={handleSoundsToggle}
-            className={`relative w-12 h-6 rounded-full transition-colors ${
+            variant="ghost"
+            size="icon"
+            className={`relative w-12 h-6 rounded-full transition-colors p-0 justify-start ${
               settings.soundsEnabled ? 'bg-primary' : 'bg-border'
             }`}
+            aria-pressed={settings.soundsEnabled}
           >
             <span
               className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform ${
                 settings.soundsEnabled ? 'translate-x-6' : 'translate-x-0'
               }`}
             />
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -167,19 +170,21 @@ export function SettingsContent() {
               {t.settings.autoInspectionPenalty.description}
             </p>
           </div>
-          <button
-            type="button"
+          <Button
             onClick={handleAutoInspectionPenaltyToggle}
-            className={`relative w-12 h-6 rounded-full transition-colors ${
+            variant="ghost"
+            size="icon"
+            className={`relative w-12 h-6 rounded-full transition-colors p-0 justify-start ${
               settings.autoInspectionPenalty ? 'bg-primary' : 'bg-border'
             }`}
+            aria-pressed={settings.autoInspectionPenalty}
           >
             <span
               className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform ${
                 settings.autoInspectionPenalty ? 'translate-x-6' : 'translate-x-0'
               }`}
             />
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -192,13 +197,13 @@ export function SettingsContent() {
             </div>
             <p className="text-xs text-text-secondary">{t.settings.theme.description}</p>
           </div>
-          <button
-            type="button"
+          <Button
             onClick={toggleTheme}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
+            variant="secondary"
+            className={`flex items-center gap-2 px-4 py-2 font-medium border transition-colors ${
               theme === 'light'
-                ? 'bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 border border-yellow-500/30'
-                : 'bg-blue-500/20 text-blue-600 dark:text-blue-400 border border-blue-500/30'
+                ? 'bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 border-yellow-500/30'
+                : 'bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30'
             }`}
           >
             {theme === 'light' ? (
@@ -212,7 +217,7 @@ export function SettingsContent() {
                 <span className="text-sm">{t.settings.theme.dark}</span>
               </>
             )}
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -227,22 +232,22 @@ export function SettingsContent() {
 
         {/* Export buttons */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <button
-            type="button"
+          <Button
             onClick={handleExportCurrent}
-            className="flex items-center justify-center gap-2 px-4 py-3 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30 rounded-lg transition-colors"
+            variant="secondary"
+            className="flex items-center justify-center gap-2 px-4 py-3 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30"
           >
             <Download className="w-4 h-4" />
             <span className="text-sm font-medium">{t.settings.exportImport.exportCurrent}</span>
-          </button>
-          <button
-            type="button"
+          </Button>
+          <Button
             onClick={handleExportAll}
-            className="flex items-center justify-center gap-2 px-4 py-3 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30 rounded-lg transition-colors"
+            variant="secondary"
+            className="flex items-center justify-center gap-2 px-4 py-3 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30"
           >
             <Download className="w-4 h-4" />
             <span className="text-sm font-medium">{t.settings.exportImport.exportAll}</span>
-          </button>
+          </Button>
         </div>
 
         {/* Import section */}
@@ -271,14 +276,14 @@ export function SettingsContent() {
               <span className="text-sm text-text-secondary">{t.settings.exportImport.replace}</span>
             </label>
           </div>
-          <button
-            type="button"
+          <Button
             onClick={handleImportClick}
-            className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-border hover:bg-border/80 text-text-primary rounded-lg transition-colors"
+            variant="secondary"
+            className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-border hover:bg-border/80 text-text-primary border-none"
           >
             <Upload className="w-4 h-4" />
             <span className="text-sm font-medium">{t.settings.exportImport.import}</span>
-          </button>
+          </Button>
           <input
             ref={fileInputRef}
             type="file"

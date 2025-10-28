@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
 import { Keyboard, HelpCircle, Timer } from 'lucide-react';
-import { TimerDisplay, ScrambleBox, InspectionDisplay, StatCard, PageHeader } from '@/components';
+import { TimerDisplay, ScrambleBox, InspectionDisplay, StatCard, PageHeader, Button } from '@/components';
 import { StatsInfoModal } from './components/StatsInfoModal';
 import { useTimer } from '@/features/timer/useTimer';
 import { generate3x3Scramble } from '@/features/scramble/generate3x3';
@@ -155,14 +155,14 @@ export function HomePage() {
       <motion.div variants={slideUp} initial="hidden" animate="visible">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-bold text-text-primary">{t.navigation.stats}</h2>
-          <button
-            type="button"
+          <Button
+            variant="ghost"
+            size="icon"
             onClick={() => setShowStatsInfo(true)}
-            className="p-2 text-text-secondary hover:text-primary hover:bg-surface rounded-lg transition-colors"
             aria-label={t.stats.help}
           >
             <HelpCircle className="w-5 h-5" />
-          </button>
+          </Button>
         </div>
         <div
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4"
