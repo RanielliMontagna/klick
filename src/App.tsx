@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
-import { Keyboard, Trash2, HelpCircle, Settings } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useCallback, useEffect, useState } from 'react';
+import { Keyboard, Trash2, HelpCircle, Settings } from 'lucide-react';
 import {
   TimerDisplay,
   ScrambleBox,
