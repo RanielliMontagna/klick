@@ -1,5 +1,7 @@
 // Components
 export { ConfirmDialog } from './confirmDialog/ConfirmDialog';
+export { HeaderDropdownButton } from './headerDropdownButton/HeaderDropdownButton';
+export { HeaderDropdownMenu } from './headerDropdownMenu/HeaderDropdownMenu';
 export { PWAUpdatePrompt } from './pwaUpdatePrompt/PWAUpdatePrompt';
 export { ScrambleBox } from './scrambleBox/ScrambleBox';
 export { SessionManagerModal } from './sessionManagerModal/SessionManagerModal';

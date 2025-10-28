@@ -182,23 +182,38 @@ function App() {
     <div className="min-h-screen bg-background p-4 sm:p-6 md:p-8">
       <div className="max-w-7xl mx-auto">
         <motion.header
-          className="mb-8 sm:mb-12 flex flex-col items-center"
+          className="mb-6 sm:mb-8 md:mb-12 flex flex-col items-center"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="w-full flex justify-between items-start mb-4">
-            <div className="flex-1 flex justify-start">
+          {/* Mobile: Stack vertically */}
+          <div className="w-full flex flex-col gap-3 sm:hidden">
+            <div className="flex items-center justify-between gap-2">
+              <LanguageSelector />
+              <SessionSwitcher onManageClick={() => setShowSessionManager(true)} />
+            </div>
+            <div className="flex justify-center">
+              <Logo size="md" />
+            </div>
+          </div>
+
+          {/* Desktop: Three columns */}
+          <div className="hidden sm:flex w-full justify-between items-center gap-4">
+            <div className="flex justify-start min-w-0 flex-1">
               <LanguageSelector />
             </div>
-            <div className="flex-1 flex justify-center">
+            <div className="flex justify-center shrink-0">
               <Logo size="lg" />
             </div>
-            <div className="flex-1 flex justify-end">
+            <div className="flex justify-end min-w-0 flex-1">
               <SessionSwitcher onManageClick={() => setShowSessionManager(true)} />
             </div>
           </div>
-          <p className="text-muted-foreground text-sm sm:text-base mt-3">{t.app.tagline}</p>
+
+          <p className="text-muted-foreground text-xs sm:text-sm md:text-base mt-2 sm:mt-3">
+            {t.app.tagline}
+          </p>
         </motion.header>
 
         <div className="mb-8 sm:mb-12">
