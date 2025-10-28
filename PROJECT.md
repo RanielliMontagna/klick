@@ -224,7 +224,7 @@ Requisitos mínimos:
 - [x] Scramble 3×3 válido a cada solve.
 - [x] **+2** e **DNF** por botão/atalho e regra de inspeção (opcional).
 - [x] Cálculo correto de **ao5/ao12** (com regras de DNF).
-- [ ] Sessões separadas e persistentes.
+- [x] Sessões separadas e persistentes.
 - [ ] Exportar/Importar JSON.
 - [x] UI clara, responsiva e acessível (dark-first).
 - [x] Testes principais passando.
@@ -342,6 +342,7 @@ Requisitos mínimos:
   - [x] Componentes reutilizáveis (ConfirmDialog, StatsInfoModal)
 
 12. **Tabela de Histórico (Fase 3):** ✅
+
     - Componente **SolveTable** responsivo
     - Colunas: #, Tempo, Scramble, Data, Penalidade, Ações
     - **Filtros**: Todos, Últimos 5/12/50/100
@@ -355,9 +356,32 @@ Requisitos mínimos:
     - Animações com Framer Motion
     - Estado vazio tratado
 
+13. **Sistema de Sessões (Fase 4):** ✅
+    - Componente **SessionSwitcher** no header
+    - Dropdown com lista de todas as sessões
+    - Indicador visual da sessão ativa
+    - Contagem de solves por sessão
+    - **Modal SessionManager** completo:
+      - Criar novas sessões com nome personalizado
+      - Renomear sessões existentes (modo inline edit)
+      - Deletar sessões com confirmação
+      - Proteção contra deletar a última sessão
+      - Trocar sessão ativa com um clique
+    - **Persistência no Zustand Store:**
+      - Múltiplas sessões em localStorage
+      - Cada sessão independente (solves e stats)
+      - Sessão ativa preservada entre reloads
+    - **Feedback visual:**
+      - Toasts de sucesso para criar/renomear/deletar
+      - Toast de erro ao tentar deletar última sessão
+      - Animações suaves em modais e transições
+    - **Integração completa:**
+      - Estatísticas atualizam ao trocar sessão
+      - Tabela de solves reflete sessão ativa
+      - Atalhos bloqueados quando modal aberto
+
 ### Próximas fases
 
-- **Fase 4:** Sistema de sessões completo
 - **Fase 5:** Configurações e exportar/importar
 
 ---

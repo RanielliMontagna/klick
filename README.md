@@ -167,15 +167,14 @@ src/
 - [x] **Modal de detalhes do solve** com scramble copiável
 - [x] **Filtros de visualização** (últimos 5/12/50/100 ou todos)
 - [x] **Deletar solves individuais** com confirmação
+- [x] **Sistema de sessões** - criar, renomear, deletar e trocar entre sessões
+- [x] **Gerenciador de sessões** com modal completo
 
 ### Próximos passos
 
-- [ ] Sistema de sessões (criar, renomear, deletar, trocar)
-- [ ] Sistema de sessões (criar, renomear, deletar, trocar)
 - [ ] Página de configurações
 - [ ] Exportar/Importar dados (JSON)
 - [ ] Onboarding para iniciantes
-- [ ] Filtros de histórico (últimos 5/12/50 solves)
 
 ## 🧪 Testes
 

@@ -7,6 +7,8 @@ import { InspectionDisplay } from './components/InspectionDisplay';
 import { StatCard } from './components/StatCard';
 import { SolveTable } from './components/SolveTable';
 import { SolveDetailsModal } from './components/SolveDetailsModal';
+import { SessionSwitcher } from './components/SessionSwitcher';
+import { SessionManagerModal } from './components/SessionManagerModal';
 import { Toast } from './components/Toast';
 import { ConfirmDialog } from './components/ConfirmDialog';
 import { StatsInfoModal } from './components/StatsInfoModal';
@@ -26,6 +28,7 @@ function App() {
   const [inspectionOvertime, setInspectionOvertime] = useState(0);
   const [showClearConfirm, setShowClearConfirm] = useState(false);
   const [showStatsInfo, setShowStatsInfo] = useState(false);
+  const [showSessionManager, setShowSessionManager] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [selectedSolve, setSelectedSolve] = useState<Solve | null>(null);
   const [selectedSolveNumber, setSelectedSolveNumber] = useState(0);
@@ -116,6 +119,7 @@ function App() {
         e.target instanceof HTMLTextAreaElement ||
         showClearConfirm ||
         showStatsInfo ||
+        showSessionManager ||
         selectedSolve !== null
       ) {
         return;
@@ -152,7 +156,7 @@ function App() {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [generateNewScramble, updateSolvePenalty, getActiveSession, state, showClearConfirm, showStatsInfo, selectedSolve]);
+  }, [generateNewScramble, updateSolvePenalty, getActiveSession, state, showClearConfirm, showStatsInfo, showSessionManager, selectedSolve]);
 
   return (
     <div className="min-h-screen bg-background p-4 sm:p-6 md:p-8">
@@ -163,7 +167,15 @@ function App() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Logo size="lg" />
+          <div className="w-full flex justify-between items-start mb-4">
+            <div className="flex-1" />
+            <div className="flex-1 flex justify-center">
+              <Logo size="lg" />
+            </div>
+            <div className="flex-1 flex justify-end">
+              <SessionSwitcher onManageClick={() => setShowSessionManager(true)} />
+            </div>
+          </div>
           <p className="text-muted-foreground text-sm sm:text-base mt-3">
             {t.app.tagline}
           </p>
@@ -316,6 +328,11 @@ function App() {
         onClose={() => setSelectedSolve(null)}
         solve={selectedSolve}
         solveNumber={selectedSolveNumber}
+      />
+
+      <SessionManagerModal
+        isOpen={showSessionManager}
+        onClose={() => setShowSessionManager(false)}
       />
 
       {/* Toast */}
