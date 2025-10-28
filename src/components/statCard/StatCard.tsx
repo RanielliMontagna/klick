@@ -1,6 +1,6 @@
 import type { LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { scale } from '../utils/animations';
+import { scale } from '../../utils/animations';
 
 interface StatCardProps {
   label: string;

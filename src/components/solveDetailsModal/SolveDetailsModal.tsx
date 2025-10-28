@@ -1,10 +1,10 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Copy, Clock, Calendar, AlertTriangle } from 'lucide-react';
-import { useState } from 'react';
-import { useI18nStore } from '../stores/i18nStore';
-import { formatTime } from '../utils/formatTime';
-import { scale } from '../utils/animations';
-import type { Solve } from '../types';
+import { useI18nStore } from '../../stores/i18nStore';
+import { formatTime } from '../../utils/formatTime';
+import { scale } from '../../utils/animations';
+import { useSolveDetailsModal } from './useSolveDetailsModal';
+import type { Solve } from '../../types';
 
 interface SolveDetailsModalProps {
   isOpen: boolean;
@@ -20,54 +20,9 @@ export function SolveDetailsModal({
   solveNumber,
 }: SolveDetailsModalProps) {
   const { t } = useI18nStore();
-  const [copied, setCopied] = useState(false);
+  const { copied, copyScramble, formatFullDate, penaltyInfo } = useSolveDetailsModal(solve);
 
   if (!solve) return null;
-
-  const copyScramble = () => {
-    navigator.clipboard.writeText(solve.scramble);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  const formatFullDate = (isoString: string) => {
-    const date = new Date(isoString);
-    return new Intl.DateTimeFormat('pt-BR', {
-      day: '2-digit',
-      month: 'long',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-    }).format(date);
-  };
-
-  const getPenaltyInfo = () => {
-    if (solve.penalty === 'DNF') {
-      return {
-        label: 'DNF (Did Not Finish)',
-        color: 'text-red-400',
-        bgColor: 'bg-red-500/20',
-        borderColor: 'border-red-500/30',
-      };
-    }
-    if (solve.penalty === '+2') {
-      return {
-        label: '+2 segundos',
-        color: 'text-yellow-400',
-        bgColor: 'bg-yellow-500/20',
-        borderColor: 'border-yellow-500/30',
-      };
-    }
-    return {
-      label: 'Nenhuma',
-      color: 'text-gray-400',
-      bgColor: 'bg-gray-700',
-      borderColor: 'border-gray-600',
-    };
-  };
-
-  const penaltyInfo = getPenaltyInfo();
 
   return (
     <AnimatePresence>

@@ -1,19 +1,21 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Keyboard, Trash2, HelpCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { TimerDisplay } from './components/TimerDisplay';
-import { ScrambleBox } from './components/ScrambleBox';
-import { InspectionDisplay } from './components/InspectionDisplay';
-import { StatCard } from './components/StatCard';
-import { SolveTable } from './components/SolveTable';
-import { SolveDetailsModal } from './components/SolveDetailsModal';
-import { SessionSwitcher } from './components/SessionSwitcher';
-import { SessionManagerModal } from './components/SessionManagerModal';
-import { Toast } from './components/Toast';
-import { ConfirmDialog } from './components/ConfirmDialog';
-import { StatsInfoModal } from './components/StatsInfoModal';
-import { PWAUpdatePrompt } from './components/PWAUpdatePrompt';
-import { Logo } from './components/Logo';
+import {
+  TimerDisplay,
+  ScrambleBox,
+  InspectionDisplay,
+  StatCard,
+  SolveTable,
+  SolveDetailsModal,
+  SessionSwitcher,
+  SessionManagerModal,
+  Toast,
+  ConfirmDialog,
+  StatsInfoModal,
+  PWAUpdatePrompt,
+  Logo,
+} from './components';
 import { useTimer } from './features/timer/useTimer';
 import { generate3x3Scramble } from './features/scramble/generate3x3';
 import { useSessionsStore } from './stores/sessionsStore';

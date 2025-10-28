@@ -395,7 +395,165 @@ Requisitos mínimos:
 
 ---
 
-# 12) Comandos (esperado no README)
+# 12) Regras de Código e Arquitetura
+
+## Separação de Responsabilidades
+
+### Componentes vs Hooks Customizados
+
+**SEMPRE separe lógica de apresentação:**
+
+- ✅ **Componentes (.tsx)**: Foco exclusivo em renderização e UI
+  - Estrutura JSX/TSX
+  - Estilização (classes Tailwind)
+  - Animações (Framer Motion)
+  - Event handlers simples (onClick, onChange)
+- ✅ **Hooks customizados (.ts)**: Toda a lógica de negócio
+  - Estado local (useState, useReducer)
+  - Efeitos colaterais (useEffect)
+  - Cálculos e transformações de dados
+  - Integrações com APIs/stores
+  - Callbacks complexos
+
+**Exemplo prático:**
+
+```tsx
+// ❌ ERRADO: Lógica misturada no componente
+export function MyModal({ data }) {
+  const [copied, setCopied] = useState(false);
+
+  const formatDate = (iso) => {
+    /* ... */
+  };
+  const getPenalty = () => {
+    /* ... */
+  };
+  const copyText = () => {
+    /* ... */
+  };
+
+  return <div>{/* JSX */}</div>;
+}
+
+// ✅ CORRETO: Lógica extraída para hook
+// hooks/useMyModal.ts
+export function useMyModal(data) {
+  const [copied, setCopied] = useState(false);
+
+  const formatDate = useCallback((iso) => {
+    /* ... */
+  }, []);
+  const getPenalty = useCallback(() => {
+    /* ... */
+  }, [data]);
+  const copyText = useCallback(() => {
+    /* ... */
+  }, [data]);
+
+  return { copied, formatDate, getPenalty, copyText };
+}
+
+// components/MyModal.tsx
+export function MyModal({ data }) {
+  const { copied, formatDate, getPenalty, copyText } = useMyModal(data);
+
+  return <div>{/* JSX limpo */}</div>;
+}
+```
+
+## Nomenclatura de Hooks
+
+- **Padrão**: `use[ComponentName][Responsibility].ts`
+- Exemplos:
+  - `useSolveDetailsModal.ts` - Lógica do SolveDetailsModal
+  - `useSessionManager.ts` - Lógica do SessionManager
+  - `useTimerControls.ts` - Controles do timer
+
+## Organização de Pastas
+
+### Estrutura de Componentes com Collocation
+
+**SEMPRE organize componentes complexos em pastas próprias:**
+
+```
+/src
+  /components
+    /solveDetailsModal          # Componente com pasta própria
+      ├── SolveDetailsModal.tsx # Componente de UI
+      ├── useSolveDetailsModal.ts # Lógica/hook
+      └── index.ts              # Export barrel
+    /sessionManager
+      ├── SessionManager.tsx
+      ├── useSessionManager.ts
+      └── index.ts
+    TimerDisplay.tsx            # Componentes simples ficam na raiz
+    ScrambleBox.tsx
+    Logo.tsx
+  /hooks                        # Apenas hooks genéricos/compartilhados
+  /features                     # Lógica de domínio específica
+  /stores                       # Estado global (Zustand)
+  /utils                        # Funções utilitárias puras
+```
+
+### Critérios para Criar Pasta de Componente
+
+Crie uma pasta quando o componente tiver:
+
+1. **Hook customizado associado** (lógica complexa)
+2. **Múltiplos arquivos relacionados** (types, utils, hooks)
+3. **Sub-componentes** usados apenas por ele
+4. **Testes específicos** do componente
+
+### Estrutura de Pasta de Componente
+
+```
+/componentName
+  ├── ComponentName.tsx       # Componente principal
+  ├── useComponentName.ts     # Hook customizado (se necessário)
+  ├── ComponentName.types.ts  # Types específicos (opcional)
+  ├── ComponentName.utils.ts  # Utilitários (opcional)
+  ├── SubComponent.tsx        # Sub-componentes (opcional)
+  └── index.ts                # Export barrel (sempre)
+```
+
+### Export Barrel Pattern
+
+**SEMPRE crie um `index.ts` para facilitar imports:**
+
+```typescript
+// index.ts
+export { ComponentName } from "./ComponentName";
+export { useComponentName } from "./useComponentName";
+export type { ComponentNameProps } from "./ComponentName.types";
+```
+
+**Benefícios:**
+
+- Imports limpos: `import { Component } from './components/component'`
+- Flexibilidade: Trocar implementação sem mudar imports
+- Encapsulamento: Controle sobre o que é exportado
+
+## Quando Criar um Hook Customizado
+
+Crie um hook customizado quando o componente tiver:
+
+1. **Múltiplas funções auxiliares** (formatters, calculators, validators)
+2. **Estado local complexo** (mais de 2-3 useState)
+3. **Lógica de efeitos colaterais** (useEffect, timers, subscriptions)
+4. **Cálculos derivados** que dependem de props/state
+5. **Integrações com stores/APIs** além de simples leitura
+
+## Benefícios
+
+- ✅ **Testabilidade**: Hooks podem ser testados isoladamente
+- ✅ **Reutilização**: Lógica pode ser compartilhada entre componentes
+- ✅ **Legibilidade**: Componentes focam em estrutura visual
+- ✅ **Manutenibilidade**: Mudanças de lógica não afetam UI
+- ✅ **Performance**: Memoização adequada com useCallback/useMemo
+
+---
+
+# 13) Comandos (esperado no README)
 
 ```
 pnpm i

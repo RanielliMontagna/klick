@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Trash2, Eye } from 'lucide-react';
-import { useI18nStore } from '../stores/i18nStore';
-import { useSessionsStore } from '../stores/sessionsStore';
-import { ConfirmDialog } from './ConfirmDialog';
-import { formatTime } from '../utils/formatTime';
-import { fadeIn } from '../utils/animations';
-import type { Solve } from '../types';
+import { useI18nStore } from '../../stores/i18nStore';
+import { useSessionsStore } from '../../stores/sessionsStore';
+import { ConfirmDialog } from '../confirmDialog/ConfirmDialog';
+import { formatTime } from '../../utils/formatTime';
+import { fadeIn } from '../../utils/animations';
+import type { Solve } from '../../types';
 
 type FilterOption = 'all' | 'last5' | 'last12' | 'last50' | 'last100';
 

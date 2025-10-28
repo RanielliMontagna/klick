@@ -1,11 +1,10 @@
-import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Plus, Edit2, Trash2, FolderOpen } from 'lucide-react';
-import { useSessionsStore } from '../stores/sessionsStore';
-import { useI18nStore } from '../stores/i18nStore';
-import { ConfirmDialog } from './ConfirmDialog';
-import { Toast } from './Toast';
-import { scale } from '../utils/animations';
+import { useI18nStore } from '../../stores/i18nStore';
+import { ConfirmDialog } from '../confirmDialog/ConfirmDialog';
+import { Toast } from '../toast/Toast';
+import { scale } from '../../utils/animations';
+import { useSessionManagerModal } from './useSessionManagerModal';
 
 interface SessionManagerModalProps {
   isOpen: boolean;
@@ -14,69 +13,33 @@ interface SessionManagerModalProps {
 
 export function SessionManagerModal({ isOpen, onClose }: SessionManagerModalProps) {
   const { t } = useI18nStore();
-  const { sessions, activeSessionId, createSession, renameSession, deleteSession, setActiveSession } = useSessionsStore();
-  
-  const [editingId, setEditingId] = useState<string | null>(null);
-  const [editingName, setEditingName] = useState('');
-  const [newSessionName, setNewSessionName] = useState('');
-  const [deletingId, setDeletingId] = useState<string | null>(null);
-  const [showCreateSuccess, setShowCreateSuccess] = useState(false);
-  const [showRenameSuccess, setShowRenameSuccess] = useState(false);
-  const [showDeleteSuccess, setShowDeleteSuccess] = useState(false);
-  const [showCannotDeleteError, setShowCannotDeleteError] = useState(false);
-
-  const handleCreate = () => {
-    if (newSessionName.trim()) {
-      createSession(newSessionName.trim());
-      setNewSessionName('');
-      setShowCreateSuccess(true);
-    }
-  };
-
-  const handleStartEdit = (id: string, currentName: string) => {
-    setEditingId(id);
-    setEditingName(currentName);
-  };
-
-  const handleSaveEdit = () => {
-    if (editingId && editingName.trim()) {
-      renameSession(editingId, editingName.trim());
-      setEditingId(null);
-      setEditingName('');
-      setShowRenameSuccess(true);
-    }
-  };
-
-  const handleCancelEdit = () => {
-    setEditingId(null);
-    setEditingName('');
-  };
-
-  const handleConfirmDelete = () => {
-    if (deletingId) {
-      if (sessions.length === 1) {
-        setShowCannotDeleteError(true);
-        setDeletingId(null);
-        return;
-      }
-      deleteSession(deletingId);
-      setDeletingId(null);
-      setShowDeleteSuccess(true);
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent, action: () => void) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      action();
-    } else if (e.key === 'Escape') {
-      handleCancelEdit();
-    }
-  };
-
-  const getSolveCountText = (count: number) => {
-    return count === 1 ? t.sessions.solveCountSingular : t.sessions.solveCount;
-  };
+  const {
+    sessions,
+    activeSessionId,
+    editingId,
+    editingName,
+    setEditingName,
+    newSessionName,
+    setNewSessionName,
+    deletingId,
+    setDeletingId,
+    showCreateSuccess,
+    setShowCreateSuccess,
+    showRenameSuccess,
+    setShowRenameSuccess,
+    showDeleteSuccess,
+    setShowDeleteSuccess,
+    showCannotDeleteError,
+    setShowCannotDeleteError,
+    handleCreate,
+    handleStartEdit,
+    handleSaveEdit,
+    handleCancelEdit,
+    handleConfirmDelete,
+    handleKeyDown,
+    getSolveCountText,
+    setActiveSession,
+  } = useSessionManagerModal();
 
   if (!isOpen) return null;
 
@@ -201,7 +164,7 @@ export function SessionManagerModal({ isOpen, onClose }: SessionManagerModalProp
                                 )}
                               </div>
                               <p className="text-sm text-gray-400 mt-1">
-                                {session.solves.length} {getSolveCountText(session.solves.length)}
+                                {session.solves.length} {getSolveCountText(session.solves.length, t.sessions.solveCountSingular, t.sessions.solveCount)}
                               </p>
                             </button>
                             <div className="flex gap-1 ml-2">

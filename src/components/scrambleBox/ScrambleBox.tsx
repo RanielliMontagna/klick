@@ -1,8 +1,8 @@
 import { Copy, RefreshCw, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useI18nStore } from '../stores/i18nStore';
-import { useState } from 'react';
-import { slideDown } from '../utils/animations';
+import { useI18nStore } from '../../stores/i18nStore';
+import { slideDown } from '../../utils/animations';
+import { useScrambleBox } from './useScrambleBox';
 
 interface ScrambleBoxProps {
   scramble: string;
@@ -11,13 +11,7 @@ interface ScrambleBoxProps {
 
 export function ScrambleBox({ scramble, onNewScramble }: ScrambleBoxProps) {
   const { t } = useI18nStore();
-  const [copied, setCopied] = useState(false);
-
-  const copyToClipboard = async () => {
-    await navigator.clipboard.writeText(scramble);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  const { copied, copyToClipboard } = useScrambleBox(scramble);
 
   return (
     <motion.div 

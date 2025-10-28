@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
 import { CheckCircle, XCircle, Info, AlertCircle, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { slideInRight } from '../utils/animations';
+import { slideInRight } from '../../utils/animations';
+import { useToast } from './useToast';
 
 type ToastType = 'success' | 'error' | 'info' | 'warning';
 
@@ -13,16 +13,7 @@ interface ToastProps {
 }
 
 export function Toast({ message, type = 'info', duration = 3000, onClose }: ToastProps) {
-  const [isVisible, setIsVisible] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(false);
-      onClose?.();
-    }, duration);
-
-    return () => clearTimeout(timer);
-  }, [duration, onClose]);
+  const { isVisible, handleClose, getStyles } = useToast(duration, onClose);
 
   const getIcon = () => {
     const size = 18;
@@ -38,19 +29,6 @@ export function Toast({ message, type = 'info', duration = 3000, onClose }: Toas
     }
   };
 
-  const getStyles = () => {
-    switch (type) {
-      case 'success':
-        return 'bg-green-900/90 border-green-700';
-      case 'error':
-        return 'bg-red-900/90 border-red-700';
-      case 'warning':
-        return 'bg-orange-900/90 border-orange-700';
-      default:
-        return 'bg-blue-900/90 border-blue-700';
-    }
-  };
-
   return (
     <AnimatePresence>
       {isVisible && (
@@ -59,15 +37,12 @@ export function Toast({ message, type = 'info', duration = 3000, onClose }: Toas
           initial="hidden"
           animate="visible"
           exit="exit"
-          className={`fixed bottom-4 right-4 left-4 sm:left-auto sm:max-w-md flex items-center gap-3 px-4 py-3 rounded-lg border ${getStyles()} shadow-lg backdrop-blur-sm z-50`}
+          className={`fixed bottom-4 right-4 left-4 sm:left-auto sm:max-w-md flex items-center gap-3 px-4 py-3 rounded-lg border ${getStyles(type)} shadow-lg backdrop-blur-sm z-50`}
         >
           {getIcon()}
           <p className="text-white font-medium text-sm sm:text-base flex-1">{message}</p>
           <button
-            onClick={() => {
-              setIsVisible(false);
-              onClose?.();
-            }}
+            onClick={handleClose}
             className="ml-2 text-gray-300 hover:text-white transition-colors shrink-0"
           >
             <X size={18} />

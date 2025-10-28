@@ -1,39 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useRegisterSW } from 'virtual:pwa-register/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Download, X } from 'lucide-react';
+import { usePWAUpdatePrompt } from './usePWAUpdatePrompt';
 
 export function PWAUpdatePrompt() {
-  const [showPrompt, setShowPrompt] = useState(false);
-
-  const {
-    offlineReady: [offlineReady, setOfflineReady],
-    needRefresh: [needRefresh, setNeedRefresh],
-    updateServiceWorker,
-  } = useRegisterSW({
-    onRegistered(r: ServiceWorkerRegistration | undefined) {
-      console.log('Service Worker registered:', r);
-    },
-    onRegisterError(error: Error) {
-      console.log('Service Worker registration error:', error);
-    },
-  });
-
-  useEffect(() => {
-    if (offlineReady || needRefresh) {
-      setShowPrompt(true);
-    }
-  }, [offlineReady, needRefresh]);
-
-  const close = () => {
-    setOfflineReady(false);
-    setNeedRefresh(false);
-    setShowPrompt(false);
-  };
-
-  const handleUpdate = () => {
-    updateServiceWorker(true);
-  };
+  const { showPrompt, needRefresh, close, handleUpdate } = usePWAUpdatePrompt();
 
   return (
     <AnimatePresence>

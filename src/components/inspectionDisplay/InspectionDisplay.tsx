@@ -1,7 +1,7 @@
 import { AlertTriangle, Clock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { TimerState } from '../types';
-import { useI18nStore } from '../stores/i18nStore';
+import type { TimerState } from '../../types';
+import { useI18nStore } from '../../stores/i18nStore';
 
 interface InspectionDisplayProps {
   timeLeft: number;

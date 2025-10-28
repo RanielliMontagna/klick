@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, TrendingUp, Award, Target, Trophy } from 'lucide-react';
-import { useI18nStore } from '../stores/i18nStore';
-import { scale } from '../utils/animations';
+import { X, Target, TrendingUp, Award, Trophy } from 'lucide-react';
+import { useI18nStore } from '../../stores/i18nStore';
+import { scale } from '../../utils/animations';
 
 interface StatsInfoModalProps {
   isOpen: boolean;

@@ -1,5 +1,5 @@
 
-import LogoPng from '../assets/icon.png'
+import LogoPng from '../../assets/icon.png'
 
 export function Logo({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) {
   const sizes = {

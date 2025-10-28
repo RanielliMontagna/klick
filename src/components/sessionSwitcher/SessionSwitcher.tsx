@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { ChevronDown, FolderOpen, Settings } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSessionsStore } from '../stores/sessionsStore';
-import { useI18nStore } from '../stores/i18nStore';
-import { slideDown } from '../utils/animations';
+import { useSessionsStore } from '../../stores/sessionsStore';
+import { useI18nStore } from '../../stores/i18nStore';
+import { slideDown } from '../../utils/animations';
 
 interface SessionSwitcherProps {
   onManageClick: () => void;
