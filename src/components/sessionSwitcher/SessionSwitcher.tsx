@@ -6,9 +6,13 @@ import { HeaderDropdownButton, HeaderDropdownMenu } from '@/components';
 
 interface SessionSwitcherProps {
   onManageClick: () => void;
+  'data-onboarding'?: string;
 }
 
-export function SessionSwitcher({ onManageClick }: SessionSwitcherProps) {
+export function SessionSwitcher({
+  onManageClick,
+  'data-onboarding': dataOnboarding,
+}: SessionSwitcherProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useI18nStore();
   const { sessions, activeSessionId, setActiveSession, getActiveSession } = useSessionsStore();
@@ -25,7 +29,7 @@ export function SessionSwitcher({ onManageClick }: SessionSwitcherProps) {
   };
 
   return (
-    <div className="relative">
+    <div className="relative" data-onboarding={dataOnboarding}>
       {/* Trigger Button */}
       <HeaderDropdownButton
         isOpen={isOpen}
@@ -45,7 +49,9 @@ export function SessionSwitcher({ onManageClick }: SessionSwitcherProps) {
               type="button"
               onClick={() => handleSessionSelect(session.id)}
               className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 text-left hover:bg-gray-700 transition-colors border-b border-gray-700/50 last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 ${
-                session.id === activeSessionId ? 'bg-gray-700/50 ring-1 ring-inset ring-primary' : ''
+                session.id === activeSessionId
+                  ? 'bg-gray-700/50 ring-1 ring-inset ring-primary'
+                  : ''
               }`}
             >
               <div className="flex items-center justify-between gap-2">

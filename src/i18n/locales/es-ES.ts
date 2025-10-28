@@ -306,4 +306,47 @@ export const esES = {
     },
     close: 'Cerrar',
   },
+  onboarding: {
+    skip: 'Saltar tour',
+    previous: 'Anterior',
+    next: 'Siguiente',
+    finish: 'Finalizar',
+    progress: 'Paso {current} de {total}',
+    startTour: 'Iniciar tour',
+    welcome: {
+      title: '¡Bienvenido a Klick! 🎉',
+      description:
+        '¡Hagamos un tour rápido para mostrarte las principales características de la aplicación. ¡Solo toma 1 minuto!',
+    },
+    scramble: {
+      title: 'Mezcla del Cubo',
+      description:
+        'Aquí aparece la mezcla (scramble) del cubo mágico. Haz clic en "Nuevo" para generar otro o en "?" para aprender a leer la notación.',
+    },
+    timer: {
+      title: 'Cronómetro',
+      description:
+        'Mantén presionada la barra de ESPACIO para armar el cronómetro. Suelta para iniciar la inspección (15s). Presiona ESPACIO nuevamente para iniciar/detener el cronómetro.',
+    },
+    stats: {
+      title: 'Estadísticas',
+      description:
+        'Sigue tu rendimiento con métricas como Single (mejor tiempo), ao5 y ao12 (promedios). ¡Haz clic en "📈" para ver estadísticas avanzadas!',
+    },
+    shortcuts: {
+      title: 'Atajos de Teclado',
+      description:
+        'Usa atajos para ser más rápido: ESPACIO (cronómetro), N (nueva mezcla), P (+2), D (DNF). ¡Trabaja sin quitar las manos del cubo!',
+    },
+    sessions: {
+      title: 'Sesiones',
+      description:
+        'Organiza tus solves en diferentes sesiones. Útil para separar entrenamientos, competiciones o diferentes métodos.',
+    },
+    complete: {
+      title: '¡Todo listo! 🎊',
+      description:
+        '¡Ahora conoces Klick! Comienza a resolver y sigue tu progreso. Puedes revisar este tour en cualquier momento haciendo clic en el botón "?" en el encabezado.',
+    },
+  },
 } as const;

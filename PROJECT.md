@@ -566,10 +566,67 @@ Implementação atual:
       - Estado vazio tratado (mensagem + dica: "Execute ao menos 12 solves")
       - Gráficos só aparecem com dados suficientes (≥ 5 solves)
 
+20. **Onboarding Interativo (Fase 8):** ✅
+    - **Sistema completo de onboarding em 7 passos:**
+      - **Welcome:** Boas-vindas e introdução ao app
+      - **Scramble:** Explica o embaralhamento e como gerar novos
+      - **Timer:** Como usar o cronômetro (barra de espaço)
+      - **Stats:** Entendendo as estatísticas (Single, ao5, ao12)
+      - **Shortcuts:** Atalhos de teclado disponíveis
+      - **Sessions:** Sistema de sessões e gerenciamento
+      - **Complete:** Conclusão com opção de revisitar o tour
+    - **Arquitetura e componentes:**
+      - **onboardingStore.ts:** Estado global com Zustand + persist
+        - isActive, currentStep, hasCompletedOnboarding
+        - Métodos: startOnboarding, nextStep, previousStep, skipOnboarding, completeOnboarding
+      - **config.ts:** Configuração de cada passo (seletores CSS, posição do tooltip, permissões)
+      - **Spotlight.tsx:** Componente de backdrop com highlight radial
+        - Posicionamento dinâmico com getBoundingClientRect
+        - Borda colorida (primary) ao redor do elemento target
+        - Escuta resize/scroll para atualização em tempo real
+        - z-index 9998/9999 para overlay
+      - **OnboardingTooltip.tsx:** Tooltip com conteúdo e navegação
+        - Posicionamento inteligente (top/bottom/left/right)
+        - Progress indicator (Passo X de Y)
+        - Botões: Previous, Next, Finish (com ícones Lucide)
+        - Close button (X) quando permitido
+        - z-index 10000 (acima do spotlight)
+      - **Onboarding.tsx:** Container que orquestra Spotlight + Tooltip
+        - AnimatePresence para transições suaves
+    - **Integração no App.tsx:**
+      - **data-onboarding attributes** nos elementos-alvo:
+        - `data-onboarding="scramble"` - ScrambleBox
+        - `data-onboarding="timer"` - TimerDisplay
+        - `data-onboarding="stats"` - Cards de estatísticas
+        - `data-onboarding="shortcuts"` - Seção de atalhos
+        - `data-onboarding="sessions"` - SessionSwitcher
+      - **Trigger automático:** Inicia onboarding para novos usuários (hasCompletedOnboarding = false)
+      - **Botão "Tour"** no header:
+        - Ícone Compass para reiniciar onboarding manualmente
+        - Visível sempre para revisitar o tour
+        - Responsivo (ícone em mobile, ícone + texto em desktop)
+    - **Traduções completas em 3 idiomas:**
+      - Seção `onboarding` em pt-BR, en-US, es-ES
+      - Todos os 7 passos traduzidos (title + description)
+      - Navegação (skip, previous, next, finish)
+      - Progress template traduzido
+    - **UX e animações:**
+      - Backdrop com radial gradient suave
+      - Animações com Framer Motion (slideDown, fadeIn)
+      - Highlight colorido ao redor do elemento target
+      - Tooltips centralizados (welcome/complete) ou posicionados (outros passos)
+      - Responsivo e adaptado para mobile/desktop
+    - **Persistência:**
+      - Estado salvo em localStorage via Zustand persist
+      - hasCompletedOnboarding preservado entre sessões
+      - Usuário pode pular ou completar onboarding a qualquer momento
+    - **Performance:**
+      - Build: ~757 KB (gzip: ~227 KB)
+      - Lazy rendering (apenas quando isActive = true)
+      - Event listeners limpos no unmount
+
 ### Próximas fases
 
-- **Onboarding interativo:** implementar tooltips contextuais para explicar Space, Scramble e Estatísticas, com opção de revisitar no menu de ajuda.
-- **Estatísticas avançadas:** adicionar gráficos simples de evolução (média móvel, distribuição por sessão) e métricas de consistência (desvio padrão, TPS médio).
 - **Sincronização opcional:** investigar integração com armazenamento na nuvem (ex.: Supabase) mantendo local-first, incluindo merge de sessões e autenticação leve.
 - **Modo de treino por casos:** habilitar coleções focadas (PLL, OLL, F2L) com contadores de repetição, checkpoints e notas rápidas, ajudando o iniciante a praticar algoritmos específicos.
 - **Tutorial principiante:** oferecer um passo a passo visual/textual de resolução no método para iniciantes (cruz branca → camadas → OLL/PLL simplificados) acessível pelo onboarding ou modal dedicado.

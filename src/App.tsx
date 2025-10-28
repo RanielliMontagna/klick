@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
-import { Keyboard, Trash2, HelpCircle, Settings, TrendingUp } from 'lucide-react';
+import { Keyboard, Trash2, HelpCircle, Settings, TrendingUp, Compass } from 'lucide-react';
 import {
   TimerDisplay,
   ScrambleBox,
@@ -19,11 +19,13 @@ import {
   SettingsModal,
 } from '@/components';
 import { AdvancedStatsModal } from '@/components/advancedStatsModal';
+import { Onboarding } from '@/components/onboarding';
 import { useTimer } from '@/features/timer/useTimer';
 import { generate3x3Scramble } from '@/features/scramble/generate3x3';
 import { useSessionsStore } from '@/stores/sessionsStore';
 import { useSettingsStore } from '@/stores/settingsStore';
 import { useI18nStore } from '@/stores/i18nStore';
+import { useOnboardingStore } from '@/stores/onboardingStore';
 import { useTheme } from '@/hooks/useTheme';
 import { slideUp, fadeIn } from '@/utils/animations';
 import { formatAverage } from '@/utils/formatStats';
@@ -45,6 +47,7 @@ function App() {
 
   const { t } = useI18nStore();
   const { settings } = useSettingsStore();
+  const { hasCompletedOnboarding, startOnboarding } = useOnboardingStore();
   const {
     addSolve,
     updateSolvePenalty,
@@ -90,6 +93,17 @@ function App() {
   useEffect(() => {
     generateNewScramble();
   }, [generateNewScramble]);
+
+  // Inicia onboarding para novos usuários
+  useEffect(() => {
+    if (!hasCompletedOnboarding) {
+      // Pequeno delay para garantir que a UI está renderizada
+      const timer = setTimeout(() => {
+        startOnboarding();
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [hasCompletedOnboarding, startOnboarding]);
 
   // Salva o solve quando o timer para
   useEffect(() => {
@@ -188,6 +202,19 @@ function App() {
     selectedSolve,
   ]);
 
+  const tourButton = import.meta.env.DEV ? (
+    <button
+      type="button"
+      onClick={() => startOnboarding()}
+      className="flex items-center gap-2 px-3 py-2 sm:px-3.5 sm:py-2.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg sm:rounded-xl text-xs sm:text-sm font-medium text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+      aria-label={t.onboarding.skip}
+      title="Tour"
+    >
+      <Compass className="h-4 w-4 sm:h-5 sm:w-5" />
+      <span className="hidden md:inline whitespace-nowrap">Tour</span>
+    </button>
+  ) : null;
+
   const settingsButton = (
     <button
       type="button"
@@ -236,7 +263,11 @@ function App() {
               </div>
               <div className="flex w-full sm:w-auto items-center justify-start sm:justify-end gap-2 sm:gap-3 flex-wrap">
                 <LanguageSelector />
-                <SessionSwitcher onManageClick={() => setShowSessionManager(true)} />
+                <SessionSwitcher
+                  onManageClick={() => setShowSessionManager(true)}
+                  data-onboarding="sessions"
+                />
+                {tourButton}
                 {advancedStatsButton}
                 {settingsButton}
               </div>
@@ -244,12 +275,15 @@ function App() {
           </div>
         </motion.header>
 
-        <div className="mb-8 sm:mb-12">
+        <div className="mb-8 sm:mb-12" data-onboarding="scramble">
           <ScrambleBox scramble={scramble} onNewScramble={generateNewScramble} />
         </div>
 
         {/* Timer Area */}
-        <div className="mb-8 sm:mb-12 min-h-[250px] sm:min-h-[300px] flex items-center justify-center">
+        <div
+          className="mb-8 sm:mb-12 min-h-[250px] sm:min-h-[300px] flex items-center justify-center"
+          data-onboarding="timer"
+        >
           <div className="w-full text-center">
             <InspectionDisplay timeLeft={inspectionTimeLeft} state={state} />
             <TimerDisplay timeMs={timeMs} state={state} />
@@ -257,7 +291,13 @@ function App() {
         </div>
 
         {/* Statistics Cards */}
-        <motion.div className="mb-8 sm:mb-12" variants={fadeIn} initial="hidden" animate="visible">
+        <motion.div
+          className="mb-8 sm:mb-12"
+          variants={fadeIn}
+          initial="hidden"
+          animate="visible"
+          data-onboarding="stats"
+        >
           {/* Header com título e ações */}
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg sm:text-xl font-bold text-white">Estatísticas</h2>
@@ -308,7 +348,7 @@ function App() {
           initial="hidden"
           animate="visible"
         >
-          <div className="bg-gray-800 rounded-xl p-4 sm:p-6">
+          <div className="bg-gray-800 rounded-xl p-4 sm:p-6" data-onboarding="shortcuts">
             <div className="flex items-center gap-2 mb-4">
               <Keyboard size={18} className="text-gray-300 sm:w-5 sm:h-5" />
               <h3 className="text-base sm:text-lg font-semibold text-gray-300">
@@ -379,6 +419,9 @@ function App() {
       <SettingsModal isOpen={showSettings} onClose={() => setShowSettings(false)} />
 
       <AdvancedStatsModal isOpen={showAdvancedStats} onClose={() => setShowAdvancedStats(false)} />
+
+      {/* Onboarding */}
+      <Onboarding />
 
       {/* Toast */}
       {showSuccessToast && (

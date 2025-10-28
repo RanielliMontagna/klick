@@ -304,4 +304,47 @@ export const enUS = {
     },
     close: 'Close',
   },
+  onboarding: {
+    skip: 'Skip tour',
+    previous: 'Previous',
+    next: 'Next',
+    finish: 'Finish',
+    progress: 'Step {current} of {total}',
+    startTour: 'Start tour',
+    welcome: {
+      title: 'Welcome to Klick! 🎉',
+      description:
+        "Let's take a quick tour to show you the main features of the app. It only takes 1 minute!",
+    },
+    scramble: {
+      title: 'Cube Scramble',
+      description:
+        'Here you see the scramble for the magic cube. Click "New" to generate another one or "?" to learn how to read the notation.',
+    },
+    timer: {
+      title: 'Timer',
+      description:
+        'Hold the SPACE bar to arm the timer. Release to start inspection (15s). Press SPACE again to start/stop the timer.',
+    },
+    stats: {
+      title: 'Statistics',
+      description:
+        'Track your performance with metrics like Single (best time), ao5 and ao12 (averages). Click "📈" to see advanced statistics!',
+    },
+    shortcuts: {
+      title: 'Keyboard Shortcuts',
+      description:
+        'Use shortcuts to be faster: SPACE (timer), N (new scramble), P (+2), D (DNF). Work without taking your hands off the cube!',
+    },
+    sessions: {
+      title: 'Sessions',
+      description:
+        'Organize your solves into different sessions. Useful for separating training, competitions, or different methods.',
+    },
+    complete: {
+      title: 'All set! 🎊',
+      description:
+        'Now you know Klick! Start solving and track your progress. You can revisit this tour anytime by clicking the "?" button in the header.',
+    },
+  },
 } as const;

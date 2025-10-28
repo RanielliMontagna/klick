@@ -16,7 +16,8 @@
 - 🎵 **Sistema de sons** - Feedback sonoro para eventos do timer
 - 📚 **Guia para iniciantes** - Aprenda a ler scrambles de cubo mágico
 - 📤 **Exportar/Importar** - Backup e migração de dados em JSON
-- 🎯 **Ícones modernos** com Lucide React
+- � **Onboarding interativo** - Tour guiado em 7 passos para novos usuários
+- �🎯 **Ícones modernos** com Lucide React
 - ✨ **Animações fluidas** com Framer Motion
 - 📱 **PWA** - Instalável e funciona offline
 - ♿ **Interface moderna** com alto contraste e acessibilidade
@@ -109,6 +110,34 @@ Novo no speedcubing? Clique no ícone **?** ao lado do scramble para aprender:
 - Exemplos práticos de movimentos
 - Dicas importantes para iniciantes
 
+### Onboarding Interativo
+
+Na primeira visita ao Klick, você será guiado por um **tour interativo em 7 passos**:
+
+1. **Boas-vindas**: Introdução ao app e sua filosofia
+2. **Embaralhamento**: Como gerar e entender scrambles 3×3
+3. **Cronômetro**: Como usar o timer (barra de espaço)
+4. **Estatísticas**: Entenda Single, ao5, ao12 e suas métricas
+5. **Atalhos**: Aprenda os comandos de teclado disponíveis
+6. **Sessões**: Organize seus solves em múltiplas sessões
+7. **Conclusão**: Finalização com opção de revisitar o tour
+
+**Recursos:**
+- ✨ **Spotlight visual**: Destaque dos elementos na tela
+- 💬 **Tooltips explicativos**: Informações contextuais em cada passo
+- ⏭️ **Navegação flexível**: Avançar, voltar ou pular o tour
+- 🔄 **Revisitar a qualquer momento**: Botão "Tour" (🧭) no header
+- 🌐 **Traduzido**: Disponível em pt-BR, en-US, es-ES
+- 💾 **Persistente**: Progresso salvo automaticamente
+
+**Como usar:**
+- **Primeira visita**: Tour inicia automaticamente após 1 segundo
+- **Revisitar**: Clique no botão "Tour" (🧭) no header a qualquer momento
+- **Pular**: Clique no X ou em "Pular" durante o tour
+- **Navegar**: Use os botões "Anterior" e "Próximo" para controlar o ritmo
+
+Perfeito para iniciantes que nunca usaram um cronômetro de cubo mágico!
+
 ### Estatísticas Avançadas
 
 Clique no botão **Estatísticas Avançadas** (📈) no header para acessar:
@@ -188,11 +217,16 @@ src/
 │   ├── statsInfoModal/
 │   │   ├── StatsInfoModal.tsx
 │   │   └── index.ts
-│   └── advancedStatsModal/
+│   ├── advancedStatsModal/
 │       ├── AdvancedStatsModal.tsx
 │       ├── useAdvancedStatsModal.ts
 │       ├── EvolutionChart.tsx
 │       ├── DistributionChart.tsx
+│       └── index.ts
+│   └── onboarding/
+│       ├── Onboarding.tsx
+│       ├── Spotlight.tsx
+│       ├── OnboardingTooltip.tsx
 │       └── index.ts
 ├── features/           # Business logic
 │   ├── timer/
@@ -204,10 +238,13 @@ src/
 │       ├── averages.ts
 │       ├── averages.test.ts
 │       └── advanced.ts
+│   └── onboarding/
+│       └── config.ts
 ├── stores/             # Zustand stores
 │   ├── sessionsStore.ts
 │   ├── settingsStore.ts
-│   └── i18nStore.ts
+│   ├── i18nStore.ts
+│   └── onboardingStore.ts
 ├── i18n/              # Internationalization
 │   └── locales/
 │       ├── pt-BR.ts
@@ -304,6 +341,17 @@ src/
 - [x] Botão de ajuda (?) no ScrambleBox
 - [x] Traduzido para os 3 idiomas
 
+#### Onboarding Interativo
+- [x] **Sistema de onboarding em 7 passos** para novos usuários
+- [x] Spotlight visual destacando elementos da interface
+- [x] Tooltips com navegação (anterior/próximo/pular/finalizar)
+- [x] Passos: Welcome → Scramble → Timer → Stats → Shortcuts → Sessions → Complete
+- [x] **Botão "Tour"** (🧭) no header para revisitar
+- [x] Trigger automático na primeira visita
+- [x] Persistência com Zustand (hasCompletedOnboarding)
+- [x] Traduzido para os 3 idiomas
+- [x] Responsivo e acessível
+
 #### PWA (Progressive Web App)
 - [x] Service Worker configurado
 - [x] Manifest com ícones e metadados
@@ -318,7 +366,6 @@ src/
 
 ### 🚧 Próximos passos
 
-- [ ] Onboarding interativo para novos usuários
 - [ ] Modo de treino por casos (PLL, OLL, F2L)
 - [ ] Sincronização opcional na nuvem
 - [ ] Tutorial de resolução para iniciantes
