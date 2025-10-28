@@ -42,6 +42,7 @@ export function Toast({ message, type = 'info', duration = 3000, onClose }: Toas
           {getIcon()}
           <p className="text-white font-medium text-sm sm:text-base flex-1">{message}</p>
           <button
+            type="button"
             onClick={handleClose}
             className="ml-2 text-gray-300 hover:text-white transition-colors shrink-0"
           >

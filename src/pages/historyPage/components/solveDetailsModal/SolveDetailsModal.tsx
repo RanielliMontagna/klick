@@ -45,6 +45,7 @@ export function SolveDetailsModal({ isOpen, onClose, solve, solveNumber }: Solve
                   {t.solveTable.details.title} #{solveNumber}
                 </h2>
                 <button
+                  type="button"
                   onClick={onClose}
                   className="text-gray-400 hover:text-white transition-colors rounded-lg p-1 hover:bg-gray-700"
                 >
@@ -92,6 +93,7 @@ export function SolveDetailsModal({ isOpen, onClose, solve, solveNumber }: Solve
                       {t.solveTable.details.scramble}
                     </h3>
                     <button
+                      type="button"
                       onClick={copyScramble}
                       className="flex items-center gap-2 px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors text-sm"
                     >
@@ -115,6 +117,7 @@ export function SolveDetailsModal({ isOpen, onClose, solve, solveNumber }: Solve
 
               <div className="p-6 border-t border-gray-700 shrink-0">
                 <button
+                  type="button"
                   onClick={onClose}
                   className="w-full px-4 py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors"
                 >

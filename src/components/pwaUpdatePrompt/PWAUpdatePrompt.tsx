@@ -33,6 +33,7 @@ export function PWAUpdatePrompt() {
                 <div className="flex gap-2">
                   {needRefresh && (
                     <button
+                      type="button"
                       onClick={handleUpdate}
                       className="px-4 py-2 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors text-sm"
                     >
@@ -40,6 +41,7 @@ export function PWAUpdatePrompt() {
                     </button>
                   )}
                   <button
+                    type="button"
                     onClick={close}
                     className="px-4 py-2 bg-muted text-foreground rounded-lg font-medium hover:bg-muted/80 transition-colors text-sm"
                   >
@@ -49,6 +51,7 @@ export function PWAUpdatePrompt() {
               </div>
 
               <button
+                type="button"
                 onClick={close}
                 className="shrink-0 w-8 h-8 rounded-lg hover:bg-muted flex items-center justify-center transition-colors"
                 aria-label="Fechar"

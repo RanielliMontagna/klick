@@ -92,8 +92,11 @@ export function SolveTable({ onViewDetails }: SolveTableProps) {
         <div className="p-4 sm:p-6 border-b border-gray-700 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <h2 className="text-lg sm:text-xl font-bold text-white">{t.solveTable.title}</h2>
           <div className="flex items-center gap-2">
-            <label className="text-sm text-gray-400">{t.solveTable.filter.label}:</label>
+            <label htmlFor="filter" className="text-sm text-gray-400">
+              {t.solveTable.filter.label}:
+            </label>
             <select
+              id="filter"
               value={filter}
               onChange={(e) => setFilter(e.target.value as FilterOption)}
               className="bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary text-sm"
@@ -162,6 +165,7 @@ export function SolveTable({ onViewDetails }: SolveTableProps) {
                     <td className="px-4 py-3 text-right">
                       <div className="flex items-center justify-end gap-2">
                         <button
+                          type="button"
                           onClick={() => onViewDetails?.(solve)}
                           className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
                           title={t.actions.viewDetails}
@@ -169,6 +173,7 @@ export function SolveTable({ onViewDetails }: SolveTableProps) {
                           <Eye size={16} />
                         </button>
                         <button
+                          type="button"
                           onClick={() => handleDelete(solve)}
                           className="p-2 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
                           title={t.actions.delete}

@@ -75,6 +75,7 @@ export function ConfirmDialog({
                   <h2 className="text-xl font-bold text-white">{title}</h2>
                 </div>
                 <button
+                  type="button"
                   onClick={onClose}
                   className="text-gray-400 hover:text-white transition-colors rounded-lg p-1 hover:bg-gray-700"
                 >
@@ -90,12 +91,14 @@ export function ConfirmDialog({
               {/* Actions */}
               <div className="flex gap-3 p-6 border-t border-gray-700">
                 <button
+                  type="button"
                   onClick={onClose}
                   className="flex-1 px-4 py-2.5 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors"
                 >
                   {cancelText}
                 </button>
                 <button
+                  type="button"
                   onClick={handleConfirm}
                   className={`flex-1 px-4 py-2.5 ${styles.confirmBg} text-white rounded-lg font-medium transition-colors`}
                 >

@@ -74,6 +74,7 @@ export function StatsInfoModal({ isOpen, onClose }: StatsInfoModalProps) {
               <div className="flex items-center justify-between p-6 border-b border-gray-700 shrink-0">
                 <h2 className="text-2xl font-bold text-white">{t.stats.info.title}</h2>
                 <button
+                  type="button"
                   onClick={onClose}
                   className="text-gray-400 hover:text-white transition-colors rounded-lg p-1 hover:bg-gray-700"
                 >
@@ -136,6 +137,7 @@ export function StatsInfoModal({ isOpen, onClose }: StatsInfoModalProps) {
 
               <div className="p-6 border-t border-gray-700 shrink-0">
                 <button
+                  type="button"
                   onClick={onClose}
                   className="w-full px-4 py-3 bg-primary hover:bg-primary/80 text-white rounded-lg font-medium transition-colors"
                 >
