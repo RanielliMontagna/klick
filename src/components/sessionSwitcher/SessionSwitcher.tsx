@@ -44,8 +44,8 @@ export function SessionSwitcher({ onManageClick }: SessionSwitcherProps) {
               key={session.id}
               type="button"
               onClick={() => handleSessionSelect(session.id)}
-              className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 text-left hover:bg-gray-700 transition-colors border-b border-gray-700/50 last:border-b-0 ${
-                session.id === activeSessionId ? 'bg-gray-700/50' : ''
+              className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 text-left hover:bg-gray-700 transition-colors border-b border-gray-700/50 last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 ${
+                session.id === activeSessionId ? 'bg-gray-700/50 ring-1 ring-inset ring-primary' : ''
               }`}
             >
               <div className="flex items-center justify-between gap-2">
@@ -72,7 +72,7 @@ export function SessionSwitcher({ onManageClick }: SessionSwitcherProps) {
             setIsOpen(false);
             onManageClick();
           }}
-          className="w-full px-3 sm:px-4 py-2.5 sm:py-3 flex items-center gap-2 bg-gray-700/50 hover:bg-gray-700 transition-colors border-t border-gray-600"
+          className="w-full px-3 sm:px-4 py-2.5 sm:py-3 flex items-center gap-2 bg-gray-700/50 hover:bg-gray-700 transition-colors border-t border-gray-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
         >
           <Settings size={14} className="text-primary shrink-0 sm:w-4 sm:h-4" />
           <span className="text-xs sm:text-sm font-medium text-white">{t.sessions.manage}</span>

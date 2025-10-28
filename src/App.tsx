@@ -211,7 +211,7 @@ function App() {
             </div>
           </div>
 
-          <p className="text-muted-foreground text-xs sm:text-sm md:text-base mt-2 sm:mt-3">
+          <p className="text-muted-foreground text-xs sm:text-sm md:text-base mt-2 sm:mt-3 text-center max-w-2xl mx-auto">
             {t.app.tagline}
           </p>
         </motion.header>

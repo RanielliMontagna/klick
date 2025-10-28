@@ -28,7 +28,7 @@ export function ScrambleBox({ scramble, onNewScramble }: ScrambleBoxProps) {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={copyToClipboard}
-              className="flex items-center justify-center gap-2 px-3 py-2 text-sm bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors flex-1 sm:flex-none"
+              className="flex items-center justify-center gap-2 px-3 py-2 text-sm bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors flex-1 sm:flex-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
               title={t.scramble.copy}
             >
               {copied ? (
@@ -47,7 +47,7 @@ export function ScrambleBox({ scramble, onNewScramble }: ScrambleBoxProps) {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={onNewScramble}
-              className="flex items-center justify-center gap-2 px-3 py-2 text-sm bg-primary hover:bg-purple-600 rounded-lg transition-colors font-medium flex-1 sm:flex-none"
+              className="flex items-center justify-center gap-2 px-3 py-2 text-sm bg-primary hover:bg-purple-600 rounded-lg transition-colors font-medium flex-1 sm:flex-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
               title={`${t.scramble.new} (N)`}
             >
               <RefreshCw size={16} />
@@ -61,7 +61,7 @@ export function ScrambleBox({ scramble, onNewScramble }: ScrambleBoxProps) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="font-mono text-lg sm:text-2xl text-white wrap-break-word leading-relaxed"
+          className="font-mono text-lg sm:text-2xl text-white break-words leading-relaxed text-center sm:text-left"
         >
           {scramble || t.scramble.generating}
         </motion.div>

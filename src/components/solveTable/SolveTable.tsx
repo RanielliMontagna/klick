@@ -166,14 +166,14 @@ export function SolveTable({ onViewDetails }: SolveTableProps) {
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => onViewDetails?.(solve)}
-                          className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition-colors"
+                          className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
                           title={t.actions.viewDetails}
                         >
                           <Eye size={16} />
                         </button>
                         <button
                           onClick={() => handleDelete(solve)}
-                          className="p-2 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors"
+                          className="p-2 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
                           title={t.actions.delete}
                         >
                           <Trash2 size={16} />

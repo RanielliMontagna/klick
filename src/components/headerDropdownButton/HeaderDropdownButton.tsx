@@ -25,7 +25,7 @@ export function HeaderDropdownButton({
     <button
       type="button"
       onClick={onClick}
-      className="flex items-center gap-1.5 sm:gap-2 px-2.5 py-2 sm:px-3 sm:py-2 md:px-4 md:py-2.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg sm:rounded-xl transition-colors min-w-0"
+      className="flex items-center gap-1.5 sm:gap-2 px-2.5 py-2 sm:px-3 sm:py-2 md:px-4 md:py-2.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg sm:rounded-xl transition-colors min-w-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
       aria-label={ariaLabel}
       aria-expanded={isOpen}
     >
