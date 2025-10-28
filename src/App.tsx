@@ -15,6 +15,7 @@ import {
   StatsInfoModal,
   PWAUpdatePrompt,
   Logo,
+  LanguageSelector,
 } from '@/components';
 import { useTimer } from '@/features/timer/useTimer';
 import { generate3x3Scramble } from '@/features/scramble/generate3x3';
@@ -187,7 +188,9 @@ function App() {
           transition={{ duration: 0.5 }}
         >
           <div className="w-full flex justify-between items-start mb-4">
-            <div className="flex-1" />
+            <div className="flex-1 flex justify-start">
+              <LanguageSelector />
+            </div>
             <div className="flex-1 flex justify-center">
               <Logo size="lg" />
             </div>
