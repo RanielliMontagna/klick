@@ -23,11 +23,14 @@ import { generate3x3Scramble } from '@/features/scramble/generate3x3';
 import { useSessionsStore } from '@/stores/sessionsStore';
 import { useSettingsStore } from '@/stores/settingsStore';
 import { useI18nStore } from '@/stores/i18nStore';
+import { useTheme } from '@/hooks/useTheme';
 import { slideUp, fadeIn } from '@/utils/animations';
 import { formatAverage } from '@/utils/formatStats';
 import type { Penalty, Solve } from '@/types';
 
 function App() {
+  // Apply theme on mount
+  useTheme();
   const [scramble, setScramble] = useState('');
   const [inspectionOvertime, setInspectionOvertime] = useState(0);
   const [showClearConfirm, setShowClearConfirm] = useState(false);

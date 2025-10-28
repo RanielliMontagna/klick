@@ -1,9 +1,10 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { Settings as SettingsIcon, X, Download, Upload } from 'lucide-react';
+import { Settings as SettingsIcon, X, Download, Upload, Sun, Moon } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { useSettingsStore } from '../../stores/settingsStore';
 import { useSessionsStore } from '../../stores/sessionsStore';
 import { useI18nStore } from '../../stores/i18nStore';
+import { useTheme } from '../../hooks/useTheme';
 
 type SettingsModalProps = {
   isOpen: boolean;
@@ -19,6 +20,7 @@ export const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
   const { settings, updateSettings } = useSettingsStore();
   const { exportCurrentSession, exportAllSessions, importSessions } = useSessionsStore();
   const { t } = useI18nStore();
+  const { theme, toggleTheme } = useTheme();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [importMode, setImportMode] = useState<'merge' | 'replace'>('merge');
   const [message, setMessage] = useState<ExportImportMessage>(null);
@@ -229,15 +231,37 @@ export const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                 </button>
               </div>
 
-              {/* Theme - Coming soon */}
-              <div className="opacity-50">
-                <div className="mb-2 block text-sm font-medium text-white">
-                  {t.settings.theme.label}
+              {/* Theme */}
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex-1">
+                  <label htmlFor="theme" className="mb-1 block text-sm font-medium text-white">
+                    {t.settings.theme.label}
+                  </label>
+                  <p className="text-xs text-gray-400">{t.settings.theme.description}</p>
                 </div>
-                <p className="mb-3 text-xs text-gray-400">{t.settings.theme.description}</p>
-                <div className="rounded-lg bg-gray-700 p-3 text-center text-sm text-gray-400">
-                  {t.settings.theme.dark} (Light theme coming soon)
-                </div>
+                <button
+                  id="theme"
+                  type="button"
+                  onClick={toggleTheme}
+                  className={`relative h-6 w-11 rounded-full transition-colors ${
+                    theme === 'light' ? 'bg-yellow-500' : 'bg-blue-600'
+                  }`}
+                  aria-label={t.settings.theme.label}
+                >
+                  <motion.div
+                    className="absolute top-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-white shadow-md"
+                    animate={{
+                      left: theme === 'light' ? '1.375rem' : '0.125rem',
+                    }}
+                    transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                  >
+                    {theme === 'light' ? (
+                      <Sun className="h-3 w-3 text-yellow-600" />
+                    ) : (
+                      <Moon className="h-3 w-3 text-blue-600" />
+                    )}
+                  </motion.div>
+                </button>
               </div>
 
               {/* Export/Import */}

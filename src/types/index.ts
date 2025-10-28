@@ -21,5 +21,5 @@ export type Settings = {
   inspectionDuration: number;
   soundsEnabled: boolean;
   autoInspectionPenalty: boolean;
-  theme: 'dark';
+  theme: 'dark' | 'light';
 };

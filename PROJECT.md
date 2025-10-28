@@ -483,9 +483,58 @@ Implementação atual:
       - Lazy initialization do AudioContext
       - Tratamento de erros silencioso (console.warn)
 
+17. **Guia de Embaralhamento para Iniciantes (Fase 5.2):** ✅
+    - **Modal ScrambleGuideModal:**
+      - 4 seções educativas: Faces, Modificadores, Exemplos, Dicas
+      - Design visual com cores específicas por face (R=vermelho, L=laranja, U=branco, D=amarelo, F=verde, B=azul)
+      - Animações suaves (AnimatePresence, Framer Motion)
+      - Responsivo (mobile-first, scroll interno)
+      - Acessível (Escape para fechar, keyboard navigation)
+    - **Integração no ScrambleBox:**
+      - Botão de ajuda (?) ao lado do título "Embaralhamento"
+      - Ícone HelpCircle com hover azul
+      - Hook `useScrambleGuideModal` para controle de estado
+    - **Traduções completas em 3 idiomas:**
+      - `scramble.guide`: "Como ler o embaralhamento"
+      - `scramble.guideModal.title`: "Guia de Embaralhamento"
+      - **Faces**: Descrições detalhadas (R/L/U/D/F/B) com orientação espacial
+      - **Modifiers**: Explicação clara de rotações (nenhum = 90° horário, ' = anti-horário, 2 = 180°)
+      - **Examples**: Exemplos práticos (R, R', R2, sequência completa)
+      - **Tips**: 4 dicas importantes (ordem, orientação, prática, padrão WCA 25 movimentos)
+    - **Componentes criados:**
+      - `/src/components/scrambleGuideModal/ScrambleGuideModal.tsx`
+      - `/src/components/scrambleGuideModal/useScrambleGuideModal.ts`
+      - Barrel export em `index.ts`
+
+18. **Tema Claro (Fase 6):** ✅
+    - **Sistema de temas completo:**
+      - CSS variables para dark e light themes em `/src/styles/index.css`
+      - Cores semânticas definidas (background, surface, text, borders)
+      - Transições suaves entre temas (0.2s ease)
+    - **Hook useTheme:**
+      - Controle centralizado de tema em `/src/hooks/useTheme.ts`
+      - Aplica classe 'light' ou 'dark' no elemento raiz
+      - Métodos: toggleTheme, isDark, isLight
+      - Integrado com settingsStore para persistência
+    - **Toggle de tema no SettingsModal:**
+      - Botão animado com ícones Sun (claro) / Moon (escuro)
+      - Cores dinâmicas (amarelo para light, azul para dark)
+      - Feedback visual imediato ao alternar
+      - Removido placeholder "coming soon"
+    - **Persistência:**
+      - Tema salvo em localStorage via settingsStore
+      - Tema aplicado automaticamente ao carregar app
+      - Type-safe com 'dark' | 'light' em Settings
+    - **Traduções:**
+      - settings.theme.label, description, dark, light
+      - Completo em pt-BR, en-US, es-ES
+    - **Performance:**
+      - Build otimizado: ~404 KB (gzip: ~123 KB)
+      - Sem impacto na performance de renderização
+      - Color-scheme CSS para otimização de browser
+
 ### Próximas fases
 
-- **Lançar tema claro:** definir tokens de cor equivalentes ao dark, adaptar os componentes Tailwind e garantir persistência da escolha de tema.
 - **Onboarding interativo:** implementar tooltips contextuais para explicar Space, Scramble e Estatísticas, com opção de revisitar no menu de ajuda.
 - **Estatísticas avançadas:** adicionar gráficos simples de evolução (média móvel, distribuição por sessão) e métricas de consistência (desvio padrão, TPS médio).
 - **Sincronização opcional:** investigar integração com armazenamento na nuvem (ex.: Supabase) mantendo local-first, incluindo merge de sessões e autenticação leve.
