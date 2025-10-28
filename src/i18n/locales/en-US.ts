@@ -171,4 +171,38 @@ export const enUS = {
     penaltyPlus2: '+2 will be applied',
     penaltyDNF: 'DNF will be applied',
   },
+  settings: {
+    title: 'Settings',
+    inspectionDuration: {
+      label: 'Inspection Duration',
+      description: 'Time available to inspect the cube before starting',
+      seconds: 'seconds',
+    },
+    soundsEnabled: {
+      label: 'Sounds Enabled',
+      description: 'Enable feedback sounds during the timer',
+    },
+    autoInspectionPenalty: {
+      label: 'Auto Inspection Penalty',
+      description: '+2 between 15-17s, DNF after 17s (following official WCA rules)',
+    },
+    theme: {
+      label: 'Theme',
+      description: 'Visual appearance of the app',
+      dark: 'Dark',
+      light: 'Light',
+    },
+    exportImport: {
+      title: 'Export/Import Data',
+      exportCurrent: 'Export Current Session',
+      exportAll: 'Export All Sessions',
+      import: 'Import Sessions',
+      importMode: 'Import Mode',
+      merge: 'Merge with existing sessions',
+      replace: 'Replace all sessions',
+      exportSuccess: 'Data exported successfully!',
+      importSuccess: 'Data imported successfully!',
+      importError: 'Error importing data. Please check the file format.',
+    },
+  },
 } as const;

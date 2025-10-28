@@ -6,6 +6,7 @@ export { PWAUpdatePrompt } from './pwaUpdatePrompt/PWAUpdatePrompt';
 export { ScrambleBox } from './scrambleBox/ScrambleBox';
 export { SessionManagerModal } from './sessionManagerModal/SessionManagerModal';
 export { SessionSwitcher } from './sessionSwitcher/SessionSwitcher';
+export { SettingsModal } from './settingsModal/SettingsModal';
 export { SolveDetailsModal } from './solveDetailsModal/SolveDetailsModal';
 export { SolveTable } from './solveTable/SolveTable';
 export { StatsInfoModal } from './statsInfoModal/StatsInfoModal';

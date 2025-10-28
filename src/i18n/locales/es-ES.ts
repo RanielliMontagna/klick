@@ -171,4 +171,38 @@ export const esES = {
     penaltyPlus2: '+2 será aplicado',
     penaltyDNF: 'DNF será aplicado',
   },
+  settings: {
+    title: 'Configuración',
+    inspectionDuration: {
+      label: 'Duración de Inspección',
+      description: 'Tiempo disponible para inspeccionar el cubo antes de comenzar',
+      seconds: 'segundos',
+    },
+    soundsEnabled: {
+      label: 'Sonidos Habilitados',
+      description: 'Activar sonidos de retroalimentación durante el cronómetro',
+    },
+    autoInspectionPenalty: {
+      label: 'Penalización Automática de Inspección',
+      description: '+2 entre 15-17s, DNF después de 17s (siguiendo reglas oficiales de la WCA)',
+    },
+    theme: {
+      label: 'Tema',
+      description: 'Apariencia visual de la aplicación',
+      dark: 'Oscuro',
+      light: 'Claro',
+    },
+    exportImport: {
+      title: 'Exportar/Importar Datos',
+      exportCurrent: 'Exportar Sesión Actual',
+      exportAll: 'Exportar Todas las Sesiones',
+      import: 'Importar Sesiones',
+      importMode: 'Modo de Importación',
+      merge: 'Combinar con sesiones existentes',
+      replace: 'Reemplazar todas las sesiones',
+      exportSuccess: '¡Datos exportados con éxito!',
+      importSuccess: '¡Datos importados con éxito!',
+      importError: 'Error al importar datos. Por favor verifica el formato del archivo.',
+    },
+  },
 } as const;

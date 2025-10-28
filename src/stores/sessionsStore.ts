@@ -32,8 +32,13 @@ interface SessionsStore {
   getBestAo5: () => Average | null;
   getBestAo12: () => Average | null;
 
-  exportSessions: () => string;
-  importSessions: (data: string, merge: boolean) => void;
+  // Export/Import
+  exportCurrentSession: () => string;
+  exportAllSessions: () => string;
+  importSessions: (
+    jsonString: string,
+    mode: 'merge' | 'replace',
+  ) => { success: boolean; error?: string };
 }
 
 const initialSession: Session = {
@@ -143,20 +148,80 @@ export const useSessionsStore = create<SessionsStore>()(
           ),
         })),
 
-      exportSessions: () => {
+      exportCurrentSession: () => {
+        const session = get().getActiveSession();
+        if (!session) {
+          return JSON.stringify([], null, 2);
+        }
+        return JSON.stringify([session], null, 2);
+      },
+
+      exportAllSessions: () => {
         const state = get();
         return JSON.stringify(state.sessions, null, 2);
       },
 
-      importSessions: (data, merge) => {
+      importSessions: (jsonString, mode) => {
         try {
-          const imported = JSON.parse(data) as Session[];
-          set((state) => ({
-            sessions: merge ? [...state.sessions, ...imported] : imported,
-            activeSessionId: imported[0]?.id || state.activeSessionId,
-          }));
+          // Parse JSON
+          const parsed = JSON.parse(jsonString);
+
+          // Valida se é um array
+          if (!Array.isArray(parsed)) {
+            return {
+              success: false,
+              error: 'Invalid format: expected an array of sessions',
+            };
+          }
+
+          // Valida estrutura básica de cada sessão
+          const isValid = parsed.every(
+            (session) =>
+              typeof session === 'object' &&
+              session !== null &&
+              typeof session.id === 'string' &&
+              typeof session.name === 'string' &&
+              Array.isArray(session.solves),
+          );
+
+          if (!isValid) {
+            return {
+              success: false,
+              error: 'Invalid session structure',
+            };
+          }
+
+          const imported = parsed as Session[];
+
+          // Se não há sessões válidas, retorna erro
+          if (imported.length === 0) {
+            return {
+              success: false,
+              error: 'No valid sessions found',
+            };
+          }
+
+          set((state) => {
+            if (mode === 'replace') {
+              return {
+                sessions: imported,
+                activeSessionId: imported[0].id,
+              };
+            } else {
+              // merge
+              return {
+                sessions: [...state.sessions, ...imported],
+                activeSessionId: state.activeSessionId,
+              };
+            }
+          });
+
+          return { success: true };
         } catch (error) {
-          console.error('Erro ao importar sessões:', error);
+          return {
+            success: false,
+            error: error instanceof Error ? error.message : 'Unknown error',
+          };
         }
       },
 

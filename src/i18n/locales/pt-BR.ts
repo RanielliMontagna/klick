@@ -172,4 +172,38 @@ export const ptBR = {
     penaltyPlus2: '+2 será aplicado',
     penaltyDNF: 'DNF será aplicado',
   },
+  settings: {
+    title: 'Configurações',
+    inspectionDuration: {
+      label: 'Duração da Inspeção',
+      description: 'Tempo disponível para inspecionar o cubo antes de começar',
+      seconds: 'segundos',
+    },
+    soundsEnabled: {
+      label: 'Sons Habilitados',
+      description: 'Ativar sons de feedback durante o timer',
+    },
+    autoInspectionPenalty: {
+      label: 'Penalidade Automática de Inspeção',
+      description: '+2 entre 15-17s, DNF após 17s (seguindo regras oficiais da WCA)',
+    },
+    theme: {
+      label: 'Tema',
+      description: 'Aparência visual do aplicativo',
+      dark: 'Escuro',
+      light: 'Claro',
+    },
+    exportImport: {
+      title: 'Exportar/Importar Dados',
+      exportCurrent: 'Exportar Sessão Atual',
+      exportAll: 'Exportar Todas as Sessões',
+      import: 'Importar Sessões',
+      importMode: 'Modo de Importação',
+      merge: 'Mesclar com sessões existentes',
+      replace: 'Substituir todas as sessões',
+      exportSuccess: 'Dados exportados com sucesso!',
+      importSuccess: 'Dados importados com sucesso!',
+      importError: 'Erro ao importar dados. Verifique o formato do arquivo.',
+    },
+  },
 } as const;

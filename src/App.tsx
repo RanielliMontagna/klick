@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Keyboard, Trash2, HelpCircle } from 'lucide-react';
+import { Keyboard, Trash2, HelpCircle, Settings } from 'lucide-react';
 import { motion } from 'framer-motion';
 import {
   TimerDisplay,
@@ -16,6 +16,7 @@ import {
   PWAUpdatePrompt,
   Logo,
   LanguageSelector,
+  SettingsModal,
 } from '@/components';
 import { useTimer } from '@/features/timer/useTimer';
 import { generate3x3Scramble } from '@/features/scramble/generate3x3';
@@ -32,6 +33,7 @@ function App() {
   const [showClearConfirm, setShowClearConfirm] = useState(false);
   const [showStatsInfo, setShowStatsInfo] = useState(false);
   const [showSessionManager, setShowSessionManager] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [selectedSolve, setSelectedSolve] = useState<Solve | null>(null);
   const [selectedSolveNumber, setSelectedSolveNumber] = useState(0);
@@ -130,6 +132,7 @@ function App() {
         showClearConfirm ||
         showStatsInfo ||
         showSessionManager ||
+        showSettings ||
         selectedSolve !== null
       ) {
         return;
@@ -175,6 +178,7 @@ function App() {
     showClearConfirm,
     showStatsInfo,
     showSessionManager,
+    showSettings,
     selectedSolve,
   ]);
 
@@ -190,7 +194,17 @@ function App() {
           {/* Mobile: Stack vertically */}
           <div className="w-full flex flex-col gap-3 sm:hidden">
             <div className="flex items-center justify-between gap-2">
-              <LanguageSelector />
+              <div className="flex items-center gap-2">
+                <LanguageSelector />
+                <button
+                  type="button"
+                  onClick={() => setShowSettings(true)}
+                  className="flex items-center gap-2 rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-700"
+                  aria-label={t.settings.title}
+                >
+                  <Settings className="h-4 w-4" />
+                </button>
+              </div>
               <SessionSwitcher onManageClick={() => setShowSessionManager(true)} />
             </div>
             <div className="flex justify-center">
@@ -200,8 +214,17 @@ function App() {
 
           {/* Desktop: Three columns */}
           <div className="hidden sm:flex w-full justify-between items-center gap-4">
-            <div className="flex justify-start min-w-0 flex-1">
+            <div className="flex justify-start items-center gap-2 min-w-0 flex-1">
               <LanguageSelector />
+              <button
+                type="button"
+                onClick={() => setShowSettings(true)}
+                className="flex items-center gap-2 rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-700"
+                aria-label={t.settings.title}
+              >
+                <Settings className="h-4 w-4" />
+                <span className="hidden md:inline">{t.settings.title}</span>
+              </button>
             </div>
             <div className="flex justify-center shrink-0">
               <Logo size="lg" />
@@ -345,6 +368,8 @@ function App() {
         isOpen={showSessionManager}
         onClose={() => setShowSessionManager(false)}
       />
+
+      <SettingsModal isOpen={showSettings} onClose={() => setShowSettings(false)} />
 
       {/* Toast */}
       {showSuccessToast && (

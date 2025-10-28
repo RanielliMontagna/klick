@@ -225,7 +225,7 @@ Requisitos mínimos:
 - [x] **+2** e **DNF** por botão/atalho e regra de inspeção (opcional).
 - [x] Cálculo correto de **ao5/ao12** (com regras de DNF).
 - [x] Sessões separadas e persistentes.
-- [ ] Exportar/Importar JSON.
+- [x] Exportar/Importar JSON.
 - [x] UI clara, responsiva e acessível (dark-first).
 - [x] Testes principais passando.
 - [x] **PWA:** manifest + service worker para instalação e uso offline.
@@ -380,9 +380,76 @@ Requisitos mínimos:
       - Tabela de solves reflete sessão ativa
       - Atalhos bloqueados quando modal aberto
 
+14. **Internacionalização (Fase 4.5):** ✅
+    - **Sistema i18n completo** com 3 idiomas:
+      - Português (pt-BR) - padrão
+      - English (en-US)
+      - Español (es-ES)
+    - **Arquivos de tradução organizados:**
+      - `/src/i18n/locales/pt-BR.ts`
+      - `/src/i18n/locales/en-US.ts`
+      - `/src/i18n/locales/es-ES.ts`
+      - Barrel export em `/src/i18n/locales/index.ts`
+    - **LanguageSelector** no header:
+      - Dropdown com bandeiras e nomes dos idiomas
+      - Indicador visual do idioma ativo (✓)
+      - Responsivo (flag apenas em mobile, flag + nome em desktop)
+    - **Traduções completas** para todas as seções:
+      - App (título, tagline)
+      - Timer e inspeção
+      - Scramble
+      - Estatísticas (incluindo modal de ajuda)
+      - Sessões
+      - Tabela de solves
+      - Atalhos de teclado
+      - Penalidades
+      - Ações genéricas
+    - **Componentes compartilhados para dropdowns:**
+      - `HeaderDropdownButton` - botão padrão para dropdowns
+      - `HeaderDropdownMenu` - menu dropdown com backdrop e animações
+      - Usado por `LanguageSelector` e `SessionSwitcher`
+    - **Mobile-first design:**
+      - Header responsivo (stack em mobile, 3 colunas em desktop)
+      - Dropdowns adaptados para touch
+      - Animações suaves (slideDown, chevron rotation)
+    - **Persistência:** Idioma salvo em `localStorage` via `i18nStore`
+
+15. **Configurações e Export/Import (Fase 5):** ✅
+    - **Modal de Configurações** (SettingsModal):
+      - Duração da inspeção (slider 5-30s, padrão 15s)
+      - Sons habilitados (toggle on/off)
+      - Penalidade automática de inspeção (toggle on/off)
+        - +2 entre 15-17s
+        - DNF após 17s
+        - Segue regras oficiais da WCA
+      - Tema (dark padrão, light coming soon)
+    - **Botão Settings no header:**
+      - Ícone de engrenagem
+      - Integrado ao lado do LanguageSelector
+      - Responsivo (ícone em mobile, ícone + texto em desktop)
+    - **Export/Import JSON:**
+      - **Exportar Sessão Atual:** baixa JSON com sessão ativa
+      - **Exportar Todas as Sessões:** baixa JSON com todas as sessões
+      - **Importar Sessões:** upload de arquivo JSON
+        - Modo **Merge:** adiciona às sessões existentes
+        - Modo **Replace:** substitui todas as sessões
+      - **Validação completa:**
+        - Verifica estrutura do JSON
+        - Valida campos obrigatórios (id, name, solves)
+        - Retorna erro descritivo se inválido
+      - **Feedback visual:**
+        - Mensagens de sucesso (verde) e erro (vermelho)
+        - Animação de entrada/saída
+        - Auto-dismiss após 3-5s
+    - **Traduções completas** para settings e export/import
+    - **Integração com settingsStore:**
+      - Persistência automática em localStorage
+      - Atualizações em tempo real
+      - Controles responsivos e acessíveis
+
 ### Próximas fases
 
-- **Fase 5:** Configurações e exportar/importar
+- **Projeto Concluído!** Todos os requisitos do escopo foram implementados. ✅
 
 ---
 
