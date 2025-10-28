@@ -19,7 +19,7 @@ export function PWAUpdatePrompt() {
               <div className="shrink-0 w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
                 <Download className="w-5 h-5 text-primary" />
               </div>
-              
+
               <div className="flex-1 min-w-0">
                 <h3 className="font-semibold text-foreground mb-1">
                   {needRefresh ? 'Nova atualização disponível!' : 'App pronto para uso offline!'}
@@ -29,7 +29,7 @@ export function PWAUpdatePrompt() {
                     ? 'Uma nova versão do Klick está disponível. Atualize para obter as últimas melhorias.'
                     : 'O Klick agora pode funcionar offline!'}
                 </p>
-                
+
                 <div className="flex gap-2">
                   {needRefresh && (
                     <button

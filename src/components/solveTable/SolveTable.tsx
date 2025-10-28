@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Trash2, Eye } from 'lucide-react';
-import { useI18nStore } from '../../stores/i18nStore';
-import { useSessionsStore } from '../../stores/sessionsStore';
-import { ConfirmDialog } from '../confirmDialog/ConfirmDialog';
-import { formatTime } from '../../utils/formatTime';
-import { fadeIn } from '../../utils/animations';
-import type { Solve } from '../../types';
+import { useI18nStore } from '@/stores/i18nStore';
+import { useSessionsStore } from '@/stores/sessionsStore';
+import { ConfirmDialog } from '@/components';
+import { formatTime } from '@/utils/formatTime';
+import { fadeIn } from '@/utils/animations';
+import type { Solve } from '@/types';
 
 type FilterOption = 'all' | 'last5' | 'last12' | 'last50' | 'last100';
 
@@ -92,9 +92,7 @@ export function SolveTable({ onViewDetails }: SolveTableProps) {
       >
         {/* Header with filter */}
         <div className="p-4 sm:p-6 border-b border-gray-700 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <h2 className="text-lg sm:text-xl font-bold text-white">
-            {t.solveTable.title}
-          </h2>
+          <h2 className="text-lg sm:text-xl font-bold text-white">{t.solveTable.title}</h2>
           <div className="flex items-center gap-2">
             <label className="text-sm text-gray-400">{t.solveTable.filter.label}:</label>
             <select
@@ -140,13 +138,8 @@ export function SolveTable({ onViewDetails }: SolveTableProps) {
               {filteredSolves.map((solve) => {
                 const solveNumber = allSolves.length - allSolves.indexOf(solve);
                 return (
-                  <tr
-                    key={solve.id}
-                    className="hover:bg-gray-700/30 transition-colors"
-                  >
-                    <td className="px-4 py-3 text-sm text-gray-300">
-                      #{solveNumber}
-                    </td>
+                  <tr key={solve.id} className="hover:bg-gray-700/30 transition-colors">
+                    <td className="px-4 py-3 text-sm text-gray-300">#{solveNumber}</td>
                     <td className="px-4 py-3 text-sm font-mono font-semibold text-white">
                       {solve.penalty === 'DNF' ? 'DNF' : formatTime(solve.effectiveMs)}
                     </td>

@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { Language, TranslationKey } from '../i18n/translations';
-import { getTranslation } from '../i18n/translations';
+import type { Language, TranslationKey } from '@/i18n/translations';
+import { getTranslation } from '@/i18n/translations';
 
 interface I18nStore {
   language: Language;
@@ -22,6 +22,6 @@ export const useI18nStore = create<I18nStore>()(
     }),
     {
       name: 'klick-i18n',
-    }
-  )
+    },
+  ),
 );

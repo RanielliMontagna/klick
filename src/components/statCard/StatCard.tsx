@@ -1,6 +1,6 @@
 import type { LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { scale } from '../../utils/animations';
+import { scale } from '@/utils/animations';
 
 interface StatCardProps {
   label: string;
@@ -34,9 +34,7 @@ export function StatCard({ label, value, icon: Icon, variant = 'secondary' }: St
         {Icon && <Icon size={16} className="text-gray-400 sm:w-5 sm:h-5" />}
         <h3 className="text-xs sm:text-sm font-medium text-gray-400">{label}</h3>
       </div>
-      <p className="text-xl sm:text-2xl font-bold text-white tabular-nums">
-        {value}
-      </p>
+      <p className="text-xl sm:text-2xl font-bold text-white tabular-nums">{value}</p>
     </motion.div>
   );
 }

@@ -1,4 +1,4 @@
-import type { Solve } from "../../types";
+import type { Solve } from '@/types';
 
 export type Average = {
   value: number; // in ms, Infinity for DNF
@@ -27,10 +27,7 @@ export function calculateSingle(solves: Solve[]): Average {
  * - Otherwise: discard 1 best and 1 worst, average the rest
  * - +2 is already included in effectiveMs
  */
-export function calculateAverageOfN(
-  solves: Solve[],
-  n: number,
-): Average | null {
+export function calculateAverageOfN(solves: Solve[], n: number): Average | null {
   if (solves.length < n) {
     return null;
   }

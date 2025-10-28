@@ -1,9 +1,9 @@
 import { Timer, Play, Square } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { TimerState } from '../../types';
-import { useI18nStore } from '../../stores/i18nStore';
-import { formatTime } from '../../utils/formatTime';
-import { fadeIn } from '../../utils/animations';
+import type { TimerState } from '@/types';
+import { useI18nStore } from '@/stores/i18nStore';
+import { formatTime } from '@/utils/formatTime';
+import { fadeIn } from '@/utils/animations';
 
 interface TimerDisplayProps {
   timeMs: number;
@@ -62,7 +62,7 @@ export function TimerDisplay({ timeMs, state }: TimerDisplayProps) {
     <div className="flex flex-col items-center justify-center space-y-4 px-4">
       <AnimatePresence mode="wait">
         {state !== 'running' && state !== 'stopped' && (
-          <motion.div 
+          <motion.div
             key={state}
             variants={fadeIn}
             initial="hidden"
@@ -78,7 +78,7 @@ export function TimerDisplay({ timeMs, state }: TimerDisplayProps) {
         )}
       </AnimatePresence>
 
-      <motion.div 
+      <motion.div
         key={`${state}-${Math.floor(timeMs / 100)}`}
         initial={{ scale: 0.95 }}
         animate={{ scale: 1 }}
@@ -88,7 +88,7 @@ export function TimerDisplay({ timeMs, state }: TimerDisplayProps) {
       </motion.div>
 
       {state === 'idle' && (
-        <motion.p 
+        <motion.p
           variants={fadeIn}
           initial="hidden"
           animate="visible"

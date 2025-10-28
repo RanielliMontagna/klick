@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import type { Solve } from '../../types';
+import type { Solve } from '@/types';
 
 interface PenaltyInfo {
   label: string;
@@ -13,7 +13,7 @@ export function useSolveDetailsModal(solve: Solve | null) {
 
   const copyScramble = useCallback(() => {
     if (!solve) return;
-    
+
     navigator.clipboard.writeText(solve.scramble);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -49,7 +49,7 @@ export function useSolveDetailsModal(solve: Solve | null) {
         borderColor: 'border-red-500/30',
       };
     }
-    
+
     if (solve.penalty === '+2') {
       return {
         label: '+2 segundos',
@@ -58,7 +58,7 @@ export function useSolveDetailsModal(solve: Solve | null) {
         borderColor: 'border-yellow-500/30',
       };
     }
-    
+
     return {
       label: 'Nenhuma',
       color: 'text-gray-400',

@@ -1,6 +1,6 @@
 import { CheckCircle, XCircle, Info, AlertCircle, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { slideInRight } from '../../utils/animations';
+import { slideInRight } from '@/utils/animations';
 import { useToast } from './useToast';
 
 type ToastType = 'success' | 'error' | 'info' | 'warning';

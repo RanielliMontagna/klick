@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { Settings } from '../types';
+import type { Settings } from '@/types';
 
 interface SettingsStore {
   settings: Settings;
@@ -25,6 +25,6 @@ export const useSettingsStore = create<SettingsStore>()(
     }),
     {
       name: 'klick-settings',
-    }
-  )
+    },
+  ),
 );

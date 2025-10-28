@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { Session, Solve, Penalty } from '../types';
+import type { Session, Solve, Penalty } from '@/types';
 import {
   calculateSingle,
   calculateAo5,
@@ -8,30 +8,30 @@ import {
   calculateBestAo5,
   calculateBestAo12,
   type Average,
-} from '../features/stats/averages';
+} from '@/features/stats/averages';
 
 interface SessionsStore {
   sessions: Session[];
   activeSessionId: string;
-  
+
   createSession: (name: string) => void;
   deleteSession: (id: string) => void;
   renameSession: (id: string, name: string) => void;
   setActiveSession: (id: string) => void;
   getActiveSession: () => Session | undefined;
-  
+
   addSolve: (solve: Omit<Solve, 'id' | 'createdAt' | 'effectiveMs'>) => void;
   updateSolvePenalty: (solveId: string, penalty: Penalty) => void;
   deleteSolve: (solveId: string) => void;
   clearCurrentSession: () => void;
-  
+
   // Statistics getters
   getSingle: () => Average;
   getAo5: () => Average | null;
   getAo12: () => Average | null;
   getBestAo5: () => Average | null;
   getBestAo12: () => Average | null;
-  
+
   exportSessions: () => string;
   importSessions: (data: string, merge: boolean) => void;
 }
@@ -82,9 +82,7 @@ export const useSessionsStore = create<SessionsStore>()(
 
       renameSession: (id, name) =>
         set((state) => ({
-          sessions: state.sessions.map((s) =>
-            s.id === id ? { ...s, name } : s
-          ),
+          sessions: state.sessions.map((s) => (s.id === id ? { ...s, name } : s)),
         })),
 
       setActiveSession: (id) => set({ activeSessionId: id }),
@@ -96,11 +94,8 @@ export const useSessionsStore = create<SessionsStore>()(
 
       addSolve: (solveData) =>
         set((state) => {
-          const effectiveMs = calculateEffectiveMs(
-            solveData.timeMs,
-            solveData.penalty
-          );
-          
+          const effectiveMs = calculateEffectiveMs(solveData.timeMs, solveData.penalty);
+
           const newSolve: Solve = {
             ...solveData,
             id: crypto.randomUUID(),
@@ -112,7 +107,7 @@ export const useSessionsStore = create<SessionsStore>()(
             sessions: state.sessions.map((session) =>
               session.id === state.activeSessionId
                 ? { ...session, solves: [...session.solves, newSolve] }
-                : session
+                : session,
             ),
           };
         }),
@@ -128,7 +123,7 @@ export const useSessionsStore = create<SessionsStore>()(
                     penalty,
                     effectiveMs: calculateEffectiveMs(solve.timeMs, penalty),
                   }
-                : solve
+                : solve,
             ),
           })),
         })),
@@ -144,9 +139,7 @@ export const useSessionsStore = create<SessionsStore>()(
       clearCurrentSession: () =>
         set((state) => ({
           sessions: state.sessions.map((session) =>
-            session.id === state.activeSessionId
-              ? { ...session, solves: [] }
-              : session
+            session.id === state.activeSessionId ? { ...session, solves: [] } : session,
           ),
         })),
 
@@ -195,6 +188,6 @@ export const useSessionsStore = create<SessionsStore>()(
     }),
     {
       name: 'klick-sessions',
-    }
-  )
+    },
+  ),
 );

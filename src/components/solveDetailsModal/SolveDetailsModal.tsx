@@ -1,10 +1,10 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Copy, Clock, Calendar, AlertTriangle } from 'lucide-react';
-import { useI18nStore } from '../../stores/i18nStore';
-import { formatTime } from '../../utils/formatTime';
-import { scale } from '../../utils/animations';
+import { useI18nStore } from '@/stores/i18nStore';
+import { formatTime } from '@/utils/formatTime';
+import { scale } from '@/utils/animations';
 import { useSolveDetailsModal } from './useSolveDetailsModal';
-import type { Solve } from '../../types';
+import type { Solve } from '@/types';
 
 interface SolveDetailsModalProps {
   isOpen: boolean;
@@ -13,12 +13,7 @@ interface SolveDetailsModalProps {
   solveNumber: number;
 }
 
-export function SolveDetailsModal({
-  isOpen,
-  onClose,
-  solve,
-  solveNumber,
-}: SolveDetailsModalProps) {
+export function SolveDetailsModal({ isOpen, onClose, solve, solveNumber }: SolveDetailsModalProps) {
   const { t } = useI18nStore();
   const { copied, copyScramble, formatFullDate, penaltyInfo } = useSolveDetailsModal(solve);
 
@@ -66,9 +61,7 @@ export function SolveDetailsModal({
                 <div className="bg-gray-900/50 rounded-xl p-5 border border-gray-700">
                   <div className="flex items-center gap-3 mb-3">
                     <Clock className="text-primary" size={24} />
-                    <h3 className="text-lg font-bold text-white">
-                      {t.solveTable.details.time}
-                    </h3>
+                    <h3 className="text-lg font-bold text-white">{t.solveTable.details.time}</h3>
                   </div>
                   <div className="space-y-2">
                     <div className="flex items-baseline gap-3">
@@ -88,9 +81,7 @@ export function SolveDetailsModal({
                 <div className="bg-gray-900/50 rounded-xl p-5 border border-gray-700">
                   <div className="flex items-center gap-3 mb-3">
                     <AlertTriangle className={penaltyInfo.color} size={24} />
-                    <h3 className="text-lg font-bold text-white">
-                      {t.solveTable.details.penalty}
-                    </h3>
+                    <h3 className="text-lg font-bold text-white">{t.solveTable.details.penalty}</h3>
                   </div>
                   <span
                     className={`inline-flex px-4 py-2 rounded-lg text-sm font-medium border ${penaltyInfo.bgColor} ${penaltyInfo.color} ${penaltyInfo.borderColor}`}
@@ -122,13 +113,9 @@ export function SolveDetailsModal({
                 <div className="bg-gray-900/50 rounded-xl p-5 border border-gray-700">
                   <div className="flex items-center gap-3 mb-3">
                     <Calendar className="text-gray-400" size={24} />
-                    <h3 className="text-lg font-bold text-white">
-                      {t.solveTable.details.date}
-                    </h3>
+                    <h3 className="text-lg font-bold text-white">{t.solveTable.details.date}</h3>
                   </div>
-                  <p className="text-gray-300 text-sm">
-                    {formatFullDate(solve.createdAt)}
-                  </p>
+                  <p className="text-gray-300 text-sm">{formatFullDate(solve.createdAt)}</p>
                 </div>
               </div>
 

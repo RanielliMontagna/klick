@@ -11,7 +11,7 @@ describe('generate3x3Scramble', () => {
   it('não deve repetir a mesma face consecutivamente', () => {
     const scramble = generate3x3Scramble();
     const moves = scramble.split(' ');
-    
+
     for (let i = 1; i < moves.length; i++) {
       const currentFace = moves[i][0];
       const previousFace = moves[i - 1][0];
@@ -23,25 +23,25 @@ describe('generate3x3Scramble', () => {
     const scramble = generate3x3Scramble();
     const moves = scramble.split(' ');
     const validFaces = ['R', 'L', 'U', 'D', 'F', 'B'];
-    
+
     for (const move of moves) {
       const face = move[0];
       expect(validFaces).toContain(face);
     }
   });
 
-  it('deve usar apenas modificadores válidos (\'\', 2, \')', () => {
+  it("deve usar apenas modificadores válidos ('', 2, ')", () => {
     const scramble = generate3x3Scramble();
     const moves = scramble.split(' ');
     const validModifiers = ['', '2', "'"];
-    
+
     for (const move of moves) {
       const modifier = move.slice(1);
       expect(validModifiers).toContain(modifier);
     }
   });
 
-  it("should generate different scrambles", () => {
+  it('should generate different scrambles', () => {
     const s1 = generate3x3Scramble();
     const s2 = generate3x3Scramble();
     const s3 = generate3x3Scramble();

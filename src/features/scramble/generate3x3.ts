@@ -1,5 +1,5 @@
-const FACES = ["R", "L", "U", "D", "F", "B"] as const;
-const MODIFIERS = ["", "'", "2"] as const;
+const FACES = ['R', 'L', 'U', 'D', 'F', 'B'] as const;
+const MODIFIERS = ['', "'", '2'] as const;
 
 type Face = (typeof FACES)[number];
 type Modifier = (typeof MODIFIERS)[number];
@@ -24,5 +24,5 @@ export function generate3x3Scramble(): string {
     lastFace = face;
   }
 
-  return moves.join(" ");
+  return moves.join(' ');
 }

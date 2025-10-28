@@ -15,15 +15,15 @@ import {
   StatsInfoModal,
   PWAUpdatePrompt,
   Logo,
-} from './components';
-import { useTimer } from './features/timer/useTimer';
-import { generate3x3Scramble } from './features/scramble/generate3x3';
-import { useSessionsStore } from './stores/sessionsStore';
-import { useSettingsStore } from './stores/settingsStore';
-import { useI18nStore } from './stores/i18nStore';
-import { slideUp, fadeIn } from './utils/animations';
-import { formatAverage } from './utils/formatStats';
-import type { Penalty, Solve } from './types';
+} from '@/components';
+import { useTimer } from '@/features/timer/useTimer';
+import { generate3x3Scramble } from '@/features/scramble/generate3x3';
+import { useSessionsStore } from '@/stores/sessionsStore';
+import { useSettingsStore } from '@/stores/settingsStore';
+import { useI18nStore } from '@/stores/i18nStore';
+import { slideUp, fadeIn } from '@/utils/animations';
+import { formatAverage } from '@/utils/formatStats';
+import type { Penalty, Solve } from '@/types';
 
 function App() {
   const [scramble, setScramble] = useState('');
@@ -34,12 +34,12 @@ function App() {
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [selectedSolve, setSelectedSolve] = useState<Solve | null>(null);
   const [selectedSolveNumber, setSelectedSolveNumber] = useState(0);
-  
+
   const { t } = useI18nStore();
   const { settings } = useSettingsStore();
-  const { 
-    addSolve, 
-    updateSolvePenalty, 
+  const {
+    addSolve,
+    updateSolvePenalty,
     getActiveSession,
     clearCurrentSession,
     getSingle,
@@ -48,15 +48,13 @@ function App() {
     getBestAo5,
     getBestAo12,
   } = useSessionsStore();
-  
-  const {
-    state,
-    timeMs,
-    inspectionTimeLeft,
-    reset,
-  } = useTimer(settings.inspectionDuration, (overtime) => {
-    setInspectionOvertime(overtime);
-  });
+
+  const { state, timeMs, inspectionTimeLeft, reset } = useTimer(
+    settings.inspectionDuration,
+    (overtime) => {
+      setInspectionOvertime(overtime);
+    },
+  );
 
   // Gera novo scramble
   const generateNewScramble = useCallback(() => {
@@ -88,7 +86,7 @@ function App() {
   useEffect(() => {
     if (state === 'stopped' && timeMs > 0) {
       let penalty: Penalty = 'NONE';
-      
+
       // Aplica penalidade automática de inspeção se habilitado
       if (settings.autoInspectionPenalty && inspectionOvertime > 0) {
         if (inspectionOvertime > 2000) {
@@ -111,7 +109,16 @@ function App() {
         setInspectionOvertime(0);
       }, 1000);
     }
-  }, [state, timeMs, scramble, inspectionOvertime, settings.autoInspectionPenalty, addSolve, generateNewScramble, reset]);
+  }, [
+    state,
+    timeMs,
+    scramble,
+    inspectionOvertime,
+    settings.autoInspectionPenalty,
+    addSolve,
+    generateNewScramble,
+    reset,
+  ]);
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
@@ -128,9 +135,10 @@ function App() {
       }
 
       const session = getActiveSession();
-      const lastSolve = session?.solves && session.solves.length > 0 
-        ? session.solves[session.solves.length - 1] 
-        : null;
+      const lastSolve =
+        session?.solves && session.solves.length > 0
+          ? session.solves[session.solves.length - 1]
+          : null;
 
       switch (e.key.toLowerCase()) {
         case 'n':
@@ -158,12 +166,21 @@ function App() {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [generateNewScramble, updateSolvePenalty, getActiveSession, state, showClearConfirm, showStatsInfo, showSessionManager, selectedSolve]);
+  }, [
+    generateNewScramble,
+    updateSolvePenalty,
+    getActiveSession,
+    state,
+    showClearConfirm,
+    showStatsInfo,
+    showSessionManager,
+    selectedSolve,
+  ]);
 
   return (
     <div className="min-h-screen bg-background p-4 sm:p-6 md:p-8">
       <div className="max-w-7xl mx-auto">
-        <motion.header 
+        <motion.header
           className="mb-8 sm:mb-12 flex flex-col items-center"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -178,39 +195,23 @@ function App() {
               <SessionSwitcher onManageClick={() => setShowSessionManager(true)} />
             </div>
           </div>
-          <p className="text-muted-foreground text-sm sm:text-base mt-3">
-            {t.app.tagline}
-          </p>
+          <p className="text-muted-foreground text-sm sm:text-base mt-3">{t.app.tagline}</p>
         </motion.header>
 
         <div className="mb-8 sm:mb-12">
-          <ScrambleBox 
-            scramble={scramble} 
-            onNewScramble={generateNewScramble}
-          />
+          <ScrambleBox scramble={scramble} onNewScramble={generateNewScramble} />
         </div>
 
         {/* Timer Area */}
         <div className="mb-8 sm:mb-12 min-h-[250px] sm:min-h-[300px] flex items-center justify-center">
           <div className="w-full text-center">
-            <InspectionDisplay 
-              timeLeft={inspectionTimeLeft} 
-              state={state}
-            />
-            <TimerDisplay 
-              timeMs={timeMs} 
-              state={state}
-            />
+            <InspectionDisplay timeLeft={inspectionTimeLeft} state={state} />
+            <TimerDisplay timeMs={timeMs} state={state} />
           </div>
         </div>
 
         {/* Statistics Cards */}
-        <motion.div 
-          className="mb-8 sm:mb-12"
-          variants={fadeIn}
-          initial="hidden"
-          animate="visible"
-        >
+        <motion.div className="mb-8 sm:mb-12" variants={fadeIn} initial="hidden" animate="visible">
           {/* Header com título e ações */}
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg sm:text-xl font-bold text-white">Estatísticas</h2>
@@ -236,21 +237,9 @@ function App() {
 
           {/* Cards de estatísticas */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-            <StatCard
-              label={t.stats.single}
-              value={formatAverage(getSingle())}
-              variant="primary"
-            />
-            <StatCard
-              label={t.stats.ao5}
-              value={formatAverage(getAo5())}
-              variant="secondary"
-            />
-            <StatCard
-              label={t.stats.ao12}
-              value={formatAverage(getAo12())}
-              variant="secondary"
-            />
+            <StatCard label={t.stats.single} value={formatAverage(getSingle())} variant="primary" />
+            <StatCard label={t.stats.ao5} value={formatAverage(getAo5())} variant="secondary" />
+            <StatCard label={t.stats.ao12} value={formatAverage(getAo12())} variant="secondary" />
             <StatCard
               label={t.stats.bestAo5}
               value={formatAverage(getBestAo5())}
@@ -265,7 +254,7 @@ function App() {
         </motion.div>
 
         {/* Instruções */}
-        <motion.div 
+        <motion.div
           className="max-w-2xl mx-auto px-4 sm:px-0"
           variants={slideUp}
           initial="hidden"
@@ -274,23 +263,33 @@ function App() {
           <div className="bg-gray-800 rounded-xl p-4 sm:p-6">
             <div className="flex items-center gap-2 mb-4">
               <Keyboard size={18} className="text-gray-300 sm:w-5 sm:h-5" />
-              <h3 className="text-base sm:text-lg font-semibold text-gray-300">{t.shortcuts.title}</h3>
+              <h3 className="text-base sm:text-lg font-semibold text-gray-300">
+                {t.shortcuts.title}
+              </h3>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
               <div className="flex items-center gap-2">
-                <kbd className="px-2 py-1 bg-gray-700 rounded min-w-[70px] text-center text-xs sm:text-sm">ESPAÇO</kbd>
+                <kbd className="px-2 py-1 bg-gray-700 rounded min-w-[70px] text-center text-xs sm:text-sm">
+                  ESPAÇO
+                </kbd>
                 <span className="text-gray-400 text-xs sm:text-sm">{t.shortcuts.space}</span>
               </div>
               <div className="flex items-center gap-2">
-                <kbd className="px-2 py-1 bg-gray-700 rounded min-w-[70px] text-center text-xs sm:text-sm">N</kbd>
+                <kbd className="px-2 py-1 bg-gray-700 rounded min-w-[70px] text-center text-xs sm:text-sm">
+                  N
+                </kbd>
                 <span className="text-gray-400 text-xs sm:text-sm">{t.shortcuts.newScramble}</span>
               </div>
               <div className="flex items-center gap-2">
-                <kbd className="px-2 py-1 bg-gray-700 rounded min-w-[70px] text-center text-xs sm:text-sm">P</kbd>
+                <kbd className="px-2 py-1 bg-gray-700 rounded min-w-[70px] text-center text-xs sm:text-sm">
+                  P
+                </kbd>
                 <span className="text-gray-400 text-xs sm:text-sm">{t.shortcuts.togglePlus2}</span>
               </div>
               <div className="flex items-center gap-2">
-                <kbd className="px-2 py-1 bg-gray-700 rounded min-w-[70px] text-center text-xs sm:text-sm">D</kbd>
+                <kbd className="px-2 py-1 bg-gray-700 rounded min-w-[70px] text-center text-xs sm:text-sm">
+                  D
+                </kbd>
                 <span className="text-gray-400 text-xs sm:text-sm">{t.shortcuts.toggleDNF}</span>
               </div>
             </div>
@@ -298,12 +297,7 @@ function App() {
         </motion.div>
 
         {/* Solve Table */}
-        <motion.div 
-          className="mt-8 sm:mt-12"
-          variants={fadeIn}
-          initial="hidden"
-          animate="visible"
-        >
+        <motion.div className="mt-8 sm:mt-12" variants={fadeIn} initial="hidden" animate="visible">
           <SolveTable onViewDetails={handleViewSolveDetails} />
         </motion.div>
       </div>
@@ -320,10 +314,7 @@ function App() {
         variant="danger"
       />
 
-      <StatsInfoModal
-        isOpen={showStatsInfo}
-        onClose={() => setShowStatsInfo(false)}
-      />
+      <StatsInfoModal isOpen={showStatsInfo} onClose={() => setShowStatsInfo(false)} />
 
       <SolveDetailsModal
         isOpen={selectedSolve !== null}

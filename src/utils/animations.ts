@@ -1,4 +1,4 @@
-import type { Variants } from "framer-motion";
+import type { Variants } from 'framer-motion';
 
 export const fadeIn: Variants = {
   initial: { opacity: 0 },
@@ -17,7 +17,7 @@ export const slideUp: Variants = {
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: "easeOut" },
+    transition: { duration: 0.4, ease: 'easeOut' },
   },
   exit: {
     opacity: 0,
@@ -31,7 +31,7 @@ export const slideDown: Variants = {
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: "easeOut" },
+    transition: { duration: 0.4, ease: 'easeOut' },
   },
   exit: {
     opacity: 0,
@@ -45,7 +45,7 @@ export const scale: Variants = {
   animate: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.3, ease: "easeOut" },
+    transition: { duration: 0.3, ease: 'easeOut' },
   },
   exit: {
     opacity: 0,
@@ -59,7 +59,7 @@ export const slideInRight: Variants = {
   animate: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.3, ease: "easeOut" },
+    transition: { duration: 0.3, ease: 'easeOut' },
   },
   exit: {
     opacity: 0,
@@ -82,7 +82,7 @@ export const pulse: Variants = {
     transition: {
       duration: 0.5,
       repeat: Number.POSITIVE_INFINITY,
-      ease: "easeInOut",
+      ease: 'easeInOut',
     },
   },
 };

@@ -1,9 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Plus, Edit2, Trash2, FolderOpen } from 'lucide-react';
-import { useI18nStore } from '../../stores/i18nStore';
-import { ConfirmDialog } from '../confirmDialog/ConfirmDialog';
-import { Toast } from '../toast/Toast';
-import { scale } from '../../utils/animations';
+import { useI18nStore } from '@/stores/i18nStore';
+import { Toast, ConfirmDialog } from '@/components';
+import { scale } from '@/utils/animations';
 import { useSessionManagerModal } from './useSessionManagerModal';
 
 interface SessionManagerModalProps {
@@ -117,9 +116,7 @@ export function SessionManagerModal({ isOpen, onClose }: SessionManagerModalProp
                       <div
                         key={session.id}
                         className={`p-4 bg-gray-700 rounded-lg border-2 transition-colors ${
-                          session.id === activeSessionId
-                            ? 'border-primary'
-                            : 'border-transparent'
+                          session.id === activeSessionId ? 'border-primary' : 'border-transparent'
                         }`}
                       >
                         {editingId === session.id ? (
@@ -164,7 +161,12 @@ export function SessionManagerModal({ isOpen, onClose }: SessionManagerModalProp
                                 )}
                               </div>
                               <p className="text-sm text-gray-400 mt-1">
-                                {session.solves.length} {getSolveCountText(session.solves.length, t.sessions.solveCountSingular, t.sessions.solveCount)}
+                                {session.solves.length}{' '}
+                                {getSolveCountText(
+                                  session.solves.length,
+                                  t.sessions.solveCountSingular,
+                                  t.sessions.solveCount,
+                                )}
                               </p>
                             </button>
                             <div className="flex gap-1 ml-2">

@@ -1,7 +1,7 @@
 import { Copy, RefreshCw, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useI18nStore } from '../../stores/i18nStore';
-import { slideDown } from '../../utils/animations';
+import { useI18nStore } from '@/stores/i18nStore';
+import { slideDown } from '@/utils/animations';
 import { useScrambleBox } from './useScrambleBox';
 
 interface ScrambleBoxProps {
@@ -14,7 +14,7 @@ export function ScrambleBox({ scramble, onNewScramble }: ScrambleBoxProps) {
   const { copied, copyToClipboard } = useScrambleBox(scramble);
 
   return (
-    <motion.div 
+    <motion.div
       className="w-full mx-auto px-4 sm:px-0 sm:max-w-4xl"
       variants={slideDown}
       initial="hidden"
@@ -55,8 +55,8 @@ export function ScrambleBox({ scramble, onNewScramble }: ScrambleBoxProps) {
             </motion.button>
           </div>
         </div>
-        
-        <motion.div 
+
+        <motion.div
           key={scramble}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}

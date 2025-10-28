@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
-import type { TimerState } from '../../types';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import type { TimerState } from '@/types';
 
 interface UseTimerReturn {
   state: TimerState;
@@ -13,12 +13,12 @@ interface UseTimerReturn {
 
 export function useTimer(
   inspectionDuration: number = 15,
-  onInspectionEnd?: (timeOverMs: number) => void
+  onInspectionEnd?: (timeOverMs: number) => void,
 ): UseTimerReturn {
   const [state, setState] = useState<TimerState>('idle');
   const [timeMs, setTimeMs] = useState(0);
   const [inspectionTimeLeft, setInspectionTimeLeft] = useState(inspectionDuration);
-  
+
   const startTimeRef = useRef<number>(0);
   const inspectionStartRef = useRef<number>(0);
   const animationFrameRef = useRef<number>(0);
@@ -47,7 +47,7 @@ export function useTimer(
       if (onInspectionEnd) {
         onInspectionEnd(timeOver * 1000);
       }
-      
+
       if (inspectionIntervalRef.current) {
         clearInterval(inspectionIntervalRef.current);
         inspectionIntervalRef.current = null;

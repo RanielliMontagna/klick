@@ -1,9 +1,16 @@
 import { useState, useCallback } from 'react';
-import { useSessionsStore } from '../../stores/sessionsStore';
+import { useSessionsStore } from '@/stores/sessionsStore';
 
 export function useSessionManagerModal() {
-  const { sessions, activeSessionId, createSession, renameSession, deleteSession, setActiveSession } = useSessionsStore();
-  
+  const {
+    sessions,
+    activeSessionId,
+    createSession,
+    renameSession,
+    deleteSession,
+    setActiveSession,
+  } = useSessionsStore();
+
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editingName, setEditingName] = useState('');
   const [newSessionName, setNewSessionName] = useState('');
@@ -53,14 +60,17 @@ export function useSessionManagerModal() {
     }
   }, [deletingId, sessions.length, deleteSession]);
 
-  const handleKeyDown = useCallback((e: React.KeyboardEvent, action: () => void) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      action();
-    } else if (e.key === 'Escape') {
-      handleCancelEdit();
-    }
-  }, [handleCancelEdit]);
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent, action: () => void) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        action();
+      } else if (e.key === 'Escape') {
+        handleCancelEdit();
+      }
+    },
+    [handleCancelEdit],
+  );
 
   const getSolveCountText = useCallback((count: number, singular: string, plural: string) => {
     return count === 1 ? singular : plural;
@@ -85,7 +95,7 @@ export function useSessionManagerModal() {
     setShowDeleteSuccess,
     showCannotDeleteError,
     setShowCannotDeleteError,
-    
+
     // Actions
     handleCreate,
     handleStartEdit,

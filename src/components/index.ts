@@ -1,3 +1,4 @@
+// Components
 export { ConfirmDialog } from './confirmDialog/ConfirmDialog';
 export { PWAUpdatePrompt } from './pwaUpdatePrompt/PWAUpdatePrompt';
 export { ScrambleBox } from './scrambleBox/ScrambleBox';

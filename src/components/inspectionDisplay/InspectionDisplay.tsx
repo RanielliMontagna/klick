@@ -1,7 +1,7 @@
 import { AlertTriangle, Clock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { TimerState } from '../../types';
-import { useI18nStore } from '../../stores/i18nStore';
+import type { TimerState } from '@/types';
+import { useI18nStore } from '@/stores/i18nStore';
 
 interface InspectionDisplayProps {
   timeLeft: number;
@@ -33,7 +33,7 @@ export function InspectionDisplay({ timeLeft, state }: InspectionDisplayProps) {
   const getIcon = () => {
     const size = 32;
     const className = getColor();
-    
+
     if (isCritical || isDanger) {
       return <AlertTriangle size={size} className={className} />;
     }
@@ -42,15 +42,19 @@ export function InspectionDisplay({ timeLeft, state }: InspectionDisplayProps) {
 
   return (
     <div className="flex flex-col items-center space-y-3 px-4">
-      <motion.div 
+      <motion.div
         className="flex items-center gap-3"
-        animate={isCritical || isDanger ? {
-          scale: [1, 1.05, 1],
-          transition: { duration: 1, repeat: Infinity }
-        } : {}}
+        animate={
+          isCritical || isDanger
+            ? {
+                scale: [1, 1.05, 1],
+                transition: { duration: 1, repeat: Infinity },
+              }
+            : {}
+        }
       >
         {getIcon()}
-        <motion.div 
+        <motion.div
           key={Math.ceil(timeLeft)}
           initial={{ scale: 1.2, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -59,10 +63,10 @@ export function InspectionDisplay({ timeLeft, state }: InspectionDisplayProps) {
           {Math.ceil(timeLeft)}s
         </motion.div>
       </motion.div>
-      
+
       <AnimatePresence>
         {getMessage() && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}

@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Target, TrendingUp, Award, Trophy } from 'lucide-react';
-import { useI18nStore } from '../../stores/i18nStore';
-import { scale } from '../../utils/animations';
+import { useI18nStore } from '@/stores/i18nStore';
+import { scale } from '@/utils/animations';
 
 interface StatsInfoModalProps {
   isOpen: boolean;
@@ -9,10 +9,7 @@ interface StatsInfoModalProps {
   initialSection?: 'single' | 'ao5' | 'ao12' | 'bestAo5' | 'bestAo12';
 }
 
-export function StatsInfoModal({
-  isOpen,
-  onClose,
-}: StatsInfoModalProps) {
+export function StatsInfoModal({ isOpen, onClose }: StatsInfoModalProps) {
   const { t } = useI18nStore();
 
   const sections = [
@@ -78,9 +75,7 @@ export function StatsInfoModal({
             >
               {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-gray-700 shrink-0">
-                <h2 className="text-2xl font-bold text-white">
-                  {t.stats.info.title}
-                </h2>
+                <h2 className="text-2xl font-bold text-white">{t.stats.info.title}</h2>
                 <button
                   onClick={onClose}
                   className="text-gray-400 hover:text-white transition-colors rounded-lg p-1 hover:bg-gray-700"
@@ -102,9 +97,7 @@ export function StatsInfoModal({
                         <div className={`${section.color}`}>
                           <Icon size={24} />
                         </div>
-                        <h3 className="text-lg font-bold text-white">
-                          {section.data.title}
-                        </h3>
+                        <h3 className="text-lg font-bold text-white">{section.data.title}</h3>
                       </div>
 
                       <p className="text-gray-300 mb-3 leading-relaxed">
@@ -137,14 +130,10 @@ export function StatsInfoModal({
                   </h3>
                   <div className="space-y-3">
                     <div className="bg-gray-900/50 rounded-lg p-3 border border-gray-700">
-                      <p className="text-gray-300 text-sm">
-                        {t.stats.info.penalties.plus2}
-                      </p>
+                      <p className="text-gray-300 text-sm">{t.stats.info.penalties.plus2}</p>
                     </div>
                     <div className="bg-gray-900/50 rounded-lg p-3 border border-gray-700">
-                      <p className="text-gray-300 text-sm">
-                        {t.stats.info.penalties.dnf}
-                      </p>
+                      <p className="text-gray-300 text-sm">{t.stats.info.penalties.dnf}</p>
                     </div>
                   </div>
                 </div>

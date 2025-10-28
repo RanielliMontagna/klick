@@ -1,13 +1,13 @@
-import type { Average } from "../features/stats/averages";
-import { formatTime } from "./formatTime";
+import type { Average } from '@/features/stats/averages';
+import { formatTime } from './formatTime';
 
 export function formatAverage(average: Average | null): string {
   if (!average) {
-    return "-";
+    return '-';
   }
 
   if (average.isDNF) {
-    return "DNF";
+    return 'DNF';
   }
 
   return formatTime(average.value);

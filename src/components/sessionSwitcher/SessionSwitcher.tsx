@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { ChevronDown, FolderOpen, Settings } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSessionsStore } from '../../stores/sessionsStore';
-import { useI18nStore } from '../../stores/i18nStore';
-import { slideDown } from '../../utils/animations';
+import { useSessionsStore } from '@/stores/sessionsStore';
+import { useI18nStore } from '@/stores/i18nStore';
+import { slideDown } from '@/utils/animations';
 
 interface SessionSwitcherProps {
   onManageClick: () => void;
@@ -13,7 +13,7 @@ export function SessionSwitcher({ onManageClick }: SessionSwitcherProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useI18nStore();
   const { sessions, activeSessionId, setActiveSession, getActiveSession } = useSessionsStore();
-  
+
   const activeSession = getActiveSession();
 
   const handleSessionSelect = (sessionId: string) => {
@@ -36,10 +36,7 @@ export function SessionSwitcher({ onManageClick }: SessionSwitcherProps) {
         <span className="text-sm font-medium text-white max-w-[120px] sm:max-w-[200px] truncate">
           {activeSession?.name || t.sessions.current}
         </span>
-        <motion.div
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.2 }}
-        >
+        <motion.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
           <ChevronDown size={16} className="text-gray-400" />
         </motion.div>
       </button>
@@ -49,11 +46,8 @@ export function SessionSwitcher({ onManageClick }: SessionSwitcherProps) {
         {isOpen && (
           <>
             {/* Backdrop */}
-            <div
-              className="fixed inset-0 z-40"
-              onClick={() => setIsOpen(false)}
-            />
-            
+            <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
+
             {/* Menu */}
             <motion.div
               variants={slideDown}
@@ -74,9 +68,7 @@ export function SessionSwitcher({ onManageClick }: SessionSwitcherProps) {
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-white truncate">
-                          {session.name}
-                        </p>
+                        <p className="text-sm font-medium text-white truncate">{session.name}</p>
                         <p className="text-xs text-gray-400 mt-0.5">
                           {session.solves.length} {getSolveCountText(session.solves.length)}
                         </p>
@@ -98,9 +90,7 @@ export function SessionSwitcher({ onManageClick }: SessionSwitcherProps) {
                 className="w-full px-4 py-3 flex items-center gap-2 bg-gray-700/50 hover:bg-gray-700 transition-colors border-t border-gray-600"
               >
                 <Settings size={16} className="text-primary" />
-                <span className="text-sm font-medium text-white">
-                  {t.sessions.manage}
-                </span>
+                <span className="text-sm font-medium text-white">{t.sessions.manage}</span>
               </button>
             </motion.div>
           </>
