@@ -3,6 +3,13 @@ export const enUS = {
     title: 'Klick',
     tagline: 'spin, click, evolve.',
   },
+  navigation: {
+    home: 'Home',
+    history: 'History',
+    stats: 'Statistics',
+    tutorial: 'Tutorial',
+    settings: 'Settings',
+  },
   language: {
     title: 'Language',
     'pt-BR': 'Português (BR)',

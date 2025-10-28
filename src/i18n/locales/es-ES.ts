@@ -3,6 +3,13 @@ export const esES = {
     title: 'Klick',
     tagline: 'gira, haz clic, evoluciona.',
   },
+  navigation: {
+    home: 'Inicio',
+    history: 'Historial',
+    stats: 'Estadísticas',
+    tutorial: 'Tutorial',
+    settings: 'Configuración',
+  },
   language: {
     title: 'Idioma',
     'pt-BR': 'Português (BR)',

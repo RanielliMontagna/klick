@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { FolderOpen, Settings } from 'lucide-react';
 import { useSessionsStore } from '@/stores/sessionsStore';
 import { useI18nStore } from '@/stores/i18nStore';
@@ -16,6 +16,7 @@ export function SessionSwitcher({
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useI18nStore();
   const { sessions, activeSessionId, setActiveSession, getActiveSession } = useSessionsStore();
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
   const activeSession = getActiveSession();
 
@@ -32,6 +33,7 @@ export function SessionSwitcher({
     <div className="relative" data-onboarding={dataOnboarding}>
       {/* Trigger Button */}
       <HeaderDropdownButton
+        ref={triggerRef}
         isOpen={isOpen}
         onClick={() => setIsOpen(!isOpen)}
         icon={<FolderOpen size={16} className="sm:w-[18px] sm:h-[18px]" />}
@@ -40,7 +42,12 @@ export function SessionSwitcher({
       />
 
       {/* Dropdown Menu */}
-      <HeaderDropdownMenu isOpen={isOpen} onClose={() => setIsOpen(false)} align="right">
+      <HeaderDropdownMenu
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        align="right"
+        anchorRef={triggerRef}
+      >
         {/* Sessions List */}
         <div className="max-h-64 overflow-y-auto">
           {sessions.map((session) => (

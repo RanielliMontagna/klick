@@ -3,6 +3,13 @@ export const ptBR = {
     title: 'Klick',
     tagline: 'gire, clique, evolua.',
   },
+  navigation: {
+    home: 'Início',
+    history: 'Histórico',
+    stats: 'Estatísticas',
+    tutorial: 'Tutorial',
+    settings: 'Configurações',
+  },
   language: {
     title: 'Idioma',
     'pt-BR': 'Português (BR)',

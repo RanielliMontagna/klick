@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Languages, Check } from 'lucide-react';
 import { useI18nStore } from '@/stores/i18nStore';
 import { HeaderDropdownButton, HeaderDropdownMenu } from '@/components';
@@ -7,6 +7,7 @@ import type { Language } from '@/i18n/translations';
 export function LanguageSelector() {
   const [isOpen, setIsOpen] = useState(false);
   const { language, setLanguage, t } = useI18nStore();
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
   const languages: { code: Language; label: string; shortLabel: string }[] = [
     { code: 'pt-BR', label: t.language['pt-BR'], shortLabel: 'PT' },
@@ -37,6 +38,7 @@ export function LanguageSelector() {
   return (
     <div className="relative">
       <HeaderDropdownButton
+        ref={triggerRef}
         isOpen={isOpen}
         onClick={() => setIsOpen(!isOpen)}
         icon={<Languages size={16} className="sm:w-[18px] sm:h-[18px]" />}
@@ -48,8 +50,9 @@ export function LanguageSelector() {
       <HeaderDropdownMenu
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        width="w-52 sm:w-56"
+        width="sm:w-56 sm:max-w-xs"
         align="left"
+        anchorRef={triggerRef}
       >
         <div className="p-2">
           <div className="mb-2 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-gray-400">

@@ -687,6 +687,65 @@ Implementação atual:
       - Build: ~765 KB (gzip: ~230 KB)
       - Lazy rendering (modal apenas quando isOpen)
       - AnimatePresence com mode="wait" para transições suaves
+    - **Validação de visualizações:**
+      - **whiteCross:** Corrigida para mostrar 4 centros laterais (R, F, L, B)
+      - **yellowCross:** Corrigida progressão Ponto → Linha → L → Cruz (padrões válidos do cubo)
+      - Todas as faces e algoritmos validados conforme regras do método de camadas
+
+22. **Routing & Estrutura de Páginas (Fase 10):** ✅
+    - **React Router DOM integrado:**
+      - Navegação client-side entre páginas
+      - URLs descritivas e limpas
+      - BrowserRouter com routes aninhadas
+    - **Estrutura de Pastas:**
+      - **/src/pages/**: Páginas principais
+        - `HomePage.tsx` - Timer, scramble, stats resumidas
+        - `HistoryPage.tsx` - Tabela completa de solves
+        - `StatsPage.tsx` - Dashboard de estatísticas avançadas
+        - `TutorialPage.tsx` - Tutorial completo layer-by-layer
+        - `SettingsPage.tsx` - Configurações do app
+      - **/src/layouts/**: Layouts compartilhados
+        - `MainLayout.tsx` - Header + navegação + Outlet para pages
+      - **/src/components/navigation/**: Componentes de navegação
+        - `Navbar.tsx` - Navegação desktop (links horizontais)
+        - `MobileNav.tsx` - Menu hamburger para mobile (drawer lateral)
+    - **Sistema de Navegação:**
+      - **Navbar (Desktop):**
+        - Links: Início, Histórico, Estatísticas, Tutorial, Configurações
+        - Estilo NavLink com estado ativo (bg-primary quando ativo)
+        - Ícones Lucide (Home, History, TrendingUp, BookOpen, Settings)
+        - Oculto em mobile (hidden md:flex)
+      - **MobileNav (Mobile):**
+        - Botão hamburger (Menu/X icon)
+        - Drawer lateral com animação (Framer Motion)
+        - Backdrop com overlay escuro
+        - Auto-close ao clicar em link
+        - Visible apenas em mobile (md:hidden)
+    - **MainLayout:**
+      - Header sticky com navegação
+      - Logo + título do app
+      - LanguageSelector integrado
+      - Container responsivo para conteúdo (Outlet)
+      - Componentes globais (Onboarding, PWAUpdatePrompt)
+    - **Páginas Implementadas:**
+      - **HomePage:** Timer funcional, scramble, stats cards, atalhos
+      - **HistoryPage:** SolveTable com filtros e ações
+      - **StatsPage:** AdvancedStatsModal com gráficos
+      - **TutorialPage:** Sistema de tutorial completo
+      - **SettingsPage:** Configurações do aplicativo
+    - **Traduções:**
+      - Seção `navigation` em 3 idiomas (pt-BR, en-US, es-ES)
+      - Labels: home, history, stats, tutorial, settings
+    - **Performance:**
+      - Build: ~816 KB (gzip: ~245 KB)
+      - React Router adiciona ~21 KB ao bundle
+      - Code splitting preparado para futuras otimizações
+    - **Benefícios:**
+      - ✅ **Organização:** Cada feature em página dedicada
+      - ✅ **UX:** Navegação clara e URLs descritivas
+      - ✅ **Manutenibilidade:** Código modular e desacoplado
+      - ✅ **Escalabilidade:** Fácil adicionar novas páginas
+      - ✅ **Mobile-first:** Menu hamburger responsivo
 
 ### Próximas fases
 

@@ -1,0 +1,48 @@
+import { Outlet } from 'react-router-dom';
+import { Navbar, MobileNav } from '../components/navigation';
+import { Logo } from '../components/logo/Logo';
+import { LanguageSelector } from '../components/languageSelector/LanguageSelector';
+import { Onboarding } from '../components/onboarding/Onboarding';
+import { PWAUpdatePrompt } from '../components/pwaUpdatePrompt/PWAUpdatePrompt';
+import { useTranslation } from '../hooks/useTranslation';
+
+export function MainLayout() {
+  const { t } = useTranslation();
+
+  return (
+    <div className="min-h-screen bg-background text-text-primary">
+      {/* Header */}
+      <header className="sticky top-0 z-30 bg-background/95 backdrop-blur-sm border-b border-border">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo + Title */}
+            <div className="flex items-center gap-3">
+              <Logo size="sm" />
+              <div className="sm:block">
+                <p className="text-xs text-text-secondary">{t.app.tagline}</p>
+              </div>
+            </div>
+
+            {/* Desktop Navigation */}
+            <Navbar />
+
+            {/* Right actions */}
+            <div className="flex items-center gap-2">
+              <LanguageSelector />
+              <MobileNav />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Main content */}
+      <main className="container mx-auto px-4 py-6">
+        <Outlet />
+      </main>
+
+      {/* Global components */}
+      <Onboarding />
+      <PWAUpdatePrompt />
+    </div>
+  );
+}
