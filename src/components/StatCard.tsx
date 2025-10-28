@@ -1,16 +1,15 @@
 import type { LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { formatTime } from '../utils/formatTime';
 import { scale } from '../utils/animations';
 
 interface StatCardProps {
-  title: string;
-  value: number;
-  icon: LucideIcon;
+  label: string;
+  value: string;
+  icon?: LucideIcon;
   variant?: 'primary' | 'secondary' | 'accent';
 }
 
-export function StatCard({ title, value, icon: Icon, variant = 'secondary' }: StatCardProps) {
+export function StatCard({ label, value, icon: Icon, variant = 'secondary' }: StatCardProps) {
   const getVariantStyles = () => {
     switch (variant) {
       case 'primary':
@@ -32,11 +31,11 @@ export function StatCard({ title, value, icon: Icon, variant = 'secondary' }: St
       className={`rounded-lg sm:rounded-xl p-3 sm:p-4 border ${getVariantStyles()} transition-all`}
     >
       <div className="flex items-center gap-2 mb-2">
-        <Icon size={16} className="text-gray-400 sm:w-5 sm:h-5" />
-        <h3 className="text-xs sm:text-sm font-medium text-gray-400">{title}</h3>
+        {Icon && <Icon size={16} className="text-gray-400 sm:w-5 sm:h-5" />}
+        <h3 className="text-xs sm:text-sm font-medium text-gray-400">{label}</h3>
       </div>
       <p className="text-xl sm:text-2xl font-bold text-white tabular-nums">
-        {formatTime(value)}
+        {value}
       </p>
     </motion.div>
   );

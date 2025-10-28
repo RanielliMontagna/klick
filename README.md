@@ -157,17 +157,18 @@ src/
 - [x] **Design mobile-first responsivo**
 - [x] **Variantes de animação reutilizáveis**
 - [x] **PWA** - Service Worker e manifest configurados
+- [x] **Cálculo de estatísticas** (Single, ao5, ao12, best ao5, best ao12)
+- [x] **Cards de estatísticas animados** com regras de DNF/+2
+- [x] **20 testes abrangentes** para cálculo de médias
 
 ### Próximos passos
 
-- [ ] Cálculo de médias (ao5, ao12, best ao5, best ao12)
 - [ ] Tabela de histórico de solves
 - [ ] Sistema de sessões (criar, renomear, deletar, trocar)
 - [ ] Página de configurações
 - [ ] Exportar/Importar dados (JSON)
 - [ ] Onboarding para iniciantes
-- [ ] Testes de médias e penalidades
-- [x] **PWA** - Instalável e offline-ready
+- [ ] Filtros de histórico (últimos 5/12/50 solves)
 
 ## 🧪 Testes
 

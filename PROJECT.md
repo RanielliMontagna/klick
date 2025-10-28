@@ -21,6 +21,17 @@ Você é um **engenheiro front-end sênior**. Gere uma aplicação web tipo **cs
 
 ---
 
+## ⚠️ REGRA IMPORTANTE DE DOCUMENTAÇÃO
+
+**NUNCA crie arquivos `.md` adicionais para documentar fases, mudanças ou progresso.**
+
+- ✅ **Use apenas**: `PROJECT.md` e `README.md`
+- ❌ **NÃO crie**: `FASE1.md`, `FASE2.md`, `CHANGELOG.md`, `UPDATES.md`, etc.
+- Toda documentação de progresso deve estar na seção **"Status do Projeto"** deste arquivo
+- Atualizações devem ser refletidas no **README.md** conforme necessário
+
+---
+
 # 1) Escopo do Produto
 
 Implemente um timer de cubo mágico para iniciantes que atenda:
@@ -212,7 +223,7 @@ Requisitos mínimos:
 - [x] Timer funcional com Space (idle/inspection/running/stop).
 - [x] Scramble 3×3 válido a cada solve.
 - [x] **+2** e **DNF** por botão/atalho e regra de inspeção (opcional).
-- [ ] Cálculo correto de **ao5/ao12** (com regras de DNF).
+- [x] Cálculo correto de **ao5/ao12** (com regras de DNF).
 - [ ] Sessões separadas e persistentes.
 - [ ] Exportar/Importar JSON.
 - [x] UI clara, responsiva e acessível (dark-first).
@@ -221,7 +232,7 @@ Requisitos mínimos:
 
 ---
 
-## Status do Projeto - Fase 1 Concluída ✅
+## Status do Projeto - Fase 2 Concluída ✅
 
 ### Implementado
 
@@ -296,15 +307,27 @@ Requisitos mínimos:
    - D: toggle DNF
 
 10. **PWA (Progressive Web App):**
+
     - Instalável em dispositivos móveis
     - Funciona offline com Service Worker
     - Cache de assets para performance
     - Notificação de atualizações disponíveis
     - Ícones e manifest configurados
 
+11. **Sistema de Estatísticas (Fase 2):**
+    - Cálculo de **Single** (melhor tempo)
+    - Cálculo de **ao5** (average of 5)
+    - Cálculo de **ao12** (average of 12)
+    - Cálculo de **Best ao5** (melhor ao5 entre todas janelas)
+    - Cálculo de **Best ao12** (melhor ao12 entre todas janelas)
+    - Regras de DNF: 2+ DNFs na janela → média DNF
+    - Descarte de melhor e pior tempo na janela
+    - Penalidades +2 consideradas no cálculo
+    - 20 testes abrangentes cobrindo todos os cenários
+    - Interface com 5 cards de estatísticas animados
+
 ### Próximas fases
 
-- **Fase 2:** Estatísticas (ao5, ao12, best ao5, best ao12)
 - **Fase 3:** Tabela de histórico e filtros
 - **Fase 4:** Sistema de sessões completo
 - **Fase 5:** Configurações e exportar/importar

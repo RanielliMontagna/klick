@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { TimerDisplay } from './components/TimerDisplay';
 import { ScrambleBox } from './components/ScrambleBox';
 import { InspectionDisplay } from './components/InspectionDisplay';
+import { StatCard } from './components/StatCard';
 import { PWAUpdatePrompt } from './components/PWAUpdatePrompt';
 import { Logo } from './components/Logo';
 import { useTimer } from './features/timer/useTimer';
@@ -11,7 +12,8 @@ import { generate3x3Scramble } from './features/scramble/generate3x3';
 import { useSessionsStore } from './stores/sessionsStore';
 import { useSettingsStore } from './stores/settingsStore';
 import { useI18nStore } from './stores/i18nStore';
-import { slideUp } from './utils/animations';
+import { slideUp, fadeIn } from './utils/animations';
+import { formatAverage } from './utils/formatStats';
 import type { Penalty } from './types';
 
 function App() {
@@ -20,7 +22,16 @@ function App() {
   
   const { t } = useI18nStore();
   const { settings } = useSettingsStore();
-  const { addSolve, updateSolvePenalty, getActiveSession } = useSessionsStore();
+  const { 
+    addSolve, 
+    updateSolvePenalty, 
+    getActiveSession,
+    getSingle,
+    getAo5,
+    getAo12,
+    getBestAo5,
+    getBestAo12,
+  } = useSessionsStore();
   
   const {
     state,
@@ -143,6 +154,40 @@ function App() {
             />
           </div>
         </div>
+
+        {/* Statistics Cards */}
+        <motion.div 
+          className="mb-8 sm:mb-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4"
+          variants={fadeIn}
+          initial="hidden"
+          animate="visible"
+        >
+          <StatCard
+            label={t.stats.single}
+            value={formatAverage(getSingle())}
+            variant="primary"
+          />
+          <StatCard
+            label={t.stats.ao5}
+            value={formatAverage(getAo5())}
+            variant="secondary"
+          />
+          <StatCard
+            label={t.stats.ao12}
+            value={formatAverage(getAo12())}
+            variant="secondary"
+          />
+          <StatCard
+            label={t.stats.bestAo5}
+            value={formatAverage(getBestAo5())}
+            variant="accent"
+          />
+          <StatCard
+            label={t.stats.bestAo12}
+            value={formatAverage(getBestAo12())}
+            variant="accent"
+          />
+        </motion.div>
 
         {/* Instruções */}
         <motion.div 
