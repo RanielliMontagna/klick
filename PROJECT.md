@@ -157,7 +157,7 @@ Implementação atual:
 - O modificador (`'', 2, '`) é escolhido de forma uniforme e concatenado antes de inserir no array final.
 - Ao final, os 25 movimentos são unidos por espaço, mantendo compatibilidade com leitores de scramble da WCA.
 - Regras adicionais (ex.: bloqueio de padrões inversos) podem ser adicionadas sem alterar a API exposta ao restante da aplicação.
-- **Explicação para iniciantes:** disponibilizar tooltip ou bloco de texto curto próximo ao scramble descrevendo como interpretar `R/L/U/D/F/B` (faces direita, esquerda, superior, etc.), o que significam `'` (anti-horário) e `2` (duplo), além de instrução clara para executar o embaralhamento antes de iniciar o solve.
+- **Explicação para iniciantes (implementado):** tooltip no `ScrambleBox` descrevendo faces (`R/L/U/D/F/B`), modificadores (`'`, `2`) e orientações para executar o embaralhamento antes do solve.
 
 ---
 
@@ -271,6 +271,7 @@ Implementação atual:
    - Sem repetição de faces consecutivas
    - Testes completos passando
    - Animação ao gerar novo scramble
+   - Tooltip educativo explicando notação e execução do embaralhamento para iniciantes
 
 4. **Componentes UI (Mobile-First):**
 
@@ -485,7 +486,6 @@ Implementação atual:
 ### Próximas fases
 
 - **Lançar tema claro:** definir tokens de cor equivalentes ao dark, adaptar os componentes Tailwind e garantir persistência da escolha de tema.
-- **Guia de embaralhamento para iniciantes:** adicionar explicação visual curta sobre faces (`R/L/U/D/F/B`) e modificadores (`'`, `2`), destacando em destaque ou tooltip ao lado do scramble.
 - **Onboarding interativo:** implementar tooltips contextuais para explicar Space, Scramble e Estatísticas, com opção de revisitar no menu de ajuda.
 - **Estatísticas avançadas:** adicionar gráficos simples de evolução (média móvel, distribuição por sessão) e métricas de consistência (desvio padrão, TPS médio).
 - **Sincronização opcional:** investigar integração com armazenamento na nuvem (ex.: Supabase) mantendo local-first, incluindo merge de sessões e autenticação leve.
