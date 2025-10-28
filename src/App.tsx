@@ -1,6 +1,14 @@
 import { motion } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
-import { Keyboard, Trash2, HelpCircle, Settings, TrendingUp, Compass } from 'lucide-react';
+import {
+  Keyboard,
+  Trash2,
+  HelpCircle,
+  Settings,
+  TrendingUp,
+  Compass,
+  BookOpen,
+} from 'lucide-react';
 import {
   TimerDisplay,
   ScrambleBox,
@@ -19,6 +27,7 @@ import {
   SettingsModal,
 } from '@/components';
 import { AdvancedStatsModal } from '@/components/advancedStatsModal';
+import { TutorialModal } from '@/components/tutorialModal';
 import { Onboarding } from '@/components/onboarding';
 import { useTimer } from '@/features/timer/useTimer';
 import { generate3x3Scramble } from '@/features/scramble/generate3x3';
@@ -26,6 +35,7 @@ import { useSessionsStore } from '@/stores/sessionsStore';
 import { useSettingsStore } from '@/stores/settingsStore';
 import { useI18nStore } from '@/stores/i18nStore';
 import { useOnboardingStore } from '@/stores/onboardingStore';
+import { useTutorialStore } from '@/stores/tutorialStore';
 import { useTheme } from '@/hooks/useTheme';
 import { slideUp, fadeIn } from '@/utils/animations';
 import { formatAverage } from '@/utils/formatStats';
@@ -48,6 +58,7 @@ function App() {
   const { t } = useI18nStore();
   const { settings } = useSettingsStore();
   const { hasCompletedOnboarding, startOnboarding } = useOnboardingStore();
+  const { openTutorial } = useTutorialStore();
   const {
     addSolve,
     updateSolvePenalty,
@@ -227,6 +238,18 @@ function App() {
     </button>
   );
 
+  const tutorialButton = (
+    <button
+      type="button"
+      onClick={() => openTutorial()}
+      className="flex items-center gap-2 px-3 py-2 sm:px-3.5 sm:py-2.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg sm:rounded-xl text-xs sm:text-sm font-medium text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+      aria-label={t.tutorial.open}
+    >
+      <BookOpen className="h-4 w-4 sm:h-5 sm:w-5" />
+      <span className="hidden md:inline whitespace-nowrap">{t.tutorial.open}</span>
+    </button>
+  );
+
   const advancedStatsButton = (
     <button
       type="button"
@@ -268,6 +291,7 @@ function App() {
                   data-onboarding="sessions"
                 />
                 {tourButton}
+                {tutorialButton}
                 {advancedStatsButton}
                 {settingsButton}
               </div>
@@ -419,6 +443,9 @@ function App() {
       <SettingsModal isOpen={showSettings} onClose={() => setShowSettings(false)} />
 
       <AdvancedStatsModal isOpen={showAdvancedStats} onClose={() => setShowAdvancedStats(false)} />
+
+      {/* Tutorial Modal */}
+      <TutorialModal />
 
       {/* Onboarding */}
       <Onboarding />

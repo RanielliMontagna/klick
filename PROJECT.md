@@ -625,11 +625,73 @@ Implementação atual:
       - Lazy rendering (apenas quando isActive = true)
       - Event listeners limpos no unmount
 
+21. **Tutorial para Principiantes (Fase 9):** ✅
+    - **Sistema completo de tutorial layer-by-layer:**
+      - **Intro:** Boas-vindas ao método camada por camada
+      - **Passo 1 - Cruz Branca:** Resolver 4 aristas brancas
+      - **Passo 2 - Esquinas Brancas:** Completar primeira camada (algoritmo R U R')
+      - **Passo 3 - Segunda Camada:** 4 aristas da camada média (algoritmos esq/dir)
+      - **Passo 4 - Cruz Amarela:** Formar cruz na última camada (F R U R' U' F')
+      - **Passo 5 - Alinhar Aristas Amarelas:** Alinhar cruz com centros
+      - **Passo 6 - Posicionar Esquinas:** Colocar esquinas nas posições corretas
+      - **Passo 7 - Resolver Cubo:** Orientar últimas esquinas e finalizar! 🎉
+    - **Componentes criados:**
+      - **tutorialStore.ts:** Estado global com Zustand
+        - isOpen, currentStep (intro → solveCorners)
+        - Métodos: openTutorial, closeTutorial, nextStep, previousStep, goToStep
+        - 8 passos no total (intro + 7 etapas de resolução)
+      - **TutorialModal.tsx:** Modal com navegação entre passos
+        - Barra de progresso animada
+        - Renderização dinâmica de conteúdo por passo
+        - Botões Previous/Next com estados (primeiro/último)
+        - Close button e Finish ao completar
+        - Animações de transição entre passos (Framer Motion)
+      - **useTutorialModal.ts:** Hook com lógica do modal
+        - Cálculo de índice, progresso, estados de navegação
+        - Handlers para close, next, previous
+      - **TutorialStepContent:** Componente de renderização de passos
+        - Exibe intro com lista de tópicos
+        - Exibe passos com: título, descrição, objetivo, algoritmo, dicas
+        - Suporte para múltiplos algoritmos (esquerda/direita)
+        - Padrões (dot, line, L, cross)
+        - Cards coloridos para alertas (importante, parabéns)
+    - **Integração no App.tsx:**
+      - **Botão "Tutorial"** no header (ícone BookOpen)
+        - Trigger: abre modal com openTutorial()
+        - Responsivo (ícone em mobile, ícone + texto em desktop)
+      - **TutorialModal** renderizado condicionalmente (isOpen)
+    - **Traduções completas em 3 idiomas:**
+      - Seção `tutorial` em pt-BR, en-US, es-ES (~130 linhas por idioma)
+      - Conteúdo educativo detalhado:
+        - Intro: topics array, timeEstimate, difficulty
+        - Cada passo: title, description, goal, algorithm(s), steps, tips
+        - Notação: R, R', U, U', F, F', L, L', D, D', 2
+      - Algoritmos traduzidos e formatados
+      - Dicas e avisos específicos por passo
+    - **Conteúdo educacional:**
+      - **Cruz Branca:** Intuitivo, sem algoritmos
+      - **Esquinas Brancas:** R U R' (repetir 1-5×)
+      - **Segunda Camada:** U' L' U L U F U' F' (esquerda) | U R U' R' U' F' U F (direita)
+      - **Cruz Amarilla:** F R U R' U' F' (padrões: ponto, linha, L, cruz)
+      - **Alinhar Aristas:** R U R' U R U2 R'
+      - **Posicionar Esquinas:** U R U' L' U R' U' L
+      - **Resolver Cubo:** R' D' R D (2-4× por esquina, girar apenas U entre esquinas)
+    - **UX e design:**
+      - Modal responsivo (max-w-2xl, max-h-90vh)
+      - Scroll interno para conteúdo longo
+      - Cards visuais com cores (objetivo=azul, dica=verde, importante=vermelho)
+      - Algoritmos em `<code>` com font-mono
+      - Barra de progresso animada no topo
+      - Footer com navegação clara (Ant./Próx. em mobile)
+    - **Performance:**
+      - Build: ~765 KB (gzip: ~230 KB)
+      - Lazy rendering (modal apenas quando isOpen)
+      - AnimatePresence com mode="wait" para transições suaves
+
 ### Próximas fases
 
 - **Sincronização opcional:** investigar integração com armazenamento na nuvem (ex.: Supabase) mantendo local-first, incluindo merge de sessões e autenticação leve.
 - **Modo de treino por casos:** habilitar coleções focadas (PLL, OLL, F2L) com contadores de repetição, checkpoints e notas rápidas, ajudando o iniciante a praticar algoritmos específicos.
-- **Tutorial principiante:** oferecer um passo a passo visual/textual de resolução no método para iniciantes (cruz branca → camadas → OLL/PLL simplificados) acessível pelo onboarding ou modal dedicado.
 
 ---
 
