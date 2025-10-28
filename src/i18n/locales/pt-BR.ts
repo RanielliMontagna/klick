@@ -93,6 +93,7 @@ export const ptBR = {
     clearSuccess: 'Estatísticas limpas com sucesso!',
     help: 'Ajuda',
     learnMore: 'Saiba mais',
+    advanced: 'Estatísticas Avançadas',
     info: {
       title: 'Entendendo as Estatísticas',
       single: {
@@ -243,5 +244,66 @@ export const ptBR = {
       importSuccess: 'Dados importados com sucesso!',
       importError: 'Erro ao importar dados. Verifique o formato do arquivo.',
     },
+  },
+  advancedStats: {
+    title: 'Estatísticas Avançadas',
+    tabs: {
+      evolution: 'Evolução',
+      consistency: 'Consistência',
+      performance: 'Performance',
+    },
+    evolution: {
+      title: 'Evolução Temporal',
+      description: 'Acompanhe a progressão dos seus tempos ao longo das sessões',
+      chartTitle: 'Histórico de Tempos',
+      single: 'Single',
+      ao5: 'ao5',
+      ao12: 'ao12',
+      solveNumber: 'Solve #',
+      time: 'Tempo (ms)',
+      noData: 'Sem dados suficientes para gráficos',
+      tip: 'Execute ao menos 12 solves para visualizar a evolução completa',
+    },
+    consistency: {
+      title: 'Análise de Consistência',
+      description: 'Métricas que mostram o quão consistente você é',
+      standardDeviation: {
+        title: 'Desvio Padrão',
+        description: 'Mede a variação dos seus tempos. Quanto menor, mais consistente você é.',
+        value: 'ms',
+      },
+      coefficientOfVariation: {
+        title: 'Coeficiente de Variação',
+        description: 'Variação relativa (%). Valores abaixo de 10% indicam alta consistência.',
+        value: '%',
+        excellent: 'Excelente (< 10%)',
+        good: 'Bom (10-15%)',
+        average: 'Médio (15-20%)',
+        needsWork: 'Precisa melhorar (> 20%)',
+      },
+      interpretation: {
+        title: 'Interpretação',
+        description:
+          'Uma consistência alta (CV baixo) é fundamental para competições e evolução contínua.',
+      },
+    },
+    performance: {
+      title: 'Análise de Performance',
+      description: 'Métricas de velocidade e distribuição de tempos',
+      averageTPS: {
+        title: 'TPS Médio',
+        description: 'Turns Per Second - Velocidade média de execução de movimentos',
+        value: 'movimentos/s',
+        note: 'Baseado em 25 movimentos por scramble',
+      },
+      distribution: {
+        title: 'Distribuição de Tempos',
+        description: 'Como seus solves estão distribuídos por faixas de tempo',
+        chartTitle: 'Histograma de Tempos',
+        xAxis: 'Faixa de Tempo',
+        yAxis: 'Quantidade de Solves',
+      },
+    },
+    close: 'Fechar',
   },
 } as const;

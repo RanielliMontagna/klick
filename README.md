@@ -8,7 +8,8 @@
 - 🔄 **Scrambles 3×3 válidos** gerados automaticamente (25 movimentos)
 - ⌨️ **Controle por teclado** com atalhos intuitivos
 - 📊 **Estatísticas completas** (Single, ao5, ao12, best ao5, best ao12)
-- 💾 **Persistência automática** em localStorage
+- � **Estatísticas avançadas** - Gráficos de evolução, consistência e performance
+- �💾 **Persistência automática** em localStorage
 - 📁 **Sistema de sessões** - Organize seus solves em múltiplas sessões
 - 🎨 **Tema claro e escuro** - Alterne entre temas com um clique
 - 🌐 **Suporte a 3 idiomas** - pt-BR, en-US, es-ES
@@ -18,7 +19,7 @@
 - 🎯 **Ícones modernos** com Lucide React
 - ✨ **Animações fluidas** com Framer Motion
 - 📱 **PWA** - Instalável e funciona offline
-- � **Interface moderna** com alto contraste e acessibilidade
+- ♿ **Interface moderna** com alto contraste e acessibilidade
 
 ## 🚀 Como executar
 
@@ -108,6 +109,26 @@ Novo no speedcubing? Clique no ícone **?** ao lado do scramble para aprender:
 - Exemplos práticos de movimentos
 - Dicas importantes para iniciantes
 
+### Estatísticas Avançadas
+
+Clique no botão **Estatísticas Avançadas** (📈) no header para acessar:
+
+**Tab Evolução:**
+- Gráfico de linha mostrando progressão de Single, ao5 e ao12 ao longo do tempo
+- Visualize sua melhora em cada sessão
+
+**Tab Consistência:**
+- **Desvio Padrão**: Mede a variação dos seus tempos (quanto menor, mais consistente)
+- **Coeficiente de Variação (CV)**: Métrica relativa de consistência
+  - Excelente: < 10%
+  - Bom: 10-15%
+  - Médio: 15-20%
+  - Precisa melhorar: > 20%
+
+**Tab Performance:**
+- **TPS Médio**: Turns Per Second - velocidade média de execução de movimentos
+- **Distribuição de Tempos**: Histograma mostrando como seus solves estão distribuídos por faixas de tempo
+
 ### Fluxo de uso
 
 1. Ao abrir a aplicação, um scramble 3×3 é gerado automaticamente
@@ -132,6 +153,7 @@ Novo no speedcubing? Clique no ícone **?** ao lado do scramble para aprender:
 - **Zustand** (gerenciamento de estado com persistência)
 - **Lucide React** (biblioteca de ícones moderna)
 - **Framer Motion** (animações fluidas e performáticas)
+- **Recharts** (gráficos responsivos e customizáveis)
 - **Web Audio API** (sistema de sons sintetizados)
 - **Biome** (linter e formatter rápido)
 - **Vitest** + **React Testing Library** (testes unitários)
@@ -163,8 +185,14 @@ src/
 │   │   ├── ScrambleGuideModal.tsx
 │   │   ├── useScrambleGuideModal.ts
 │   │   └── index.ts
-│   └── statsInfoModal/
-│       ├── StatsInfoModal.tsx
+│   ├── statsInfoModal/
+│   │   ├── StatsInfoModal.tsx
+│   │   └── index.ts
+│   └── advancedStatsModal/
+│       ├── AdvancedStatsModal.tsx
+│       ├── useAdvancedStatsModal.ts
+│       ├── EvolutionChart.tsx
+│       ├── DistributionChart.tsx
 │       └── index.ts
 ├── features/           # Business logic
 │   ├── timer/
@@ -174,7 +202,8 @@ src/
 │   │   └── generate3x3.test.ts
 │   └── stats/
 │       ├── averages.ts
-│       └── averages.test.ts
+│       ├── averages.test.ts
+│       └── advanced.ts
 ├── stores/             # Zustand stores
 │   ├── sessionsStore.ts
 │   ├── settingsStore.ts
@@ -231,6 +260,12 @@ src/
 - [x] 20+ testes abrangentes para cálculo de médias
 - [x] Modal educativo explicando estatísticas para iniciantes
 - [x] Botão para limpar estatísticas com confirmação
+- [x] **Estatísticas avançadas** com modal completo:
+  - [x] Gráfico de evolução (Single, ao5, ao12 ao longo do tempo)
+  - [x] Métricas de consistência (desvio padrão, coeficiente de variação)
+  - [x] Análise de performance (TPS médio, distribuição de tempos)
+  - [x] Recharts integrado com tema dark/light
+  - [x] 3 tabs (Evolução, Consistência, Performance)
 
 #### Histórico & Sessões
 - [x] Tabela de histórico de solves com filtros (últimos 5/12/50/100 ou todos)
@@ -284,8 +319,6 @@ src/
 ### 🚧 Próximos passos
 
 - [ ] Onboarding interativo para novos usuários
-- [ ] Gráficos de evolução de desempenho
-- [ ] Estatísticas avançadas (desvio padrão, TPS médio)
 - [ ] Modo de treino por casos (PLL, OLL, F2L)
 - [ ] Sincronização opcional na nuvem
 - [ ] Tutorial de resolução para iniciantes
@@ -357,7 +390,64 @@ Ative/desative sons no menu **Configurações**.
 
 Clique no ícone **?** ao lado de "Estatísticas" para ver o guia completo!
 
-## 📝 Licença
+## � Estatísticas Avançadas
+
+Acesse gráficos detalhados e métricas de performance clicando no botão **Estatísticas Avançadas** (📈) no header.
+
+### Tab Evolução
+
+Visualize sua progressão ao longo do tempo com gráficos de linha interativos:
+
+- **Single**: Seus tempos individuais solve a solve
+- **ao5**: Evolução das médias de 5
+- **ao12**: Evolução das médias de 12
+- **Eixo X**: Número do solve
+- **Eixo Y**: Tempo em segundos
+
+Identifique tendências, picos de performance e períodos de melhora!
+
+### Tab Consistência
+
+Métricas que mostram o quão consistente você é:
+
+#### Desvio Padrão
+- Mede a variação dos seus tempos
+- **Quanto menor, mais consistente** você é
+- Útil para identificar oscilações de performance
+
+#### Coeficiente de Variação (CV)
+- Variação relativa em porcentagem
+- Normalizado pela média (permite comparar consistência entre speedcubers de níveis diferentes)
+- **Classificação:**
+  - 🟢 **Excelente**: < 10% (muito consistente)
+  - 🔵 **Bom**: 10-15% (consistência boa)
+  - 🟡 **Médio**: 15-20% (pode melhorar)
+  - 🔴 **Precisa melhorar**: > 20% (inconsistente)
+
+### Tab Performance
+
+Análise de velocidade e distribuição:
+
+#### TPS Médio (Turns Per Second)
+- Velocidade média de execução de movimentos
+- Baseado em **25 movimentos** por scramble (padrão 3×3)
+- Quanto maior, mais rápida sua execução
+- **Exemplo**: 5 TPS = 5 movimentos por segundo
+
+#### Distribuição de Tempos
+- **Histograma** mostrando como seus solves se distribuem por faixas de tempo
+- 10 faixas entre seu tempo mínimo e máximo
+- Identifique onde você resolve mais frequentemente
+- Útil para estabelecer metas realistas
+
+### Quando usar?
+
+- **Após 12+ solves** para visualização completa
+- **Competições**: Avalie sua consistência antes de competir
+- **Evolução**: Acompanhe seu progresso semanal/mensal
+- **Identificar fraquezas**: CV alto? Foque em consistência. TPS baixo? Pratique execução.
+
+## �📝 Licença
 
 MIT
 

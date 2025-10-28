@@ -92,6 +92,7 @@ export const enUS = {
     clearSuccess: 'Statistics cleared successfully!',
     help: 'Help',
     learnMore: 'Learn more',
+    advanced: 'Advanced Statistics',
     info: {
       title: 'Understanding Statistics',
       single: {
@@ -241,5 +242,66 @@ export const enUS = {
       importSuccess: 'Data imported successfully!',
       importError: 'Error importing data. Please check the file format.',
     },
+  },
+  advancedStats: {
+    title: 'Advanced Statistics',
+    tabs: {
+      evolution: 'Evolution',
+      consistency: 'Consistency',
+      performance: 'Performance',
+    },
+    evolution: {
+      title: 'Time Evolution',
+      description: 'Track your times progression across sessions',
+      chartTitle: 'Time History',
+      single: 'Single',
+      ao5: 'ao5',
+      ao12: 'ao12',
+      solveNumber: 'Solve #',
+      time: 'Time (ms)',
+      noData: 'Not enough data for charts',
+      tip: 'Complete at least 12 solves to visualize full evolution',
+    },
+    consistency: {
+      title: 'Consistency Analysis',
+      description: 'Metrics showing how consistent you are',
+      standardDeviation: {
+        title: 'Standard Deviation',
+        description: 'Measures the variation of your times. Lower is more consistent.',
+        value: 'ms',
+      },
+      coefficientOfVariation: {
+        title: 'Coefficient of Variation',
+        description: 'Relative variation (%). Values below 10% indicate high consistency.',
+        value: '%',
+        excellent: 'Excellent (< 10%)',
+        good: 'Good (10-15%)',
+        average: 'Average (15-20%)',
+        needsWork: 'Needs work (> 20%)',
+      },
+      interpretation: {
+        title: 'Interpretation',
+        description:
+          'High consistency (low CV) is essential for competitions and continuous improvement.',
+      },
+    },
+    performance: {
+      title: 'Performance Analysis',
+      description: 'Speed and time distribution metrics',
+      averageTPS: {
+        title: 'Average TPS',
+        description: 'Turns Per Second - Average execution speed of moves',
+        value: 'turns/s',
+        note: 'Based on 25 turns per scramble',
+      },
+      distribution: {
+        title: 'Time Distribution',
+        description: 'How your solves are distributed across time ranges',
+        chartTitle: 'Time Histogram',
+        xAxis: 'Time Range',
+        yAxis: 'Number of Solves',
+      },
+    },
+    close: 'Close',
   },
 } as const;

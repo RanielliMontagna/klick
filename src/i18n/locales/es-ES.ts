@@ -93,6 +93,7 @@ export const esES = {
     clearSuccess: '¡Estadísticas limpiadas con éxito!',
     help: 'Ayuda',
     learnMore: 'Aprende más',
+    advanced: 'Estadísticas Avanzadas',
     info: {
       title: 'Entendiendo las Estadísticas',
       single: {
@@ -242,5 +243,67 @@ export const esES = {
       importSuccess: '¡Datos importados con éxito!',
       importError: 'Error al importar datos. Por favor verifica el formato del archivo.',
     },
+  },
+  advancedStats: {
+    title: 'Estadísticas Avanzadas',
+    tabs: {
+      evolution: 'Evolución',
+      consistency: 'Consistencia',
+      performance: 'Rendimiento',
+    },
+    evolution: {
+      title: 'Evolución Temporal',
+      description: 'Sigue la progresión de tus tiempos a lo largo de las sesiones',
+      chartTitle: 'Historial de Tiempos',
+      single: 'Single',
+      ao5: 'ao5',
+      ao12: 'ao12',
+      solveNumber: 'Solve #',
+      time: 'Tiempo (ms)',
+      noData: 'No hay datos suficientes para gráficos',
+      tip: 'Completa al menos 12 solves para visualizar la evolución completa',
+    },
+    consistency: {
+      title: 'Análisis de Consistencia',
+      description: 'Métricas que muestran qué tan consistente eres',
+      standardDeviation: {
+        title: 'Desviación Estándar',
+        description: 'Mide la variación de tus tiempos. Cuanto menor, más consistente eres.',
+        value: 'ms',
+      },
+      coefficientOfVariation: {
+        title: 'Coeficiente de Variación',
+        description:
+          'Variación relativa (%). Valores por debajo del 10% indican alta consistencia.',
+        value: '%',
+        excellent: 'Excelente (< 10%)',
+        good: 'Bueno (10-15%)',
+        average: 'Promedio (15-20%)',
+        needsWork: 'Necesita mejorar (> 20%)',
+      },
+      interpretation: {
+        title: 'Interpretación',
+        description:
+          'Una alta consistencia (CV bajo) es fundamental para competiciones y evolución continua.',
+      },
+    },
+    performance: {
+      title: 'Análisis de Rendimiento',
+      description: 'Métricas de velocidad y distribución de tiempos',
+      averageTPS: {
+        title: 'TPS Promedio',
+        description: 'Turns Per Second - Velocidad promedio de ejecución de movimientos',
+        value: 'movimientos/s',
+        note: 'Basado en 25 movimientos por mezcla',
+      },
+      distribution: {
+        title: 'Distribución de Tiempos',
+        description: 'Cómo se distribuyen tus solves por rangos de tiempo',
+        chartTitle: 'Histograma de Tiempos',
+        xAxis: 'Rango de Tiempo',
+        yAxis: 'Cantidad de Solves',
+      },
+    },
+    close: 'Cerrar',
   },
 } as const;

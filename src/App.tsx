@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
-import { Keyboard, Trash2, HelpCircle, Settings } from 'lucide-react';
+import { Keyboard, Trash2, HelpCircle, Settings, TrendingUp } from 'lucide-react';
 import {
   TimerDisplay,
   ScrambleBox,
@@ -18,6 +18,7 @@ import {
   LanguageSelector,
   SettingsModal,
 } from '@/components';
+import { AdvancedStatsModal } from '@/components/advancedStatsModal';
 import { useTimer } from '@/features/timer/useTimer';
 import { generate3x3Scramble } from '@/features/scramble/generate3x3';
 import { useSessionsStore } from '@/stores/sessionsStore';
@@ -37,6 +38,7 @@ function App() {
   const [showStatsInfo, setShowStatsInfo] = useState(false);
   const [showSessionManager, setShowSessionManager] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [showAdvancedStats, setShowAdvancedStats] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [selectedSolve, setSelectedSolve] = useState<Solve | null>(null);
   const [selectedSolveNumber, setSelectedSolveNumber] = useState(0);
@@ -198,6 +200,18 @@ function App() {
     </button>
   );
 
+  const advancedStatsButton = (
+    <button
+      type="button"
+      onClick={() => setShowAdvancedStats(true)}
+      className="flex items-center gap-2 px-3 py-2 sm:px-3.5 sm:py-2.5 bg-primary/10 hover:bg-primary/20 border border-primary/50 rounded-lg sm:rounded-xl text-xs sm:text-sm font-medium text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+      aria-label={t.stats.advanced}
+    >
+      <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5" />
+      <span className="hidden md:inline whitespace-nowrap">{t.stats.advanced}</span>
+    </button>
+  );
+
   return (
     <div className="min-h-screen bg-background p-4 sm:p-6 md:p-8">
       <div className="max-w-7xl mx-auto">
@@ -223,6 +237,7 @@ function App() {
               <div className="flex w-full sm:w-auto items-center justify-start sm:justify-end gap-2 sm:gap-3 flex-wrap">
                 <LanguageSelector />
                 <SessionSwitcher onManageClick={() => setShowSessionManager(true)} />
+                {advancedStatsButton}
                 {settingsButton}
               </div>
             </div>
@@ -362,6 +377,8 @@ function App() {
       />
 
       <SettingsModal isOpen={showSettings} onClose={() => setShowSettings(false)} />
+
+      <AdvancedStatsModal isOpen={showAdvancedStats} onClose={() => setShowAdvancedStats(false)} />
 
       {/* Toast */}
       {showSuccessToast && (

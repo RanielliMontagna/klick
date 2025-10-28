@@ -533,6 +533,39 @@ Implementação atual:
       - Sem impacto na performance de renderização
       - Color-scheme CSS para otimização de browser
 
+19. **Estatísticas Avançadas (Fase 7):** ✅
+    - **Métricas avançadas** (`/src/features/stats/advanced.ts`):
+      - **Rolling Averages:** Cálculo de ao5 e ao12 para cada solve (janelas deslizantes)
+      - **Desvio Padrão:** Mede variação dos tempos (quanto menor, mais consistente)
+      - **Coeficiente de Variação (CV):** Métrica relativa de consistência (%)
+        - Excelente: < 10% | Bom: 10-15% | Médio: 15-20% | Precisa melhorar: > 20%
+      - **TPS Médio:** Turns Per Second - velocidade média de execução (baseado em 25 movimentos)
+      - **Distribuição de Tempos:** Histograma com 10 faixas de tempo
+    - **Modal AdvancedStatsModal** com 3 tabs:
+      - **Evolução:** Gráfico de linha (recharts) com Single, ao5, ao12 ao longo do tempo
+      - **Consistência:** Cards com desvio padrão, CV e interpretação visual
+      - **Performance:** TPS médio e histograma de distribuição de tempos
+    - **Componentes de gráficos:**
+      - `EvolutionChart`: LineChart responsivo com 3 linhas (Single, ao5, ao12)
+      - `DistributionChart`: BarChart responsivo mostrando distribuição por faixas
+      - Tema-aware (cores adaptadas para dark/light)
+      - Tooltips informativos e legendas traduzidas
+    - **Botão de acesso:**
+      - Ícone TrendingUp no header ao lado de Settings
+      - Cor primária para destacar (bg-primary/10, border-primary/50)
+      - Responsivo (ícone em mobile, ícone + texto em desktop)
+    - **Traduções completas:**
+      - 3 idiomas (pt-BR, en-US, es-ES)
+      - Seção `advancedStats` com tabs, métricas, descrições, interpretações
+      - Tooltips educativos sobre cada métrica
+    - **Performance:**
+      - Recharts integrado (~746 KB total, gzip: ~223 KB)
+      - Cálculos memoizados (useMemo) para evitar recalculações
+      - Lazy rendering de gráficos (apenas tab ativa)
+    - **Validações:**
+      - Estado vazio tratado (mensagem + dica: "Execute ao menos 12 solves")
+      - Gráficos só aparecem com dados suficientes (≥ 5 solves)
+
 ### Próximas fases
 
 - **Onboarding interativo:** implementar tooltips contextuais para explicar Space, Scramble e Estatísticas, com opção de revisitar no menu de ajuda.
