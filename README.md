@@ -2,16 +2,17 @@
 
 **Tagline:** gire, clique, evolua.
 
-Timer de cubo mágico com interface limpa e intuitiva, focado em ajudar iniciantes a entender suas métricas de desempenho.
-
 ## 🎯 Características
 
 - ⏱️ **Timer funcional** com suporte a inspeção de 15 segundos
 - 🔄 **Scrambles 3×3 válidos** gerados automaticamente (25 movimentos)
-- ⌨️ **Controle por teclado** (Space bar para iniciar/parar)
+- ⌨️ **Controle por teclado** com atalhos intuitivos
 - 📊 **Penalidades** (+2 e DNF) com suporte a atalhos
 - 💾 **Persistência automática** em localStorage
 - 🎨 **Interface dark-first** com alto contraste
+- 🌐 **Internacionalização** (i18n) com suporte a múltiplos idiomas
+- 🎯 **Ícones modernos** com Lucide React
+- ✨ **Feedback visual** aprimorado (toasts, animações)
 - 🇧🇷 **Interface em pt-BR**
 
 ## 🚀 Como executar
@@ -68,8 +69,10 @@ pnpm test
 - **Vite** (build tool)
 - **Tailwind CSS** (estilização)
 - **Zustand** (gerenciamento de estado)
+- **Lucide React** (biblioteca de ícones)
 - **Biome** (linter e formatter)
 - **Vitest** + **React Testing Library** (testes)
+- **Sistema de i18n** customizado
 
 ## 📁 Estrutura do Projeto
 
@@ -78,7 +81,9 @@ src/
 ├── components/         # Componentes React
 │   ├── TimerDisplay.tsx
 │   ├── ScrambleBox.tsx
-│   └── InspectionDisplay.tsx
+│   ├── InspectionDisplay.tsx
+│   ├── StatCard.tsx
+│   └── Toast.tsx
 ├── features/           # Lógica de negócio
 │   ├── timer/
 │   │   └── useTimer.ts
@@ -87,10 +92,17 @@ src/
 │       └── generate3x3.test.ts
 ├── stores/             # Stores Zustand
 │   ├── sessionsStore.ts
-│   └── settingsStore.ts
-├── types/              # Definições TypeScript
+│   ├── settingsStore.ts
+│   └── i18nStore.ts
+├── i18n/              # Internacionalização
+│   └── translations.ts
+├── hooks/             # Custom hooks
+│   └── useTranslation.ts
+├── utils/             # Funções utilitárias
+│   └── formatTime.ts
+├── types/             # Definições TypeScript
 │   └── index.ts
-└── test/               # Configuração de testes
+└── test/              # Configuração de testes
     └── setup.ts
 ```
 
@@ -101,11 +113,15 @@ src/
 - [x] Configuração base do projeto (Vite + React + TypeScript + Tailwind)
 - [x] Gerador de scrambles 3×3 válidos
 - [x] Hook useTimer com máquina de estados (idle → inspection → running → stopped)
-- [x] Componentes TimerDisplay, ScrambleBox e InspectionDisplay
+- [x] Componentes TimerDisplay, ScrambleBox, InspectionDisplay, StatCard e Toast
 - [x] Stores Zustand com persistência
 - [x] Atalhos de teclado (Space, N, P, D)
 - [x] Sistema de penalidades (+2, DNF)
 - [x] Testes do gerador de scramble
+- [x] Sistema de internacionalização (i18n)
+- [x] Biblioteca de ícones (Lucide React)
+- [x] Feedback visual aprimorado
+- [x] Utilitários de formatação de tempo
 
 ### Próximos passos
 

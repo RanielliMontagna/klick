@@ -1,26 +1,16 @@
+import { Timer, Play, Square } from 'lucide-react';
 import type { TimerState } from '../types';
+import { useI18nStore } from '../stores/i18nStore';
+import { formatTime } from '../utils/formatTime';
 
 interface TimerDisplayProps {
   timeMs: number;
   state: TimerState;
 }
 
-/**
- * Formata tempo em ms para mm:ss.SSS
- */
-function formatTime(ms: number): string {
-  const totalSeconds = Math.floor(ms / 1000);
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  const milliseconds = ms % 1000;
-
-  if (minutes > 0) {
-    return `${minutes}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(3, '0')}`;
-  }
-  return `${seconds}.${milliseconds.toString().padStart(3, '0')}`;
-}
-
 export function TimerDisplay({ timeMs, state }: TimerDisplayProps) {
+  const { t } = useI18nStore();
+
   const getStateColor = () => {
     switch (state) {
       case 'idle':
@@ -36,16 +26,31 @@ export function TimerDisplay({ timeMs, state }: TimerDisplayProps) {
     }
   };
 
+  const getStateIcon = () => {
+    switch (state) {
+      case 'idle':
+        return <Timer size={32} className="text-gray-400" />;
+      case 'inspection':
+        return <Timer size={32} className="text-yellow-400 animate-pulse" />;
+      case 'running':
+        return <Play size={32} className="text-accent" />;
+      case 'stopped':
+        return <Square size={32} className="text-white" />;
+      default:
+        return null;
+    }
+  };
+
   const getStateText = () => {
     switch (state) {
       case 'idle':
-        return 'Pressione ESPAÇO';
+        return t.timer.ready;
       case 'inspection':
-        return 'Inspecionando...';
+        return t.timer.inspection;
       case 'running':
-        return '';
+        return t.timer.running;
       case 'stopped':
-        return '';
+        return t.timer.stopped;
       default:
         return '';
     }
@@ -53,12 +58,13 @@ export function TimerDisplay({ timeMs, state }: TimerDisplayProps) {
 
   return (
     <div className="flex flex-col items-center justify-center space-y-4">
-      {state === 'idle' && (
-        <p className="text-xl text-gray-400">{getStateText()}</p>
-      )}
-      
-      {state === 'inspection' && (
-        <p className="text-2xl text-yellow-400 font-semibold">{getStateText()}</p>
+      {state !== 'running' && state !== 'stopped' && (
+        <div className="flex items-center gap-3">
+          {getStateIcon()}
+          <p className={`text-2xl font-semibold ${getStateColor()}`}>
+            {getStateText()}
+          </p>
+        </div>
       )}
 
       <div className={`text-8xl font-bold tabular-nums ${getStateColor()}`}>
@@ -67,7 +73,7 @@ export function TimerDisplay({ timeMs, state }: TimerDisplayProps) {
 
       {state === 'idle' && (
         <p className="text-sm text-gray-500">
-          Segure ESPAÇO para começar a inspeção
+          {t.timer.holdSpace}
         </p>
       )}
     </div>

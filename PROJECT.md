@@ -231,6 +231,8 @@ Requisitos mínimos:
    - Zustand com persistência em localStorage
    - Biome para linting
    - Vitest + React Testing Library
+   - Lucide React para ícones
+   - Sistema de i18n customizado
 
 2. **Timer funcional:**
 
@@ -238,6 +240,7 @@ Requisitos mínimos:
    - Controle via Space bar (segurar/soltar/pressionar)
    - Contador de inspeção de 15s com avisos visuais
    - Aplicação automática de penalidades por tempo de inspeção
+   - Ícones e animações para feedback visual
 
 3. **Gerador de scrambles:**
 
@@ -247,9 +250,11 @@ Requisitos mínimos:
 
 4. **Componentes UI:**
 
-   - TimerDisplay (mostra tempo e estado)
-   - ScrambleBox (exibe scramble com opção de copiar)
-   - InspectionDisplay (contador de inspeção com avisos)
+   - TimerDisplay (mostra tempo e estado com ícones)
+   - ScrambleBox (exibe scramble com feedback ao copiar)
+   - InspectionDisplay (contador com avisos visuais melhorados)
+   - StatCard (para exibir estatísticas)
+   - Toast (notificações e feedback)
 
 5. **Sistema de penalidades:**
 
@@ -257,7 +262,14 @@ Requisitos mínimos:
    - Salvamento automático de solves
    - Cálculo de effectiveMs considerando penalidades
 
-6. **Atalhos de teclado:**
+6. **Internacionalização:**
+
+   - Sistema i18n completo
+   - Traduções em pt-BR
+   - Hook useTranslation para fácil acesso
+   - Store dedicada para gerenciar idioma
+
+7. **Atalhos de teclado:**
    - Space: iniciar/parar timer
    - N: novo scramble
    - P: toggle +2
