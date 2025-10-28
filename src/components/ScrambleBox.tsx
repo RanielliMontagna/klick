@@ -51,7 +51,7 @@ export function ScrambleBox({ scramble, onNewScramble }: ScrambleBoxProps) {
           </div>
         </div>
         
-        <div className="font-mono text-2xl text-white break-words leading-relaxed">
+        <div className="font-mono text-2xl text-white wrap-break-word leading-relaxed">
           {scramble || t.scramble.generating}
         </div>
       </div>
