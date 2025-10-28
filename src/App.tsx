@@ -5,6 +5,7 @@ import { TimerDisplay } from './components/TimerDisplay';
 import { ScrambleBox } from './components/ScrambleBox';
 import { InspectionDisplay } from './components/InspectionDisplay';
 import { PWAUpdatePrompt } from './components/PWAUpdatePrompt';
+import { Logo } from './components/Logo';
 import { useTimer } from './features/timer/useTimer';
 import { generate3x3Scramble } from './features/scramble/generate3x3';
 import { useSessionsStore } from './stores/sessionsStore';
@@ -110,22 +111,18 @@ function App() {
   return (
     <div className="min-h-screen bg-background p-4 sm:p-6 md:p-8">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <motion.header 
-          className="mb-8 sm:mb-12 text-center"
+          className="mb-8 sm:mb-12 flex flex-col items-center"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2">
-            {t.app.title}
-          </h1>
-          <p className="text-gray-400 text-base sm:text-lg">
+          <Logo size="lg" />
+          <p className="text-muted-foreground text-sm sm:text-base mt-3">
             {t.app.tagline}
           </p>
         </motion.header>
 
-        {/* Scramble */}
         <div className="mb-8 sm:mb-12">
           <ScrambleBox 
             scramble={scramble} 
