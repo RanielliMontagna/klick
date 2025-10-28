@@ -1,10 +1,10 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
-import { useTutorialModal } from './useTutorialModal';
-import { CubeVisualizer } from './CubeVisualizer';
-import { useI18nStore } from '../../stores/i18nStore';
-import { translations } from '../../i18n/translations';
-import type { TutorialStep } from '../../stores/tutorialStore';
+import { useTutorialContent } from './useTutorialContent';
+import { CubeVisualizer } from '../cubeVisualizer/CubeVisualizer';
+import { useI18nStore } from '@/stores/i18nStore';
+import { translations } from '@/i18n/translations';
+import type { TutorialStep } from '@/stores/tutorialStore';
 
 function TutorialStepContent({ step }: { step: TutorialStep }) {
   const { language } = useI18nStore();
@@ -168,7 +168,7 @@ export function TutorialContent() {
     progressPercentage,
     handleNext,
     handlePrevious,
-  } = useTutorialModal();
+  } = useTutorialContent();
   const { t } = useI18nStore();
 
   return (

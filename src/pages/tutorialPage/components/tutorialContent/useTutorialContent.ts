@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
-import { useTutorialStore, type TutorialStep } from '../../stores/tutorialStore';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useTutorialStore, type TutorialStep } from '@/stores/tutorialStore';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const STEP_ORDER: TutorialStep[] = [
   'intro',
@@ -13,14 +13,12 @@ const STEP_ORDER: TutorialStep[] = [
   'solveCorners',
 ];
 
-export function useTutorialModal() {
+export function useTutorialContent() {
   const { isOpen, currentStep, closeTutorial, nextStep, previousStep } = useTutorialStore();
   const { t } = useTranslation();
 
   const currentStepIndex = useMemo(() => STEP_ORDER.indexOf(currentStep), [currentStep]);
-
   const totalSteps = STEP_ORDER.length;
-
   const isFirstStep = currentStepIndex === 0;
   const isLastStep = currentStepIndex === totalSteps - 1;
 

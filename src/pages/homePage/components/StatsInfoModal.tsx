@@ -54,7 +54,6 @@ export function StatsInfoModal({ isOpen, onClose }: StatsInfoModalProps) {
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
           <motion.div
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
             initial={{ opacity: 0 }}
@@ -63,7 +62,6 @@ export function StatsInfoModal({ isOpen, onClose }: StatsInfoModalProps) {
             onClick={onClose}
           />
 
-          {/* Modal */}
           <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
             <motion.div
               variants={scale}
@@ -73,7 +71,6 @@ export function StatsInfoModal({ isOpen, onClose }: StatsInfoModalProps) {
               className="bg-gray-800 rounded-2xl border border-gray-700 shadow-2xl max-w-3xl w-full max-h-[85vh] overflow-hidden flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-gray-700 shrink-0">
                 <h2 className="text-2xl font-bold text-white">{t.stats.info.title}</h2>
                 <button
@@ -84,7 +81,6 @@ export function StatsInfoModal({ isOpen, onClose }: StatsInfoModalProps) {
                 </button>
               </div>
 
-              {/* Content */}
               <div className="overflow-y-auto p-6 space-y-6">
                 {sections.map((section) => {
                   const Icon = section.icon;
@@ -123,7 +119,6 @@ export function StatsInfoModal({ isOpen, onClose }: StatsInfoModalProps) {
                   );
                 })}
 
-                {/* Penalties Section */}
                 <div className="rounded-xl p-5 bg-red-500/10 border border-red-500/30">
                   <h3 className="text-lg font-bold text-white mb-4">
                     {t.stats.info.penalties.title}
@@ -139,13 +134,12 @@ export function StatsInfoModal({ isOpen, onClose }: StatsInfoModalProps) {
                 </div>
               </div>
 
-              {/* Footer */}
               <div className="p-6 border-t border-gray-700 shrink-0">
                 <button
                   onClick={onClose}
                   className="w-full px-4 py-3 bg-primary hover:bg-primary/80 text-white rounded-lg font-medium transition-colors"
                 >
-                  Entendi!
+                  {t.actions.close}
                 </button>
               </div>
             </motion.div>

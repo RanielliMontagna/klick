@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { TrendingUp } from 'lucide-react';
-import { AdvancedStatsContent } from '@/components/advancedStatsModal/AdvancedStatsContent';
+import { AdvancedStatsContent } from './components/advancedStats/AdvancedStatsContent';
 import { PageHeader } from '@/components';
 import { useI18nStore } from '@/stores/i18nStore';
 import { fadeIn } from '@/utils/animations';

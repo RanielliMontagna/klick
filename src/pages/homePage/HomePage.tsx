@@ -1,14 +1,8 @@
 import { motion } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
 import { Keyboard, HelpCircle, Timer } from 'lucide-react';
-import {
-  TimerDisplay,
-  ScrambleBox,
-  InspectionDisplay,
-  StatCard,
-  StatsInfoModal,
-  PageHeader,
-} from '@/components';
+import { TimerDisplay, ScrambleBox, InspectionDisplay, StatCard, PageHeader } from '@/components';
+import { StatsInfoModal } from './components/StatsInfoModal';
 import { useTimer } from '@/features/timer/useTimer';
 import { generate3x3Scramble } from '@/features/scramble/generate3x3';
 import { useSessionsStore } from '@/stores/sessionsStore';

@@ -23,7 +23,6 @@ export function SolveDetailsModal({ isOpen, onClose, solve, solveNumber }: Solve
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
           <motion.div
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
             initial={{ opacity: 0 }}
@@ -32,7 +31,6 @@ export function SolveDetailsModal({ isOpen, onClose, solve, solveNumber }: Solve
             onClick={onClose}
           />
 
-          {/* Modal */}
           <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
             <motion.div
               variants={scale}
@@ -42,7 +40,6 @@ export function SolveDetailsModal({ isOpen, onClose, solve, solveNumber }: Solve
               className="bg-gray-800 rounded-2xl border border-gray-700 shadow-2xl max-w-2xl w-full max-h-[85vh] overflow-hidden flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-gray-700 shrink-0">
                 <h2 className="text-2xl font-bold text-white">
                   {t.solveTable.details.title} #{solveNumber}
@@ -55,9 +52,7 @@ export function SolveDetailsModal({ isOpen, onClose, solve, solveNumber }: Solve
                 </button>
               </div>
 
-              {/* Content */}
               <div className="overflow-y-auto p-6 space-y-6">
-                {/* Time */}
                 <div className="bg-gray-900/50 rounded-xl p-5 border border-gray-700">
                   <div className="flex items-center gap-3 mb-3">
                     <Clock className="text-primary" size={24} />
@@ -77,20 +72,20 @@ export function SolveDetailsModal({ isOpen, onClose, solve, solveNumber }: Solve
                   </div>
                 </div>
 
-                {/* Penalty */}
                 <div className="bg-gray-900/50 rounded-xl p-5 border border-gray-700">
                   <div className="flex items-center gap-3 mb-3">
                     <AlertTriangle className={penaltyInfo.color} size={24} />
                     <h3 className="text-lg font-bold text-white">{t.solveTable.details.penalty}</h3>
                   </div>
                   <span
-                    className={`inline-flex px-4 py-2 rounded-lg text-sm font-medium border ${penaltyInfo.bgColor} ${penaltyInfo.color} ${penaltyInfo.borderColor}`}
+                    className={`inline-flex px-4 py-2 rounded-lg text-sm font-medium border ${
+                      penaltyInfo.bgColor
+                    } ${penaltyInfo.color} ${penaltyInfo.borderColor}`}
                   >
                     {penaltyInfo.label}
                   </span>
                 </div>
 
-                {/* Scramble */}
                 <div className="bg-gray-900/50 rounded-xl p-5 border border-gray-700">
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="text-lg font-bold text-white">
@@ -101,7 +96,7 @@ export function SolveDetailsModal({ isOpen, onClose, solve, solveNumber }: Solve
                       className="flex items-center gap-2 px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors text-sm"
                     >
                       <Copy size={16} />
-                      {copied ? 'Copiado!' : 'Copiar'}
+                      {copied ? t.scramble.copySuccess : t.scramble.copy}
                     </button>
                   </div>
                   <p className="text-gray-300 font-mono text-sm sm:text-base leading-relaxed wrap-break-word">
@@ -109,7 +104,6 @@ export function SolveDetailsModal({ isOpen, onClose, solve, solveNumber }: Solve
                   </p>
                 </div>
 
-                {/* Date */}
                 <div className="bg-gray-900/50 rounded-xl p-5 border border-gray-700">
                   <div className="flex items-center gap-3 mb-3">
                     <Calendar className="text-gray-400" size={24} />
@@ -119,7 +113,6 @@ export function SolveDetailsModal({ isOpen, onClose, solve, solveNumber }: Solve
                 </div>
               </div>
 
-              {/* Footer */}
               <div className="p-6 border-t border-gray-700 shrink-0">
                 <button
                   onClick={onClose}

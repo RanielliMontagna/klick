@@ -1,10 +1,10 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Settings as SettingsIcon, X, Download, Upload, Sun, Moon } from 'lucide-react';
 import { useRef, useState } from 'react';
-import { useSettingsStore } from '../../stores/settingsStore';
-import { useSessionsStore } from '../../stores/sessionsStore';
-import { useI18nStore } from '../../stores/i18nStore';
-import { useTheme } from '../../hooks/useTheme';
+import { useSettingsStore } from '@/stores/settingsStore';
+import { useSessionsStore } from '@/stores/sessionsStore';
+import { useI18nStore } from '@/stores/i18nStore';
+import { useTheme } from '@/hooks/useTheme';
 
 type SettingsModalProps = {
   isOpen: boolean;

@@ -23,9 +23,8 @@ export function SolveTable({ onViewDetails }: SolveTableProps) {
   const session = getActiveSession();
   const allSolves = session?.solves || [];
 
-  // Apply filter
   const getFilteredSolves = () => {
-    const reversed = [...allSolves].reverse(); // Most recent first
+    const reversed = [...allSolves].reverse();
     switch (filter) {
       case 'last5':
         return reversed.slice(0, 5);
@@ -90,7 +89,6 @@ export function SolveTable({ onViewDetails }: SolveTableProps) {
         animate="visible"
         className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden"
       >
-        {/* Header with filter */}
         <div className="p-4 sm:p-6 border-b border-gray-700 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <h2 className="text-lg sm:text-xl font-bold text-white">{t.solveTable.title}</h2>
           <div className="flex items-center gap-2">
@@ -109,7 +107,6 @@ export function SolveTable({ onViewDetails }: SolveTableProps) {
           </div>
         </div>
 
-        {/* Table */}
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-900/50">
@@ -188,7 +185,6 @@ export function SolveTable({ onViewDetails }: SolveTableProps) {
         </div>
       </motion.div>
 
-      {/* Delete Confirmation Dialog */}
       <ConfirmDialog
         isOpen={deleteConfirmSolve !== null}
         onClose={() => setDeleteConfirmSolve(null)}

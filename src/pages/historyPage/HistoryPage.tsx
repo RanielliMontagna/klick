@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { History as HistoryIcon } from 'lucide-react';
-import { SolveTable, PageHeader, SolveDetailsModal } from '@/components';
+import { PageHeader } from '@/components';
+import { SolveTable } from './components/solveTable/SolveTable';
+import { SolveDetailsModal } from './components/solveDetailsModal/SolveDetailsModal';
 import { useI18nStore } from '@/stores/i18nStore';
 import { useSessionsStore } from '@/stores/sessionsStore';
 import { fadeIn } from '@/utils/animations';
@@ -26,7 +28,12 @@ export function HistoryPage() {
   };
 
   return (
-    <motion.div variants={fadeIn} initial="hidden" animate="visible" className="mx-auto w-full max-w-6xl">
+    <motion.div
+      variants={fadeIn}
+      initial="hidden"
+      animate="visible"
+      className="mx-auto w-full max-w-6xl"
+    >
       <PageHeader
         title={t.navigation.history}
         description={t.pages.history.description}
