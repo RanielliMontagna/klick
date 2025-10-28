@@ -150,6 +150,15 @@ Requisitos mínimos:
 - **Não repetir a mesma face consecutiva**.
 - Evitar padrões degenerados simples (priorize a regra de não repetir face).
 
+Implementação atual:
+
+- `generate3x3.ts` mantém listas imutáveis (`FACES`, `MODIFIERS`) e sorteia cada passo.
+- `getRandomFace(lastFace)` filtra a face anterior, garantindo que nenhuma face se repita em sequência.
+- O modificador (`'', 2, '`) é escolhido de forma uniforme e concatenado antes de inserir no array final.
+- Ao final, os 25 movimentos são unidos por espaço, mantendo compatibilidade com leitores de scramble da WCA.
+- Regras adicionais (ex.: bloqueio de padrões inversos) podem ser adicionadas sem alterar a API exposta ao restante da aplicação.
+- **Explicação para iniciantes:** disponibilizar tooltip ou bloco de texto curto próximo ao scramble descrevendo como interpretar `R/L/U/D/F/B` (faces direita, esquerda, superior, etc.), o que significam `'` (anti-horário) e `2` (duplo), além de instrução clara para executar o embaralhamento antes de iniciar o solve.
+
 ---
 
 # 7) Arquitetura & Pastas
@@ -449,7 +458,14 @@ Requisitos mínimos:
 
 ### Próximas fases
 
-- **Projeto Concluído!** Todos os requisitos do escopo foram implementados. ✅
+- **Adicionar sons funcionais:** conectar o toggle de áudio do settings ao timer, emitindo sons distintos para últimos 3s de inspeção, start/stop e alertas de penalidade; revisar performance em mobile carregando assets pré-carregados.
+- **Guia de embaralhamento para iniciantes:** adicionar explicação visual curta sobre faces (`R/L/U/D/F/B`) e modificadores (`'`, `2`), destacando em destaque ou tooltip ao lado do scramble.
+- **Lançar tema claro:** definir tokens de cor equivalentes ao dark, adaptar os componentes Tailwind e garantir persistência da escolha de tema.
+- **Onboarding interativo:** implementar tooltips contextuais para explicar Space, Scramble e Estatísticas, com opção de revisitar no menu de ajuda.
+- **Estatísticas avançadas:** adicionar gráficos simples de evolução (média móvel, distribuição por sessão) e métricas de consistência (desvio padrão, TPS médio).
+- **Sincronização opcional:** investigar integração com armazenamento na nuvem (ex.: Supabase) mantendo local-first, incluindo merge de sessões e autenticação leve.
+- **Modo de treino por casos:** habilitar coleções focadas (PLL, OLL, F2L) com contadores de repetição, checkpoints e notas rápidas, ajudando o iniciante a praticar algoritmos específicos.
+- **Tutorial principiante:** oferecer um passo a passo visual/textual de resolução no método para iniciantes (cruz branca → camadas → OLL/PLL simplificados) acessível pelo onboarding ou modal dedicado.
 
 ---
 
