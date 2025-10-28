@@ -341,9 +341,22 @@ Requisitos mínimos:
   - [x] Feedback visual após limpar (toast de sucesso)
   - [x] Componentes reutilizáveis (ConfirmDialog, StatsInfoModal)
 
+12. **Tabela de Histórico (Fase 3):** ✅
+    - Componente **SolveTable** responsivo
+    - Colunas: #, Tempo, Scramble, Data, Penalidade, Ações
+    - **Filtros**: Todos, Últimos 5/12/50/100
+    - Botão de deletar por solve individual
+    - **Modal de detalhes** (SolveDetailsModal):
+      - Tempo completo com penalidade
+      - Scramble copiável
+      - Data completa formatada
+      - Informações de penalidade com cores
+    - Design responsivo (mobile hide scramble, tablet hide date)
+    - Animações com Framer Motion
+    - Estado vazio tratado
+
 ### Próximas fases
 
-- **Fase 3:** Tabela de histórico e filtros
 - **Fase 4:** Sistema de sessões completo
 - **Fase 5:** Configurações e exportar/importar
 

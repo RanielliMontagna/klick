@@ -5,6 +5,8 @@ import { TimerDisplay } from './components/TimerDisplay';
 import { ScrambleBox } from './components/ScrambleBox';
 import { InspectionDisplay } from './components/InspectionDisplay';
 import { StatCard } from './components/StatCard';
+import { SolveTable } from './components/SolveTable';
+import { SolveDetailsModal } from './components/SolveDetailsModal';
 import { Toast } from './components/Toast';
 import { ConfirmDialog } from './components/ConfirmDialog';
 import { StatsInfoModal } from './components/StatsInfoModal';
@@ -17,7 +19,7 @@ import { useSettingsStore } from './stores/settingsStore';
 import { useI18nStore } from './stores/i18nStore';
 import { slideUp, fadeIn } from './utils/animations';
 import { formatAverage } from './utils/formatStats';
-import type { Penalty } from './types';
+import type { Penalty, Solve } from './types';
 
 function App() {
   const [scramble, setScramble] = useState('');
@@ -25,6 +27,8 @@ function App() {
   const [showClearConfirm, setShowClearConfirm] = useState(false);
   const [showStatsInfo, setShowStatsInfo] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [selectedSolve, setSelectedSolve] = useState<Solve | null>(null);
+  const [selectedSolveNumber, setSelectedSolveNumber] = useState(0);
   
   const { t } = useI18nStore();
   const { settings } = useSettingsStore();
@@ -58,6 +62,16 @@ function App() {
   const handleClearSession = () => {
     clearCurrentSession();
     setShowSuccessToast(true);
+  };
+
+  // Handler para ver detalhes do solve
+  const handleViewSolveDetails = (solve: Solve) => {
+    const session = getActiveSession();
+    if (session) {
+      const solveNumber = session.solves.length - session.solves.indexOf(solve);
+      setSelectedSolveNumber(solveNumber);
+      setSelectedSolve(solve);
+    }
   };
 
   // Gera scramble inicial
@@ -260,6 +274,16 @@ function App() {
             </div>
           </div>
         </motion.div>
+
+        {/* Solve Table */}
+        <motion.div 
+          className="mt-8 sm:mt-12"
+          variants={fadeIn}
+          initial="hidden"
+          animate="visible"
+        >
+          <SolveTable onViewDetails={handleViewSolveDetails} />
+        </motion.div>
       </div>
 
       {/* Modals */}
@@ -277,6 +301,13 @@ function App() {
       <StatsInfoModal
         isOpen={showStatsInfo}
         onClose={() => setShowStatsInfo(false)}
+      />
+
+      <SolveDetailsModal
+        isOpen={selectedSolve !== null}
+        onClose={() => setSelectedSolve(null)}
+        solve={selectedSolve}
+        solveNumber={selectedSolveNumber}
       />
 
       {/* Toast */}

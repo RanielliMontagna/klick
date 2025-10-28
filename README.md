@@ -163,10 +163,14 @@ src/
 - [x] **Botão para limpar estatísticas** com confirmação
 - [x] **Modal educativo** explicando estatísticas para iniciantes
 - [x] **Componentes reutilizáveis** (ConfirmDialog, StatsInfoModal)
+- [x] **Tabela de histórico de solves** com filtros e ordenação
+- [x] **Modal de detalhes do solve** com scramble copiável
+- [x] **Filtros de visualização** (últimos 5/12/50/100 ou todos)
+- [x] **Deletar solves individuais** com confirmação
 
 ### Próximos passos
 
-- [ ] Tabela de histórico de solves
+- [ ] Sistema de sessões (criar, renomear, deletar, trocar)
 - [ ] Sistema de sessões (criar, renomear, deletar, trocar)
 - [ ] Página de configurações
 - [ ] Exportar/Importar dados (JSON)
