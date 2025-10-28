@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
-import { Keyboard, HelpCircle } from 'lucide-react';
+import { Keyboard, HelpCircle, Timer } from 'lucide-react';
 import {
   TimerDisplay,
   ScrambleBox,
   InspectionDisplay,
   StatCard,
   StatsInfoModal,
+  PageHeader,
 } from '@/components';
 import { useTimer } from '@/features/timer/useTimer';
 import { generate3x3Scramble } from '@/features/scramble/generate3x3';
@@ -125,7 +126,13 @@ export function HomePage() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="mx-auto w-full max-w-6xl space-y-6 sm:space-y-8">
+      <PageHeader
+        title={t.navigation.home}
+        description={t.pages.home.description}
+        icon={<Timer className="w-8 h-8" />}
+      />
+
       {/* Scramble */}
       <motion.div variants={slideUp} initial="hidden" animate="visible">
         <ScrambleBox
@@ -151,12 +158,12 @@ export function HomePage() {
       {/* Stats */}
       <motion.div variants={slideUp} initial="hidden" animate="visible">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-text-primary">Estatísticas</h2>
+          <h2 className="text-xl font-bold text-text-primary">{t.navigation.stats}</h2>
           <button
             type="button"
             onClick={() => setShowStatsInfo(true)}
             className="p-2 text-text-secondary hover:text-primary hover:bg-surface rounded-lg transition-colors"
-            aria-label="Ajuda sobre estatísticas"
+            aria-label={t.stats.help}
           >
             <HelpCircle className="w-5 h-5" />
           </button>

@@ -10,6 +10,23 @@ export const ptBR = {
     tutorial: 'Tutorial',
     settings: 'Configurações',
   },
+  pages: {
+    home: {
+      description: 'Treine solves com inspeção guiada e estatísticas em tempo real.',
+    },
+    history: {
+      description: 'Veja todos os seus solves e acompanhe sua evolução.',
+    },
+    stats: {
+      description: 'Análise detalhada de performance e evolução.',
+    },
+    tutorial: {
+      description: 'Aprenda o método CFOP passo a passo.',
+    },
+    settings: {
+      description: 'Personalize o Klick do seu jeito.',
+    },
+  },
   language: {
     title: 'Idioma',
     'pt-BR': 'Português (BR)',

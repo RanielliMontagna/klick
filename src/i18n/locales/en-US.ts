@@ -10,6 +10,23 @@ export const enUS = {
     tutorial: 'Tutorial',
     settings: 'Settings',
   },
+  pages: {
+    home: {
+      description: 'Practice solves with guided inspection and instant statistics.',
+    },
+    history: {
+      description: 'Review every solve and track your progress over time.',
+    },
+    stats: {
+      description: 'Dive into detailed performance analytics and trends.',
+    },
+    tutorial: {
+      description: 'Learn the CFOP method step by step.',
+    },
+    settings: {
+      description: 'Make Klick behave exactly the way you like.',
+    },
+  },
   language: {
     title: 'Language',
     'pt-BR': 'Português (BR)',

@@ -17,3 +17,4 @@ export { Logo } from './logo/Logo';
 export { StatCard } from './statCard/StatCard';
 export { TimerDisplay } from './timerDisplay/TimerDisplay';
 export { LanguageSelector } from './languageSelector/LanguageSelector';
+export { PageHeader } from './pageHeader/PageHeader';

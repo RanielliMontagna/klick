@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { TrendingUp } from 'lucide-react';
 import { AdvancedStatsContent } from '@/components/advancedStatsModal/AdvancedStatsContent';
+import { PageHeader } from '@/components';
 import { useI18nStore } from '@/stores/i18nStore';
 import { fadeIn } from '@/utils/animations';
 
@@ -12,15 +13,13 @@ export function StatsPage() {
       variants={fadeIn}
       initial="hidden"
       animate="visible"
-      className="container mx-auto px-4 py-8 max-w-6xl"
+      className="mx-auto w-full max-w-6xl"
     >
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-2">
-          <TrendingUp className="w-8 h-8 text-primary" />
-          <h1 className="text-3xl font-bold">{t.navigation.stats}</h1>
-        </div>
-        <p className="text-text-secondary">Análise detalhada de performance e evolução</p>
-      </div>
+      <PageHeader
+        title={t.navigation.stats}
+        description={t.pages.stats.description}
+        icon={<TrendingUp className="w-8 h-8" />}
+      />
 
       <div className="min-h-[600px]">
         <AdvancedStatsContent />

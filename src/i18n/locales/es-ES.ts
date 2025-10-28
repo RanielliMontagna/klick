@@ -10,6 +10,23 @@ export const esES = {
     tutorial: 'Tutorial',
     settings: 'Configuración',
   },
+  pages: {
+    home: {
+      description: 'Practica tus solves con inspección guiada y estadísticas instantáneas.',
+    },
+    history: {
+      description: 'Revisa todos tus solves y sigue tu progreso.',
+    },
+    stats: {
+      description: 'Análisis detallado de rendimiento y evolución.',
+    },
+    tutorial: {
+      description: 'Aprende el método CFOP paso a paso.',
+    },
+    settings: {
+      description: 'Personaliza Klick a tu manera.',
+    },
+  },
   language: {
     title: 'Idioma',
     'pt-BR': 'Português (BR)',
