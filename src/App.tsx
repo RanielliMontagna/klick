@@ -110,31 +110,39 @@ function App() {
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
+      // Ignora atalhos em inputs/textareas ou quando modais estão abertos
       if (
         e.target instanceof HTMLInputElement ||
-        e.target instanceof HTMLTextAreaElement
+        e.target instanceof HTMLTextAreaElement ||
+        showClearConfirm ||
+        showStatsInfo ||
+        selectedSolve !== null
       ) {
         return;
       }
 
       const session = getActiveSession();
-      const lastSolve = session?.solves[session.solves.length - 1];
+      const lastSolve = session?.solves && session.solves.length > 0 
+        ? session.solves[session.solves.length - 1] 
+        : null;
 
       switch (e.key.toLowerCase()) {
         case 'n':
           e.preventDefault();
-          generateNewScramble();
+          if (state === 'idle') {
+            generateNewScramble();
+          }
           break;
         case 'p':
           e.preventDefault();
-          if (lastSolve) {
+          if (lastSolve && state === 'idle') {
             const newPenalty = lastSolve.penalty === '+2' ? 'NONE' : '+2';
             updateSolvePenalty(lastSolve.id, newPenalty);
           }
           break;
         case 'd':
           e.preventDefault();
-          if (lastSolve) {
+          if (lastSolve && state === 'idle') {
             const newPenalty = lastSolve.penalty === 'DNF' ? 'NONE' : 'DNF';
             updateSolvePenalty(lastSolve.id, newPenalty);
           }
@@ -144,7 +152,7 @@ function App() {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [generateNewScramble, updateSolvePenalty, getActiveSession]);
+  }, [generateNewScramble, updateSolvePenalty, getActiveSession, state, showClearConfirm, showStatsInfo, selectedSolve]);
 
   return (
     <div className="min-h-screen bg-background p-4 sm:p-6 md:p-8">

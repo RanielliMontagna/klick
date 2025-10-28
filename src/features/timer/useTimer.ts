@@ -114,13 +114,11 @@ export function useTimer(
         return;
       }
 
-      if (e.code === 'Space' && !e.repeat) {
+      if (e.code === 'Space' && !e.repeat && !spaceKeyDownRef.current) {
         e.preventDefault();
         spaceKeyDownRef.current = true;
 
-        if (state === 'inspection') {
-          startTimer();
-        } else if (state === 'running') {
+        if (state === 'running') {
           stopTimer();
         }
       }
@@ -137,6 +135,8 @@ export function useTimer(
 
         if (state === 'idle') {
           startInspection();
+        } else if (state === 'inspection') {
+          startTimer();
         }
       }
     };
