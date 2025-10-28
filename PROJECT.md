@@ -305,7 +305,7 @@ Requisitos mínimos:
 # 11) Notas de Implementação
 
 - Priorize rótulos e mensagens **em pt-BR**.
-- Comente trechos críticos (gerador de scramble, máquina de estados do timer, cálculo de médias).
+- **Comentários**: mínimo possível, apenas quando absolutamente necessário para explicar lógica complexa ou não-óbvia. Sempre em **inglês**.
 - Trate key repeat da barra de espaço.
 - Bloqueie atalhos enquanto um modal/entrada de texto estiver focado.
 

@@ -6,33 +6,26 @@ interface SessionsStore {
   sessions: Session[];
   activeSessionId: string;
   
-  // Sessões
   createSession: (name: string) => void;
   deleteSession: (id: string) => void;
   renameSession: (id: string, name: string) => void;
   setActiveSession: (id: string) => void;
   getActiveSession: () => Session | undefined;
   
-  // Solves
   addSolve: (solve: Omit<Solve, 'id' | 'createdAt' | 'effectiveMs'>) => void;
   updateSolvePenalty: (solveId: string, penalty: Penalty) => void;
   deleteSolve: (solveId: string) => void;
   
-  // Import/Export
   exportSessions: () => string;
   importSessions: (data: string, merge: boolean) => void;
 }
 
-// Cria sessão inicial
 const initialSession: Session = {
   id: crypto.randomUUID(),
   name: 'Sessão 1',
   solves: [],
 };
 
-/**
- * Calcula o effectiveMs baseado no tempo e penalidade
- */
 function calculateEffectiveMs(timeMs: number, penalty: Penalty): number {
   if (penalty === 'DNF') return Infinity;
   if (penalty === '+2') return timeMs + 2000;
@@ -61,7 +54,6 @@ export const useSessionsStore = create<SessionsStore>()(
       deleteSession: (id) =>
         set((state) => {
           const filtered = state.sessions.filter((s) => s.id !== id);
-          // Se deletou a sessão ativa, muda para a primeira
           const newActiveId =
             state.activeSessionId === id && filtered.length > 0
               ? filtered[0].id

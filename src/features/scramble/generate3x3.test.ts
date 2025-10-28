@@ -41,13 +41,12 @@ describe('generate3x3Scramble', () => {
     }
   });
 
-  it('deve gerar scrambles diferentes em múltiplas execuções', () => {
-    const scramble1 = generate3x3Scramble();
-    const scramble2 = generate3x3Scramble();
-    const scramble3 = generate3x3Scramble();
-    
-    // É extremamente improvável que 3 scrambles sejam iguais
-    const allSame = scramble1 === scramble2 && scramble2 === scramble3;
-    expect(allSame).toBe(false);
+  it("should generate different scrambles", () => {
+    const s1 = generate3x3Scramble();
+    const s2 = generate3x3Scramble();
+    const s3 = generate3x3Scramble();
+
+    expect(s1).not.toBe(s2);
+    expect(s2).not.toBe(s3);
   });
 });

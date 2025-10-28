@@ -11,15 +11,6 @@ interface UseTimerReturn {
   reset: () => void;
 }
 
-/**
- * Hook do Timer com máquina de estados
- * Estados: idle → inspection → running → stopped
- * 
- * Controles:
- * - Space bar: segurar para armar, soltar inicia
- * - Durante inspeção: Space inicia o timer
- * - Durante running: Space para o timer
- */
 export function useTimer(
   inspectionDuration: number = 15,
   onInspectionEnd?: (timeOverMs: number) => void
@@ -34,7 +25,6 @@ export function useTimer(
   const inspectionIntervalRef = useRef<number | null>(null);
   const spaceKeyDownRef = useRef<boolean>(false);
 
-  // Atualiza o timer durante o estado "running"
   const updateTimer = useCallback(() => {
     if (state === 'running') {
       const now = performance.now();
@@ -43,7 +33,6 @@ export function useTimer(
     }
   }, [state]);
 
-  // Inicia a inspeção
   const startInspection = useCallback(() => {
     setState('inspection');
     inspectionStartRef.current = Date.now();
@@ -51,9 +40,7 @@ export function useTimer(
     setTimeMs(0);
   }, [inspectionDuration]);
 
-  // Inicia o cronômetro
   const startTimer = useCallback(() => {
-    // Calcula tempo excedido de inspeção, se houver
     if (state === 'inspection') {
       const inspectionElapsed = (Date.now() - inspectionStartRef.current) / 1000;
       const timeOver = Math.max(0, inspectionElapsed - inspectionDuration);
@@ -61,7 +48,6 @@ export function useTimer(
         onInspectionEnd(timeOver * 1000);
       }
       
-      // Limpa o intervalo de inspeção
       if (inspectionIntervalRef.current) {
         clearInterval(inspectionIntervalRef.current);
         inspectionIntervalRef.current = null;
@@ -73,7 +59,6 @@ export function useTimer(
     setTimeMs(0);
   }, [state, inspectionDuration, onInspectionEnd]);
 
-  // Para o cronômetro
   const stopTimer = useCallback(() => {
     if (state === 'running') {
       setState('stopped');
@@ -83,7 +68,6 @@ export function useTimer(
     }
   }, [state]);
 
-  // Reseta o timer
   const reset = useCallback(() => {
     setState('idle');
     setTimeMs(0);
@@ -97,7 +81,6 @@ export function useTimer(
     }
   }, [inspectionDuration]);
 
-  // Atualiza o contador de inspeção
   useEffect(() => {
     if (state === 'inspection') {
       inspectionIntervalRef.current = setInterval(() => {
@@ -114,7 +97,6 @@ export function useTimer(
     }
   }, [state, inspectionDuration]);
 
-  // Inicia a animação do timer quando em "running"
   useEffect(() => {
     if (state === 'running') {
       updateTimer();
@@ -126,10 +108,8 @@ export function useTimer(
     };
   }, [state, updateTimer]);
 
-  // Gerencia o evento de teclado (Space bar)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Ignora se estiver em um input ou textarea
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
         return;
       }
@@ -138,14 +118,9 @@ export function useTimer(
         e.preventDefault();
         spaceKeyDownRef.current = true;
 
-        if (state === 'idle') {
-          // Em idle: segurar space inicia inspeção ao soltar
-          // Não faz nada no keydown
-        } else if (state === 'inspection') {
-          // Durante inspeção: space inicia o timer
+        if (state === 'inspection') {
           startTimer();
         } else if (state === 'running') {
-          // Durante running: space para o timer
           stopTimer();
         }
       }
@@ -161,7 +136,6 @@ export function useTimer(
         spaceKeyDownRef.current = false;
 
         if (state === 'idle') {
-          // Ao soltar space em idle: inicia inspeção
           startInspection();
         }
       }

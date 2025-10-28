@@ -79,34 +79,41 @@ pnpm test
 
 ```
 src/
-├── components/         # Componentes React
+├── components/         # React components
 │   ├── TimerDisplay.tsx
 │   ├── ScrambleBox.tsx
 │   ├── InspectionDisplay.tsx
 │   ├── StatCard.tsx
 │   └── Toast.tsx
-├── features/           # Lógica de negócio
+├── features/           # Business logic
 │   ├── timer/
 │   │   └── useTimer.ts
 │   └── scramble/
 │       ├── generate3x3.ts
 │       └── generate3x3.test.ts
-├── stores/             # Stores Zustand
+├── stores/             # Zustand stores
 │   ├── sessionsStore.ts
 │   ├── settingsStore.ts
 │   └── i18nStore.ts
-├── i18n/              # Internacionalização
+├── i18n/              # Internationalization
 │   └── translations.ts
 ├── hooks/             # Custom hooks
 │   └── useTranslation.ts
-├── utils/             # Funções utilitárias
+├── utils/             # Utility functions
 │   ├── formatTime.ts
 │   └── animations.ts
-├── types/             # Definições TypeScript
+├── types/             # TypeScript definitions
 │   └── index.ts
-└── test/              # Configuração de testes
+└── test/              # Test configuration
     └── setup.ts
 ```
+
+## 💻 Code Standards
+
+- **Comments**: Minimal, only when necessary to explain complex/non-obvious logic. Always in **English**.
+- **Clean Code**: Self-documenting code preferred over excessive comments
+- **TypeScript**: Strict mode enabled for type safety
+- **Testing**: Comprehensive tests for business logic
 
 ## ✅ Status de Implementação
 
