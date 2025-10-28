@@ -182,61 +182,47 @@ function App() {
     selectedSolve,
   ]);
 
+  const settingsButton = (
+    <button
+      type="button"
+      onClick={() => setShowSettings(true)}
+      className="flex items-center gap-2 px-3 py-2 sm:px-3.5 sm:py-2.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg sm:rounded-xl text-xs sm:text-sm font-medium text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+      aria-label={t.settings.title}
+    >
+      <Settings className="h-4 w-4 sm:h-5 sm:w-5" />
+      <span className="hidden md:inline whitespace-nowrap">{t.settings.title}</span>
+    </button>
+  );
+
   return (
     <div className="min-h-screen bg-background p-4 sm:p-6 md:p-8">
       <div className="max-w-7xl mx-auto">
         <motion.header
-          className="top-4 sm:top-6 z-40 mb-6 sm:mb-8 md:mb-12 w-full flex flex-col items-center rounded-2xl border border-gray-800/60 bg-background/90 backdrop-blur px-3 sm:px-6 py-3 sm:py-4 shadow-lg"
+          className="sticky top-4 sm:top-6 z-40 mb-6 sm:mb-8 md:mb-12 w-full flex flex-col rounded-2xl border border-gray-800/60 bg-background/90 backdrop-blur px-3 sm:px-6 py-3 sm:py-4 shadow-lg"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          {/* Mobile: Stack vertically */}
-          <div className="w-full flex flex-col gap-3 sm:hidden">
-            <div className="flex items-center justify-between gap-2">
-              <div className="flex items-center gap-2">
-                <LanguageSelector />
-                <button
-                  type="button"
-                  onClick={() => setShowSettings(true)}
-                  className="flex items-center gap-2 rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-700"
-                  aria-label={t.settings.title}
-                >
-                  <Settings className="h-4 w-4" />
-                </button>
+          <div className="w-full flex flex-col gap-3 sm:gap-4">
+            <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-center gap-3">
+                <div className="sm:hidden">
+                  <Logo size="md" />
+                </div>
+                <div className="hidden sm:block">
+                  <Logo size="lg" />
+                </div>
+                <p className="text-muted-foreground text-xs sm:text-sm md:text-base text-left max-w-2xl mt-1">
+                  {t.app.tagline}
+                </p>
               </div>
-              <SessionSwitcher onManageClick={() => setShowSessionManager(true)} />
-            </div>
-            <div className="flex justify-center">
-              <Logo size="md" />
-            </div>
-          </div>
-
-          {/* Desktop: Three columns */}
-          <div className="hidden sm:flex w-full justify-between items-center gap-4">
-            <div className="flex justify-start items-center gap-2 min-w-0 flex-1">
-              <LanguageSelector />
-              <button
-                type="button"
-                onClick={() => setShowSettings(true)}
-                className="flex items-center gap-2 rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-700"
-                aria-label={t.settings.title}
-              >
-                <Settings className="h-4 w-4" />
-                <span className="hidden md:inline">{t.settings.title}</span>
-              </button>
-            </div>
-            <div className="flex justify-center shrink-0">
-              <Logo size="lg" />
-            </div>
-            <div className="flex justify-end min-w-0 flex-1">
-              <SessionSwitcher onManageClick={() => setShowSessionManager(true)} />
+              <div className="flex w-full sm:w-auto items-center justify-start sm:justify-end gap-2 sm:gap-3 flex-wrap">
+                <LanguageSelector />
+                <SessionSwitcher onManageClick={() => setShowSessionManager(true)} />
+                {settingsButton}
+              </div>
             </div>
           </div>
-
-          <p className="text-muted-foreground text-xs sm:text-sm md:text-base mt-2 sm:mt-3 text-center max-w-2xl mx-auto">
-            {t.app.tagline}
-          </p>
         </motion.header>
 
         <div className="mb-8 sm:mb-12">
@@ -258,6 +244,7 @@ function App() {
             <h2 className="text-lg sm:text-xl font-bold text-white">Estatísticas</h2>
             <div className="flex gap-2">
               <button
+                type="button"
                 onClick={() => setShowStatsInfo(true)}
                 className="flex items-center gap-2 px-3 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors text-sm"
                 title={t.stats.help}
@@ -266,6 +253,7 @@ function App() {
                 <span className="hidden sm:inline">{t.stats.help}</span>
               </button>
               <button
+                type="button"
                 onClick={() => setShowClearConfirm(true)}
                 className="flex items-center gap-2 px-3 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-600/30 rounded-lg transition-colors text-sm"
                 title={t.stats.clear}

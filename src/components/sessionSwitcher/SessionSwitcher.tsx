@@ -74,7 +74,7 @@ export function SessionSwitcher({ onManageClick }: SessionSwitcherProps) {
           }}
           className="w-full px-3 sm:px-4 py-2.5 sm:py-3 flex items-center gap-2 bg-gray-700/50 hover:bg-gray-700 transition-colors border-t border-gray-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
         >
-          <Settings size={14} className="text-primary shrink-0 sm:w-4 sm:h-4" />
+          <Settings size={16} className="text-primary shrink-0 w-4 h-4" />
           <span className="text-xs sm:text-sm font-medium text-white">{t.sessions.manage}</span>
         </button>
       </HeaderDropdownMenu>

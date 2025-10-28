@@ -28,9 +28,7 @@ export function LanguageSelector() {
 
     return (
       <>
-        <span className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-gray-700 text-[0.65rem] font-semibold uppercase tracking-wide text-gray-200">
-          {currentLanguage.shortLabel}
-        </span>
+        <span className="inline lg:hidden whitespace-nowrap">{currentLanguage.shortLabel}</span>
         <span className="hidden lg:inline whitespace-nowrap">{currentLanguage.label}</span>
       </>
     );
@@ -62,7 +60,7 @@ export function LanguageSelector() {
               key={lang.code as string}
               type="button"
               onClick={() => handleLanguageChange(lang.code)}
-              className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm transition-colors hover:bg-gray-700 focus:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+              className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm transition-colors hover:bg-gray-700 focus:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
             >
               <div className="flex items-center gap-3">
                 <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-gray-700 text-xs font-semibold uppercase tracking-wide text-gray-200">
