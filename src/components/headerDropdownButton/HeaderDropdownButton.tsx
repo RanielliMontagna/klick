@@ -31,7 +31,9 @@ export function HeaderDropdownButton({
     >
       <span className="shrink-0 text-primary">{icon}</span>
       <span
-        className={`text-xs sm:text-sm font-medium text-white ${truncateLabel ? `truncate ${maxWidth}` : ''}`}
+        className={`text-xs sm:text-sm font-medium text-white inline-flex items-center gap-1.5 ${
+          truncateLabel ? `truncate ${maxWidth} min-w-0` : ''
+        }`}
       >
         {label}
       </span>

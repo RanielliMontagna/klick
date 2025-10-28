@@ -182,7 +182,7 @@ function App() {
     <div className="min-h-screen bg-background p-4 sm:p-6 md:p-8">
       <div className="max-w-7xl mx-auto">
         <motion.header
-          className="mb-6 sm:mb-8 md:mb-12 flex flex-col items-center"
+          className="top-4 sm:top-6 z-40 mb-6 sm:mb-8 md:mb-12 w-full flex flex-col items-center rounded-2xl border border-gray-800/60 bg-background/90 backdrop-blur px-3 sm:px-6 py-3 sm:py-4 shadow-lg"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}

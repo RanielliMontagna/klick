@@ -8,10 +8,10 @@ export function LanguageSelector() {
   const [isOpen, setIsOpen] = useState(false);
   const { language, setLanguage, t } = useI18nStore();
 
-  const languages: { code: Language; label: string; flag: string }[] = [
-    { code: 'pt-BR', label: t.language['pt-BR'], flag: '🇧🇷' },
-    { code: 'en-US', label: t.language['en-US'], flag: '🇺🇸' },
-    { code: 'es-ES', label: t.language['es-ES'], flag: '🇪🇸' },
+  const languages: { code: Language; label: string; shortLabel: string }[] = [
+    { code: 'pt-BR', label: t.language['pt-BR'], shortLabel: 'PT' },
+    { code: 'en-US', label: t.language['en-US'], shortLabel: 'EN' },
+    { code: 'es-ES', label: t.language['es-ES'], shortLabel: 'ES' },
   ];
 
   const currentLanguage = languages.find((lang) => lang.code === language);
@@ -22,10 +22,16 @@ export function LanguageSelector() {
   };
 
   const getButtonLabel = () => {
+    if (!currentLanguage) {
+      return language.split('-')[0]?.toUpperCase() ?? language;
+    }
+
     return (
       <>
-        <span className="text-base sm:text-lg">{currentLanguage?.flag}</span>
-        <span className="hidden lg:inline">{currentLanguage?.label}</span>
+        <span className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-gray-700 text-[0.65rem] font-semibold uppercase tracking-wide text-gray-200">
+          {currentLanguage.shortLabel}
+        </span>
+        <span className="hidden lg:inline whitespace-nowrap">{currentLanguage.label}</span>
       </>
     );
   };
@@ -59,8 +65,13 @@ export function LanguageSelector() {
               className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm transition-colors hover:bg-gray-700 focus:bg-gray-700 focus:outline-none"
             >
               <div className="flex items-center gap-3">
-                <span className="text-xl">{lang.flag}</span>
-                <span className="font-medium text-white">{lang.label}</span>
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-gray-700 text-xs font-semibold uppercase tracking-wide text-gray-200">
+                  {lang.shortLabel}
+                </span>
+                <div className="flex flex-col">
+                  <span className="font-medium text-white">{lang.label}</span>
+                  <span className="text-xs uppercase tracking-wide text-gray-400">{lang.code}</span>
+                </div>
               </div>
               {language === lang.code && (
                 <Check size={18} className="text-primary" aria-label="Selected" />
