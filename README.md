@@ -67,9 +67,10 @@ pnpm test
 
 - **React** 19 + **TypeScript**
 - **Vite** (build tool)
-- **Tailwind CSS** (estilização)
+- **Tailwind CSS v4** (estilização com CSS nativo)
 - **Zustand** (gerenciamento de estado)
 - **Lucide React** (biblioteca de ícones)
+- **Framer Motion** (animações fluidas)
 - **Biome** (linter e formatter)
 - **Vitest** + **React Testing Library** (testes)
 - **Sistema de i18n** customizado
@@ -99,7 +100,8 @@ src/
 ├── hooks/             # Custom hooks
 │   └── useTranslation.ts
 ├── utils/             # Funções utilitárias
-│   └── formatTime.ts
+│   ├── formatTime.ts
+│   └── animations.ts
 ├── types/             # Definições TypeScript
 │   └── index.ts
 └── test/              # Configuração de testes
@@ -110,7 +112,7 @@ src/
 
 ### Concluído
 
-- [x] Configuração base do projeto (Vite + React + TypeScript + Tailwind)
+- [x] Configuração base do projeto (Vite + React + TypeScript + Tailwind v4)
 - [x] Gerador de scrambles 3×3 válidos
 - [x] Hook useTimer com máquina de estados (idle → inspection → running → stopped)
 - [x] Componentes TimerDisplay, ScrambleBox, InspectionDisplay, StatCard e Toast
@@ -122,6 +124,9 @@ src/
 - [x] Biblioteca de ícones (Lucide React)
 - [x] Feedback visual aprimorado
 - [x] Utilitários de formatação de tempo
+- [x] **Animações com Framer Motion**
+- [x] **Design mobile-first responsivo**
+- [x] **Variantes de animação reutilizáveis**
 
 ### Próximos passos
 

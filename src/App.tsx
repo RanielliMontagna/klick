@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Keyboard } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { TimerDisplay } from './components/TimerDisplay';
 import { ScrambleBox } from './components/ScrambleBox';
 import { InspectionDisplay } from './components/InspectionDisplay';
@@ -8,6 +9,7 @@ import { generate3x3Scramble } from './features/scramble/generate3x3';
 import { useSessionsStore } from './stores/sessionsStore';
 import { useSettingsStore } from './stores/settingsStore';
 import { useI18nStore } from './stores/i18nStore';
+import { slideUp } from './utils/animations';
 import type { Penalty } from './types';
 
 function App() {
@@ -104,20 +106,25 @@ function App() {
   }, [generateNewScramble, updateSolvePenalty, getActiveSession]);
 
   return (
-    <div className="min-h-screen bg-background p-8">
+    <div className="min-h-screen bg-background p-4 sm:p-6 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <header className="mb-12 text-center">
-          <h1 className="text-5xl font-bold text-white mb-2">
+        <motion.header 
+          className="mb-8 sm:mb-12 text-center"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2">
             {t.app.title}
           </h1>
-          <p className="text-gray-400 text-lg">
+          <p className="text-gray-400 text-base sm:text-lg">
             {t.app.tagline}
           </p>
-        </header>
+        </motion.header>
 
         {/* Scramble */}
-        <div className="mb-12">
+        <div className="mb-8 sm:mb-12">
           <ScrambleBox 
             scramble={scramble} 
             onNewScramble={generateNewScramble}
@@ -125,8 +132,8 @@ function App() {
         </div>
 
         {/* Timer Area */}
-        <div className="mb-12 min-h-[300px] flex items-center justify-center">
-          <div className="text-center">
+        <div className="mb-8 sm:mb-12 min-h-[250px] sm:min-h-[300px] flex items-center justify-center">
+          <div className="w-full text-center">
             <InspectionDisplay 
               timeLeft={inspectionTimeLeft} 
               state={state}
@@ -139,32 +146,37 @@ function App() {
         </div>
 
         {/* Instruções */}
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-gray-800 rounded-xl p-6">
-            <div className="flex items-center gap-2 mb-3">
-              <Keyboard size={20} className="text-gray-300" />
-              <h3 className="text-lg font-semibold text-gray-300">{t.shortcuts.title}</h3>
+        <motion.div 
+          className="max-w-2xl mx-auto px-4 sm:px-0"
+          variants={slideUp}
+          initial="hidden"
+          animate="visible"
+        >
+          <div className="bg-gray-800 rounded-xl p-4 sm:p-6">
+            <div className="flex items-center gap-2 mb-4">
+              <Keyboard size={18} className="text-gray-300 sm:w-5 sm:h-5" />
+              <h3 className="text-base sm:text-lg font-semibold text-gray-300">{t.shortcuts.title}</h3>
             </div>
-            <div className="grid grid-cols-2 gap-3 text-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
               <div className="flex items-center gap-2">
-                <kbd className="px-2 py-1 bg-gray-700 rounded min-w-[60px] text-center">ESPAÇO</kbd>
-                <span className="text-gray-400">{t.shortcuts.space}</span>
+                <kbd className="px-2 py-1 bg-gray-700 rounded min-w-[70px] text-center text-xs sm:text-sm">ESPAÇO</kbd>
+                <span className="text-gray-400 text-xs sm:text-sm">{t.shortcuts.space}</span>
               </div>
               <div className="flex items-center gap-2">
-                <kbd className="px-2 py-1 bg-gray-700 rounded min-w-[60px] text-center">N</kbd>
-                <span className="text-gray-400">{t.shortcuts.newScramble}</span>
+                <kbd className="px-2 py-1 bg-gray-700 rounded min-w-[70px] text-center text-xs sm:text-sm">N</kbd>
+                <span className="text-gray-400 text-xs sm:text-sm">{t.shortcuts.newScramble}</span>
               </div>
               <div className="flex items-center gap-2">
-                <kbd className="px-2 py-1 bg-gray-700 rounded min-w-[60px] text-center">P</kbd>
-                <span className="text-gray-400">{t.shortcuts.togglePlus2}</span>
+                <kbd className="px-2 py-1 bg-gray-700 rounded min-w-[70px] text-center text-xs sm:text-sm">P</kbd>
+                <span className="text-gray-400 text-xs sm:text-sm">{t.shortcuts.togglePlus2}</span>
               </div>
               <div className="flex items-center gap-2">
-                <kbd className="px-2 py-1 bg-gray-700 rounded min-w-[60px] text-center">D</kbd>
-                <span className="text-gray-400">{t.shortcuts.toggleDNF}</span>
+                <kbd className="px-2 py-1 bg-gray-700 rounded min-w-[70px] text-center text-xs sm:text-sm">D</kbd>
+                <span className="text-gray-400 text-xs sm:text-sm">{t.shortcuts.toggleDNF}</span>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

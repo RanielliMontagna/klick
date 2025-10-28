@@ -1,4 +1,5 @@
 import { AlertTriangle, Clock } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import type { TimerState } from '../types';
 import { useI18nStore } from '../stores/i18nStore';
 
@@ -17,9 +18,9 @@ export function InspectionDisplay({ timeLeft, state }: InspectionDisplayProps) {
   const isCritical = timeLeft > 17;
 
   const getColor = () => {
-    if (isCritical) return 'text-red-500 animate-pulse';
+    if (isCritical) return 'text-red-500';
     if (isDanger) return 'text-orange-500';
-    if (isWarning) return 'text-yellow-500 animate-pulse';
+    if (isWarning) return 'text-yellow-500';
     return 'text-accent';
   };
 
@@ -30,26 +31,48 @@ export function InspectionDisplay({ timeLeft, state }: InspectionDisplayProps) {
   };
 
   const getIcon = () => {
+    const size = 32;
+    const className = getColor();
+    
     if (isCritical || isDanger) {
-      return <AlertTriangle size={40} className={getColor()} />;
+      return <AlertTriangle size={size} className={className} />;
     }
-    return <Clock size={40} className={getColor()} />;
+    return <Clock size={size} className={className} />;
   };
 
   return (
-    <div className="flex flex-col items-center space-y-3">
-      <div className="flex items-center gap-3">
+    <div className="flex flex-col items-center space-y-3 px-4">
+      <motion.div 
+        className="flex items-center gap-3"
+        animate={isCritical || isDanger ? {
+          scale: [1, 1.05, 1],
+          transition: { duration: 1, repeat: Infinity }
+        } : {}}
+      >
         {getIcon()}
-        <div className={`text-6xl font-bold ${getColor()}`}>
+        <motion.div 
+          key={Math.ceil(timeLeft)}
+          initial={{ scale: 1.2, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          className={`text-4xl sm:text-5xl md:text-6xl font-bold ${getColor()}`}
+        >
           {Math.ceil(timeLeft)}s
-        </div>
-      </div>
-      {getMessage() && (
-        <div className="flex items-center gap-2 text-2xl font-bold text-red-500 animate-pulse">
-          <AlertTriangle size={24} />
-          {getMessage()}
-        </div>
-      )}
+        </motion.div>
+      </motion.div>
+      
+      <AnimatePresence>
+        {getMessage() && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="flex items-center gap-2 text-lg sm:text-2xl font-bold text-red-500"
+          >
+            <AlertTriangle size={20} className="sm:w-6 sm:h-6" />
+            <span>{getMessage()}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

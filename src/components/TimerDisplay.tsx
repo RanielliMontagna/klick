@@ -1,7 +1,9 @@
 import { Timer, Play, Square } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import type { TimerState } from '../types';
 import { useI18nStore } from '../stores/i18nStore';
 import { formatTime } from '../utils/formatTime';
+import { fadeIn } from '../utils/animations';
 
 interface TimerDisplayProps {
   timeMs: number;
@@ -57,24 +59,43 @@ export function TimerDisplay({ timeMs, state }: TimerDisplayProps) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-4">
-      {state !== 'running' && state !== 'stopped' && (
-        <div className="flex items-center gap-3">
-          {getStateIcon()}
-          <p className={`text-2xl font-semibold ${getStateColor()}`}>
-            {getStateText()}
-          </p>
-        </div>
-      )}
+    <div className="flex flex-col items-center justify-center space-y-4 px-4">
+      <AnimatePresence mode="wait">
+        {state !== 'running' && state !== 'stopped' && (
+          <motion.div 
+            key={state}
+            variants={fadeIn}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="flex items-center gap-3"
+          >
+            {getStateIcon()}
+            <p className={`text-xl sm:text-2xl font-semibold ${getStateColor()}`}>
+              {getStateText()}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      <div className={`text-8xl font-bold tabular-nums ${getStateColor()}`}>
+      <motion.div 
+        key={`${state}-${Math.floor(timeMs / 100)}`}
+        initial={{ scale: 0.95 }}
+        animate={{ scale: 1 }}
+        className={`text-5xl sm:text-6xl md:text-8xl font-bold tabular-nums ${getStateColor()}`}
+      >
         {formatTime(timeMs)}
-      </div>
+      </motion.div>
 
       {state === 'idle' && (
-        <p className="text-sm text-gray-500">
+        <motion.p 
+          variants={fadeIn}
+          initial="hidden"
+          animate="visible"
+          className="text-xs sm:text-sm text-gray-500 text-center max-w-xs"
+        >
           {t.timer.holdSpace}
-        </p>
+        </motion.p>
       )}
     </div>
   );

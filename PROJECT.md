@@ -227,11 +227,12 @@ Requisitos mínimos:
 1. **Base tecnológica completa:**
 
    - Vite + React 19 + TypeScript
-   - Tailwind CSS configurado (tema dark-first)
+   - Tailwind CSS v4 configurado (tema dark-first com CSS nativo)
    - Zustand com persistência em localStorage
    - Biome para linting
    - Vitest + React Testing Library
    - Lucide React para ícones
+   - Framer Motion para animações fluidas
    - Sistema de i18n customizado
 
 2. **Timer funcional:**
@@ -241,35 +242,52 @@ Requisitos mínimos:
    - Contador de inspeção de 15s com avisos visuais
    - Aplicação automática de penalidades por tempo de inspeção
    - Ícones e animações para feedback visual
+   - Animações suaves entre estados
 
 3. **Gerador de scrambles:**
 
    - Scrambles 3×3 válidos (25 movimentos)
    - Sem repetição de faces consecutivas
    - Testes completos passando
+   - Animação ao gerar novo scramble
 
-4. **Componentes UI:**
+4. **Componentes UI (Mobile-First):**
 
-   - TimerDisplay (mostra tempo e estado com ícones)
-   - ScrambleBox (exibe scramble com feedback ao copiar)
-   - InspectionDisplay (contador com avisos visuais melhorados)
-   - StatCard (para exibir estatísticas)
-   - Toast (notificações e feedback)
+   - TimerDisplay (responsivo, animado, com ícones)
+   - ScrambleBox (adaptativo mobile/desktop, feedback ao copiar)
+   - InspectionDisplay (animações de pulse, avisos visuais)
+   - StatCard (hover effects, animações scale)
+   - Toast (responsivo, animação slide-in)
 
-5. **Sistema de penalidades:**
+5. **Sistema de animações:**
+
+   - Variantes reutilizáveis (fadeIn, slideUp, slideDown, scale, etc.)
+   - AnimatePresence para transições suaves
+   - Micro-interações (whileHover, whileTap)
+   - Animações baseadas em estado
+
+6. **Design Mobile-First:**
+
+   - Breakpoints responsivos (sm, md, lg)
+   - Touch-friendly (botões maiores em mobile)
+   - Tipografia escalável
+   - Layout adaptativo
+   - Performance otimizada para mobile
+
+7. **Sistema de penalidades:**
 
    - Atalhos P e D para alternar +2 e DNF
    - Salvamento automático de solves
    - Cálculo de effectiveMs considerando penalidades
 
-6. **Internacionalização:**
+8. **Internacionalização:**
 
    - Sistema i18n completo
    - Traduções em pt-BR
    - Hook useTranslation para fácil acesso
    - Store dedicada para gerenciar idioma
 
-7. **Atalhos de teclado:**
+9. **Atalhos de teclado:**
    - Space: iniciar/parar timer
    - N: novo scramble
    - P: toggle +2
