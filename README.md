@@ -13,6 +13,7 @@
 - 🌐 **Internacionalização** (i18n) com suporte a múltiplos idiomas
 - 🎯 **Ícones modernos** com Lucide React
 - ✨ **Feedback visual** aprimorado (toasts, animações)
+- 📱 **PWA** - Instalável e funciona offline
 - 🇧🇷 **Interface em pt-BR**
 
 ## 🚀 Como executar
@@ -34,9 +35,28 @@ pnpm dev
 # Build para produção
 pnpm build
 
+# Preview da build de produção
+pnpm preview
+
 # Executar testes
 pnpm test
 ```
+
+## 📱 PWA (Progressive Web App)
+
+O Klick é um Progressive Web App completo, permitindo:
+
+- **Instalação**: Clique em "Instalar" no navegador ou use o menu "Adicionar à tela inicial" no mobile
+- **Offline**: Funciona mesmo sem conexão com internet após o primeiro acesso
+- **Atualizações**: Notificação automática quando uma nova versão está disponível
+- **Performance**: Assets em cache para carregamento instantâneo
+
+### Como instalar no celular
+
+1. Acesse o Klick pelo navegador (Chrome/Safari)
+2. No **Android**: Toque no menu (⋮) → "Instalar app" ou "Adicionar à tela inicial"
+3. No **iOS**: Toque no ícone de compartilhar → "Adicionar à Tela de Início"
+4. O app abrirá em tela cheia, como um app nativo!
 
 ## 🎮 Como usar
 
@@ -74,6 +94,7 @@ pnpm test
 - **Biome** (linter e formatter)
 - **Vitest** + **React Testing Library** (testes)
 - **Sistema de i18n** customizado
+- **Vite PWA Plugin** (Progressive Web App)
 
 ## 📁 Estrutura do Projeto
 
@@ -84,7 +105,8 @@ src/
 │   ├── ScrambleBox.tsx
 │   ├── InspectionDisplay.tsx
 │   ├── StatCard.tsx
-│   └── Toast.tsx
+│   ├── Toast.tsx
+│   └── PWAUpdatePrompt.tsx
 ├── features/           # Business logic
 │   ├── timer/
 │   │   └── useTimer.ts
@@ -134,6 +156,7 @@ src/
 - [x] **Animações com Framer Motion**
 - [x] **Design mobile-first responsivo**
 - [x] **Variantes de animação reutilizáveis**
+- [x] **PWA** - Service Worker e manifest configurados
 
 ### Próximos passos
 
@@ -144,7 +167,7 @@ src/
 - [ ] Exportar/Importar dados (JSON)
 - [ ] Onboarding para iniciantes
 - [ ] Testes de médias e penalidades
-- [ ] PWA (opcional)
+- [x] **PWA** - Instalável e offline-ready
 
 ## 🧪 Testes
 

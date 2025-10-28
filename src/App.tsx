@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { TimerDisplay } from './components/TimerDisplay';
 import { ScrambleBox } from './components/ScrambleBox';
 import { InspectionDisplay } from './components/InspectionDisplay';
+import { PWAUpdatePrompt } from './components/PWAUpdatePrompt';
 import { useTimer } from './features/timer/useTimer';
 import { generate3x3Scramble } from './features/scramble/generate3x3';
 import { useSessionsStore } from './stores/sessionsStore';
@@ -179,6 +180,8 @@ function App() {
           </div>
         </motion.div>
       </div>
+
+      <PWAUpdatePrompt />
     </div>
   );
 }

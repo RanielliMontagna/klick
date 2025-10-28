@@ -217,6 +217,7 @@ Requisitos mínimos:
 - [ ] Exportar/Importar JSON.
 - [x] UI clara, responsiva e acessível (dark-first).
 - [x] Testes principais passando.
+- [x] **PWA:** manifest + service worker para instalação e uso offline.
 
 ---
 
@@ -288,10 +289,18 @@ Requisitos mínimos:
    - Store dedicada para gerenciar idioma
 
 9. **Atalhos de teclado:**
+
    - Space: iniciar/parar timer
    - N: novo scramble
    - P: toggle +2
    - D: toggle DNF
+
+10. **PWA (Progressive Web App):**
+    - Instalável em dispositivos móveis
+    - Funciona offline com Service Worker
+    - Cache de assets para performance
+    - Notificação de atualizações disponíveis
+    - Ícones e manifest configurados
 
 ### Próximas fases
 
