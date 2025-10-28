@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 import { Navbar, MobileNav } from '../components/navigation';
 import { Logo } from '../components/logo/Logo';
 import { LanguageSelector } from '../components/languageSelector/LanguageSelector';
@@ -17,7 +17,9 @@ export function MainLayout() {
           <div className="flex items-center justify-between h-16">
             {/* Logo + Title */}
             <div className="flex items-center gap-3">
-              <Logo size="sm" />
+              <Link to="/" aria-label={t.navigation.home} className="inline-flex">
+                <Logo size="sm" />
+              </Link>
               <div className="sm:block">
                 <p className="text-xs text-text-secondary">{t.app.tagline}</p>
               </div>
