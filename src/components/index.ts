@@ -4,6 +4,7 @@ export { HeaderDropdownButton } from './headerDropdownButton/HeaderDropdownButto
 export { HeaderDropdownMenu } from './headerDropdownMenu/HeaderDropdownMenu';
 export { PWAUpdatePrompt } from './pwaUpdatePrompt/PWAUpdatePrompt';
 export { ScrambleBox } from './scrambleBox/ScrambleBox';
+export { ScrambleGuideModal } from './scrambleGuideModal/ScrambleGuideModal';
 export { SessionManagerModal } from './sessionManagerModal/SessionManagerModal';
 export { SessionSwitcher } from './sessionSwitcher/SessionSwitcher';
 export { SettingsModal } from './settingsModal/SettingsModal';

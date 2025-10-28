@@ -15,6 +15,43 @@ export const enUS = {
     new: 'New',
     generating: 'Generating scramble...',
     copySuccess: 'Copied!',
+    guide: 'How to read scrambles',
+    guideModal: {
+      title: 'Scramble Guide',
+      description:
+        "Learn how to interpret Rubik's Cube 3×3 notation and execute scrambles correctly.",
+      faces: {
+        title: 'Cube Faces',
+        description: 'Each letter represents a face of the cube:',
+        R: 'R - Right',
+        L: 'L - Left',
+        U: 'U - Up',
+        D: 'D - Down',
+        F: 'F - Front',
+        B: 'B - Back',
+      },
+      modifiers: {
+        title: 'Modifiers',
+        description: 'Symbols that modify the movement:',
+        none: 'No symbol - 90° clockwise',
+        prime: "' (prime) - 90° counterclockwise",
+        double: '2 - 180° (double turn)',
+      },
+      examples: {
+        title: 'Practical Examples',
+        R: 'R = Turn right face 90° clockwise',
+        RPrime: "R' = Turn right face 90° counterclockwise",
+        R2: 'R2 = Turn right face 180°',
+        sequence: "Sequence: R U R' U' = Right, Up, Right counterclockwise, Up counterclockwise",
+      },
+      tips: {
+        title: 'Important Tips',
+        tip1: '• Execute moves in the exact order shown',
+        tip2: '• Always look at the same face (front) during the entire scramble',
+        tip3: '• Practice basic moves before full scrambles',
+        tip4: '• An official WCA scramble has 25 moves',
+      },
+    },
   },
   timer: {
     inspection: 'Inspection',

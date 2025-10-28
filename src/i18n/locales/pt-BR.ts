@@ -15,6 +15,44 @@ export const ptBR = {
     new: 'Novo',
     generating: 'Gerando embaralhamento...',
     copySuccess: 'Copiado!',
+    guide: 'Como ler o embaralhamento',
+    guideModal: {
+      title: 'Guia de Embaralhamento',
+      description:
+        'Aprenda a interpretar a notação do cubo mágico 3×3 e execute o embaralhamento corretamente.',
+      faces: {
+        title: 'Faces do Cubo',
+        description: 'Cada letra representa uma face do cubo:',
+        R: 'R - Direita (Right)',
+        L: 'L - Esquerda (Left)',
+        U: 'U - Superior (Up)',
+        D: 'D - Inferior (Down)',
+        F: 'F - Frontal (Front)',
+        B: 'B - Traseira (Back)',
+      },
+      modifiers: {
+        title: 'Modificadores',
+        description: 'Símbolos que alteram o movimento:',
+        none: 'Sem símbolo - 90° no sentido horário',
+        prime: "' (apóstrofo) - 90° no sentido anti-horário",
+        double: '2 - 180° (giro duplo)',
+      },
+      examples: {
+        title: 'Exemplos Práticos',
+        R: 'R = Gire a face direita 90° no sentido horário',
+        RPrime: "R' = Gire a face direita 90° no sentido anti-horário",
+        R2: 'R2 = Gire a face direita 180°',
+        sequence:
+          "Sequência: R U R' U' = Direita, Superior, Direita anti-horário, Superior anti-horário",
+      },
+      tips: {
+        title: 'Dicas Importantes',
+        tip1: '• Execute os movimentos na ordem exata mostrada',
+        tip2: '• Sempre olhe para a mesma face (frontal) durante todo o embaralhamento',
+        tip3: '• Pratique os movimentos básicos antes de embaralhamentos completos',
+        tip4: '• Um embaralhamento oficial WCA tem 25 movimentos',
+      },
+    },
   },
   timer: {
     inspection: 'Inspeção',

@@ -15,6 +15,44 @@ export const esES = {
     new: 'Nueva',
     generating: 'Generando mezcla...',
     copySuccess: '¡Copiado!',
+    guide: 'Cómo leer las mezclas',
+    guideModal: {
+      title: 'Guía de Mezcla',
+      description:
+        'Aprende a interpretar la notación del Cubo de Rubik 3×3 y ejecutar las mezclas correctamente.',
+      faces: {
+        title: 'Caras del Cubo',
+        description: 'Cada letra representa una cara del cubo:',
+        R: 'R - Derecha (Right)',
+        L: 'L - Izquierda (Left)',
+        U: 'U - Superior (Up)',
+        D: 'D - Inferior (Down)',
+        F: 'F - Frontal (Front)',
+        B: 'B - Trasera (Back)',
+      },
+      modifiers: {
+        title: 'Modificadores',
+        description: 'Símbolos que modifican el movimiento:',
+        none: 'Sin símbolo - 90° en sentido horario',
+        prime: "' (prima) - 90° en sentido antihorario",
+        double: '2 - 180° (giro doble)',
+      },
+      examples: {
+        title: 'Ejemplos Prácticos',
+        R: 'R = Gira la cara derecha 90° en sentido horario',
+        RPrime: "R' = Gira la cara derecha 90° en sentido antihorario",
+        R2: 'R2 = Gira la cara derecha 180°',
+        sequence:
+          "Secuencia: R U R' U' = Derecha, Superior, Derecha antihorario, Superior antihorario",
+      },
+      tips: {
+        title: 'Consejos Importantes',
+        tip1: '• Ejecuta los movimientos en el orden exacto mostrado',
+        tip2: '• Siempre mira la misma cara (frontal) durante toda la mezcla',
+        tip3: '• Practica los movimientos básicos antes de mezclas completas',
+        tip4: '• Una mezcla oficial de la WCA tiene 25 movimientos',
+      },
+    },
   },
   timer: {
     inspection: 'Inspección',

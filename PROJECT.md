@@ -484,8 +484,8 @@ Implementação atual:
 
 ### Próximas fases
 
-- **Guia de embaralhamento para iniciantes:** adicionar explicação visual curta sobre faces (`R/L/U/D/F/B`) e modificadores (`'`, `2`), destacando em destaque ou tooltip ao lado do scramble.
 - **Lançar tema claro:** definir tokens de cor equivalentes ao dark, adaptar os componentes Tailwind e garantir persistência da escolha de tema.
+- **Guia de embaralhamento para iniciantes:** adicionar explicação visual curta sobre faces (`R/L/U/D/F/B`) e modificadores (`'`, `2`), destacando em destaque ou tooltip ao lado do scramble.
 - **Onboarding interativo:** implementar tooltips contextuais para explicar Space, Scramble e Estatísticas, com opção de revisitar no menu de ajuda.
 - **Estatísticas avançadas:** adicionar gráficos simples de evolução (média móvel, distribuição por sessão) e métricas de consistência (desvio padrão, TPS médio).
 - **Sincronização opcional:** investigar integração com armazenamento na nuvem (ex.: Supabase) mantendo local-first, incluindo merge de sessões e autenticação leve.
