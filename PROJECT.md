@@ -456,9 +456,34 @@ Implementação atual:
       - Atualizações em tempo real
       - Controles responsivos e acessíveis
 
+16. **Sistema de Sons (Fase 5.1):** ✅
+    - **Utilitário de sons** (`/src/utils/sounds.ts`):
+      - Geração de beeps via Web Audio API
+      - Sons sintetizados (sem arquivos externos)
+      - Compatibilidade com navegadores (AudioContext + webkitAudioContext)
+    - **Eventos sonoros implementados:**
+      - **Timer Ready:** som suave ao segurar espaço (pronto para começar)
+      - **Timer Start:** beep baixo ao iniciar cronômetro
+      - **Timer Stop:** beep de confirmação ao parar
+      - **Inspection Warning:** beep suave aos 15s (fim do tempo de inspeção)
+      - **Inspection Critical:** beep duplo urgente aos 17s (penalidade DNF iminente)
+      - **Success:** beep duplo ascendente (copiar scramble, ações bem-sucedidas)
+      - **Error:** beep grave (feedback de erro)
+    - **Integração com settings:**
+      - Toggle de sons em SettingsModal
+      - Verificação `shouldPlaySound()` antes de reproduzir
+      - Sons só tocam se `soundsEnabled === true`
+    - **Locais de reprodução:**
+      - `useTimer`: ready, start, stop, inspection warnings
+      - `useScrambleBox`: success ao copiar scramble
+      - Preparado para futuras ações (delete, save, etc.)
+    - **Performance:**
+      - Sons sintetizados (leves, sem download)
+      - Lazy initialization do AudioContext
+      - Tratamento de erros silencioso (console.warn)
+
 ### Próximas fases
 
-- **Adicionar sons funcionais:** conectar o toggle de áudio do settings ao timer, emitindo sons distintos para últimos 3s de inspeção, start/stop e alertas de penalidade; revisar performance em mobile carregando assets pré-carregados.
 - **Guia de embaralhamento para iniciantes:** adicionar explicação visual curta sobre faces (`R/L/U/D/F/B`) e modificadores (`'`, `2`), destacando em destaque ou tooltip ao lado do scramble.
 - **Lançar tema claro:** definir tokens de cor equivalentes ao dark, adaptar os componentes Tailwind e garantir persistência da escolha de tema.
 - **Onboarding interativo:** implementar tooltips contextuais para explicar Space, Scramble e Estatísticas, com opção de revisitar no menu de ajuda.

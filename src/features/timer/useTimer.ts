@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import type { TimerState } from '@/types';
+import { sounds, shouldPlaySound } from '@/utils/sounds';
 
 interface UseTimerReturn {
   state: TimerState;
@@ -11,10 +12,17 @@ interface UseTimerReturn {
   reset: () => void;
 }
 
-export function useTimer(
-  inspectionDuration: number = 15,
-  onInspectionEnd?: (timeOverMs: number) => void,
-): UseTimerReturn {
+interface UseTimerOptions {
+  inspectionDuration?: number;
+  soundsEnabled?: boolean;
+  onInspectionEnd?: (timeOverMs: number) => void;
+}
+
+export function useTimer({
+  inspectionDuration = 15,
+  soundsEnabled = false,
+  onInspectionEnd,
+}: UseTimerOptions = {}): UseTimerReturn {
   const [state, setState] = useState<TimerState>('idle');
   const [timeMs, setTimeMs] = useState(0);
   const [inspectionTimeLeft, setInspectionTimeLeft] = useState(inspectionDuration);
@@ -24,6 +32,8 @@ export function useTimer(
   const animationFrameRef = useRef<number>(0);
   const inspectionIntervalRef = useRef<number | null>(null);
   const spaceKeyDownRef = useRef<boolean>(false);
+  const warningPlayedRef = useRef<boolean>(false);
+  const criticalPlayedRef = useRef<boolean>(false);
 
   const updateTimer = useCallback(() => {
     if (state === 'running') {
@@ -38,6 +48,8 @@ export function useTimer(
     inspectionStartRef.current = Date.now();
     setInspectionTimeLeft(inspectionDuration);
     setTimeMs(0);
+    warningPlayedRef.current = false;
+    criticalPlayedRef.current = false;
   }, [inspectionDuration]);
 
   const startTimer = useCallback(() => {
@@ -57,7 +69,12 @@ export function useTimer(
     setState('running');
     startTimeRef.current = performance.now();
     setTimeMs(0);
-  }, [state, inspectionDuration, onInspectionEnd]);
+
+    // Play start sound
+    if (shouldPlaySound(soundsEnabled)) {
+      sounds.timerStart();
+    }
+  }, [state, inspectionDuration, soundsEnabled, onInspectionEnd]);
 
   const stopTimer = useCallback(() => {
     if (state === 'running') {
@@ -65,8 +82,13 @@ export function useTimer(
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
+
+      // Play stop sound
+      if (shouldPlaySound(soundsEnabled)) {
+        sounds.timerStop();
+      }
     }
-  }, [state]);
+  }, [state, soundsEnabled]);
 
   const reset = useCallback(() => {
     setState('idle');
@@ -87,6 +109,22 @@ export function useTimer(
         const elapsed = (Date.now() - inspectionStartRef.current) / 1000;
         const timeLeft = Math.max(0, inspectionDuration - elapsed);
         setInspectionTimeLeft(timeLeft);
+
+        // Play warning sound at 15s mark (when timeLeft is between 0 and 0.1)
+        if (timeLeft <= 0.1 && timeLeft > 0 && !warningPlayedRef.current) {
+          if (shouldPlaySound(soundsEnabled)) {
+            sounds.inspectionWarning();
+          }
+          warningPlayedRef.current = true;
+        }
+
+        // Play critical sound at 17s mark (2s overtime)
+        if (elapsed >= inspectionDuration + 2 && !criticalPlayedRef.current) {
+          if (shouldPlaySound(soundsEnabled)) {
+            sounds.inspectionCritical();
+          }
+          criticalPlayedRef.current = true;
+        }
       }, 100);
 
       return () => {
@@ -95,7 +133,7 @@ export function useTimer(
         }
       };
     }
-  }, [state, inspectionDuration]);
+  }, [state, inspectionDuration, soundsEnabled]);
 
   useEffect(() => {
     if (state === 'running') {
@@ -120,6 +158,11 @@ export function useTimer(
 
         if (state === 'running') {
           stopTimer();
+        } else if (state === 'idle') {
+          // Play ready sound when holding space
+          if (shouldPlaySound(soundsEnabled)) {
+            sounds.timerReady();
+          }
         }
       }
     };
@@ -148,7 +191,7 @@ export function useTimer(
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
     };
-  }, [state, startInspection, startTimer, stopTimer]);
+  }, [state, soundsEnabled, startInspection, startTimer, stopTimer]);
 
   return {
     state,

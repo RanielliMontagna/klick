@@ -52,12 +52,13 @@ function App() {
     getBestAo12,
   } = useSessionsStore();
 
-  const { state, timeMs, inspectionTimeLeft, reset } = useTimer(
-    settings.inspectionDuration,
-    (overtime) => {
+  const { state, timeMs, inspectionTimeLeft, reset } = useTimer({
+    inspectionDuration: settings.inspectionDuration,
+    soundsEnabled: settings.soundsEnabled,
+    onInspectionEnd: (overtime) => {
       setInspectionOvertime(overtime);
     },
-  );
+  });
 
   // Gera novo scramble
   const generateNewScramble = useCallback(() => {
