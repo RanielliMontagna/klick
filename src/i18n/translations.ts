@@ -43,6 +43,47 @@ export const translations = {
       current: 'Atual',
       best: 'Melhor',
       average: 'Média',
+      clear: 'Limpar Estatísticas',
+      clearConfirmTitle: 'Limpar todos os solves?',
+      clearConfirmMessage: 'Esta ação irá deletar permanentemente todos os solves da sessão atual. Esta ação não pode ser desfeita.',
+      clearSuccess: 'Estatísticas limpas com sucesso!',
+      help: 'Ajuda',
+      learnMore: 'Saiba mais',
+      info: {
+        title: 'Entendendo as Estatísticas',
+        single: {
+          title: 'Single (Melhor Tempo)',
+          description: 'É o seu tempo mais rápido em um único solve. Mostra o melhor que você já conseguiu fazer.',
+          example: 'Se você fez solves de 15s, 12s e 18s, seu single é 12s.',
+        },
+        ao5: {
+          title: 'ao5 (Average of 5)',
+          description: 'Média dos seus últimos 5 solves, descartando o melhor e o pior tempo. Isso dá uma visão mais precisa do seu desempenho consistente.',
+          example: 'Tempos: 15s, 12s, 18s, 14s, 16s\nDescarta: 12s (melhor) e 18s (pior)\nMédia: (15 + 14 + 16) ÷ 3 = 15s',
+          rule: 'Se houver 2 ou mais DNFs nos últimos 5 solves, a média é DNF.',
+        },
+        ao12: {
+          title: 'ao12 (Average of 12)',
+          description: 'Funciona igual ao ao5, mas com os últimos 12 solves. É ainda mais precisa para medir consistência.',
+          example: 'Pega os últimos 12 tempos, remove o melhor e o pior, e calcula a média dos 10 restantes.',
+          rule: 'Se houver 2 ou mais DNFs nos últimos 12 solves, a média é DNF.',
+        },
+        bestAo5: {
+          title: 'Best ao5 (Melhor ao5)',
+          description: 'A melhor média de 5 consecutivos que você já fez. É o seu recorde pessoal de ao5.',
+          example: 'Entre todas as sequências de 5 solves consecutivos, esta é a que teve a melhor média.',
+        },
+        bestAo12: {
+          title: 'Best ao12 (Melhor ao12)',
+          description: 'A melhor média de 12 consecutivos que você já fez. É o seu recorde pessoal de ao12.',
+          example: 'Entre todas as sequências de 12 solves consecutivos, esta é a que teve a melhor média.',
+        },
+        penalties: {
+          title: 'Penalidades',
+          plus2: '+2: Adiciona 2 segundos ao tempo (ajuste incorreto do cubo ao final)',
+          dnf: 'DNF (Did Not Finish): Solve inválido (não resolveu, violou regras de inspeção, etc.)',
+        },
+      },
     },
     actions: {
       save: 'Salvar',

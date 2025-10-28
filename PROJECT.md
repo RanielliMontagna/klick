@@ -326,6 +326,21 @@ Requisitos mínimos:
     - 20 testes abrangentes cobrindo todos os cenários
     - Interface com 5 cards de estatísticas animados
 
+### Antes da Fase 3 - Melhorias necessárias:
+
+- **Fase 2.5: Gerenciamento e Educação** ✅
+  - [x] Botão para limpar todos os solves da sessão atual (com confirmação)
+  - [x] Modal/tooltip explicativo sobre as estatísticas para iniciantes:
+    - O que é **Single** (melhor tempo individual)
+    - O que é **ao5** (média de 5, descarta melhor e pior)
+    - O que é **ao12** (média de 12, descarta melhor e pior)
+    - Como funcionam as regras de DNF (2+ DNFs = média DNF)
+    - Como funcionam as penalidades +2
+    - Botão de ajuda "?" na seção de estatísticas
+  - [x] Confirmação antes de limpar dados (modal danger)
+  - [x] Feedback visual após limpar (toast de sucesso)
+  - [x] Componentes reutilizáveis (ConfirmDialog, StatsInfoModal)
+
 ### Próximas fases
 
 - **Fase 3:** Tabela de histórico e filtros

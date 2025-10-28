@@ -23,6 +23,7 @@ interface SessionsStore {
   addSolve: (solve: Omit<Solve, 'id' | 'createdAt' | 'effectiveMs'>) => void;
   updateSolvePenalty: (solveId: string, penalty: Penalty) => void;
   deleteSolve: (solveId: string) => void;
+  clearCurrentSession: () => void;
   
   // Statistics getters
   getSingle: () => Average;
@@ -138,6 +139,15 @@ export const useSessionsStore = create<SessionsStore>()(
             ...session,
             solves: session.solves.filter((s) => s.id !== solveId),
           })),
+        })),
+
+      clearCurrentSession: () =>
+        set((state) => ({
+          sessions: state.sessions.map((session) =>
+            session.id === state.activeSessionId
+              ? { ...session, solves: [] }
+              : session
+          ),
         })),
 
       exportSessions: () => {

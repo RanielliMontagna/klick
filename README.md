@@ -160,6 +160,9 @@ src/
 - [x] **Cálculo de estatísticas** (Single, ao5, ao12, best ao5, best ao12)
 - [x] **Cards de estatísticas animados** com regras de DNF/+2
 - [x] **20 testes abrangentes** para cálculo de médias
+- [x] **Botão para limpar estatísticas** com confirmação
+- [x] **Modal educativo** explicando estatísticas para iniciantes
+- [x] **Componentes reutilizáveis** (ConfirmDialog, StatsInfoModal)
 
 ### Próximos passos
 

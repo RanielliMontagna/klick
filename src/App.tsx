@@ -1,10 +1,13 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Keyboard } from 'lucide-react';
+import { Keyboard, Trash2, HelpCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { TimerDisplay } from './components/TimerDisplay';
 import { ScrambleBox } from './components/ScrambleBox';
 import { InspectionDisplay } from './components/InspectionDisplay';
 import { StatCard } from './components/StatCard';
+import { Toast } from './components/Toast';
+import { ConfirmDialog } from './components/ConfirmDialog';
+import { StatsInfoModal } from './components/StatsInfoModal';
 import { PWAUpdatePrompt } from './components/PWAUpdatePrompt';
 import { Logo } from './components/Logo';
 import { useTimer } from './features/timer/useTimer';
@@ -19,6 +22,9 @@ import type { Penalty } from './types';
 function App() {
   const [scramble, setScramble] = useState('');
   const [inspectionOvertime, setInspectionOvertime] = useState(0);
+  const [showClearConfirm, setShowClearConfirm] = useState(false);
+  const [showStatsInfo, setShowStatsInfo] = useState(false);
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
   
   const { t } = useI18nStore();
   const { settings } = useSettingsStore();
@@ -26,6 +32,7 @@ function App() {
     addSolve, 
     updateSolvePenalty, 
     getActiveSession,
+    clearCurrentSession,
     getSingle,
     getAo5,
     getAo12,
@@ -46,6 +53,12 @@ function App() {
   const generateNewScramble = useCallback(() => {
     setScramble(generate3x3Scramble());
   }, []);
+
+  // Handler para limpar sessão
+  const handleClearSession = () => {
+    clearCurrentSession();
+    setShowSuccessToast(true);
+  };
 
   // Gera scramble inicial
   useEffect(() => {
@@ -157,36 +170,62 @@ function App() {
 
         {/* Statistics Cards */}
         <motion.div 
-          className="mb-8 sm:mb-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4"
+          className="mb-8 sm:mb-12"
           variants={fadeIn}
           initial="hidden"
           animate="visible"
         >
-          <StatCard
-            label={t.stats.single}
-            value={formatAverage(getSingle())}
-            variant="primary"
-          />
-          <StatCard
-            label={t.stats.ao5}
-            value={formatAverage(getAo5())}
-            variant="secondary"
-          />
-          <StatCard
-            label={t.stats.ao12}
-            value={formatAverage(getAo12())}
-            variant="secondary"
-          />
-          <StatCard
-            label={t.stats.bestAo5}
-            value={formatAverage(getBestAo5())}
-            variant="accent"
-          />
-          <StatCard
-            label={t.stats.bestAo12}
-            value={formatAverage(getBestAo12())}
-            variant="accent"
-          />
+          {/* Header com título e ações */}
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg sm:text-xl font-bold text-white">Estatísticas</h2>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setShowStatsInfo(true)}
+                className="flex items-center gap-2 px-3 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors text-sm"
+                title={t.stats.help}
+              >
+                <HelpCircle size={18} />
+                <span className="hidden sm:inline">{t.stats.help}</span>
+              </button>
+              <button
+                onClick={() => setShowClearConfirm(true)}
+                className="flex items-center gap-2 px-3 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-600/30 rounded-lg transition-colors text-sm"
+                title={t.stats.clear}
+              >
+                <Trash2 size={18} />
+                <span className="hidden sm:inline">{t.stats.clear}</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Cards de estatísticas */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+            <StatCard
+              label={t.stats.single}
+              value={formatAverage(getSingle())}
+              variant="primary"
+            />
+            <StatCard
+              label={t.stats.ao5}
+              value={formatAverage(getAo5())}
+              variant="secondary"
+            />
+            <StatCard
+              label={t.stats.ao12}
+              value={formatAverage(getAo12())}
+              variant="secondary"
+            />
+            <StatCard
+              label={t.stats.bestAo5}
+              value={formatAverage(getBestAo5())}
+              variant="accent"
+            />
+            <StatCard
+              label={t.stats.bestAo12}
+              value={formatAverage(getBestAo12())}
+              variant="accent"
+            />
+          </div>
         </motion.div>
 
         {/* Instruções */}
@@ -222,6 +261,32 @@ function App() {
           </div>
         </motion.div>
       </div>
+
+      {/* Modals */}
+      <ConfirmDialog
+        isOpen={showClearConfirm}
+        onClose={() => setShowClearConfirm(false)}
+        onConfirm={handleClearSession}
+        title={t.stats.clearConfirmTitle}
+        message={t.stats.clearConfirmMessage}
+        confirmText={t.stats.clear}
+        cancelText={t.actions.cancel}
+        variant="danger"
+      />
+
+      <StatsInfoModal
+        isOpen={showStatsInfo}
+        onClose={() => setShowStatsInfo(false)}
+      />
+
+      {/* Toast */}
+      {showSuccessToast && (
+        <Toast
+          message={t.stats.clearSuccess}
+          type="success"
+          onClose={() => setShowSuccessToast(false)}
+        />
+      )}
 
       <PWAUpdatePrompt />
     </div>
