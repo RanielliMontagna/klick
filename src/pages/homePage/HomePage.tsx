@@ -28,7 +28,7 @@ export function HomePage() {
   const { addSolve, updateSolvePenalty, getSingle, getAo5, getAo12, getBestAo5, getBestAo12 } =
     useSessionsStore();
 
-  const { state, timeMs, inspectionTimeLeft } = useTimer({
+  const { state, timeMs, inspectionTimeLeft, reset } = useTimer({
     inspectionDuration: settings.inspectionDuration,
     soundsEnabled: settings.soundsEnabled,
     onInspectionEnd: (overtime) => {
@@ -65,9 +65,10 @@ export function HomePage() {
         scramble,
       });
 
-      // Gera novo scramble para próximo solve
+      // Prepara próximo solve
       generateNewScramble();
       setInspectionOvertime(0);
+      reset();
     }
   }, [
     state,
@@ -77,6 +78,7 @@ export function HomePage() {
     settings.autoInspectionPenalty,
     addSolve,
     generateNewScramble,
+    reset,
   ]);
 
   // Atalhos de teclado
