@@ -48,7 +48,7 @@ export function HomePage() {
         const overtime = inspectionOvertime;
         if (overtime >= 2000) {
           penalty = 'DNF';
-        } else if (overtime >= 0) {
+        } else if (overtime > 0) {
           penalty = '+2';
         }
       }

@@ -34,6 +34,7 @@ export function useTimer({
   const spaceKeyDownRef = useRef<boolean>(false);
   const warningPlayedRef = useRef<boolean>(false);
   const criticalPlayedRef = useRef<boolean>(false);
+  const ignoreNextKeyUpRef = useRef<boolean>(false);
 
   const updateTimer = useCallback(() => {
     if (state === 'running') {
@@ -82,6 +83,7 @@ export function useTimer({
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
+      ignoreNextKeyUpRef.current = true;
 
       // Play stop sound
       if (shouldPlaySound(soundsEnabled)) {
@@ -94,6 +96,9 @@ export function useTimer({
     setState('idle');
     setTimeMs(0);
     setInspectionTimeLeft(inspectionDuration);
+    if (!spaceKeyDownRef.current) {
+      ignoreNextKeyUpRef.current = false;
+    }
     if (animationFrameRef.current) {
       cancelAnimationFrame(animationFrameRef.current);
     }
@@ -175,6 +180,11 @@ export function useTimer({
       if (e.code === 'Space' && spaceKeyDownRef.current) {
         e.preventDefault();
         spaceKeyDownRef.current = false;
+
+        if (ignoreNextKeyUpRef.current) {
+          ignoreNextKeyUpRef.current = false;
+          return;
+        }
 
         if (state === 'idle') {
           startInspection();
