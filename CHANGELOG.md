@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.1.0](https://github.com/RanielliMontagna/klick/compare/v1.0.0...v1.1.0) (2025-10-29)
+
+
+### Features
+
+* add reusable Card component and refactor UI to utilize it across various pages ([eeb0377](https://github.com/RanielliMontagna/klick/commit/eeb037716d964c66419df44ac31ea678f8406d6c))
+* add TrainingPage and related components for training functionality ([a05a687](https://github.com/RanielliMontagna/klick/commit/a05a68774a2c59922e7d2ca9349eb1e948ad711c))
+* refactor component imports and add new UI components ([d853b7e](https://github.com/RanielliMontagna/klick/commit/d853b7e47c8fd748df2afe5ce1f6fe750a7710f1))
+
+
+### Bug Fixes
+
+* correct favicon path and update theme button styles ([b2f7d46](https://github.com/RanielliMontagna/klick/commit/b2f7d46788e9d7cee7e541d295a612f9b0513cc3))
+* enhance validity checks for average TPS calculation ([740dad7](https://github.com/RanielliMontagna/klick/commit/740dad74caf86ddec83df782cf42770d458ce10d))
+* update descriptions for consistency and performance metrics in localization files ([c18c482](https://github.com/RanielliMontagna/klick/commit/c18c48274839d4a75096fb94bd5eb3a5443e6ff6))
+* update TutorialTranslation type and refactor tutorial visualization config for improved type safety ([f3886ad](https://github.com/RanielliMontagna/klick/commit/f3886ad95f520b65ff39f3378afe0a4a6d960c1f))
+
 ## 1.0.0 (2025-10-29)
 
 
