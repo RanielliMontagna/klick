@@ -197,7 +197,6 @@ src/
 │   ├── TimerDisplay.tsx
 │   ├── ScrambleBox.tsx
 │   ├── InspectionDisplay.tsx
-│   ├── StatCard.tsx
 │   ├── SolveTable.tsx
 │   ├── Toast.tsx
 │   ├── PWAUpdatePrompt.tsx
@@ -215,7 +214,6 @@ src/
 │   │   ├── useScrambleGuideModal.ts
 │   │   └── index.ts
 │   ├── statsInfoModal/
-│   │   ├── StatsInfoModal.tsx
 │   │   └── index.ts
 │   ├── advancedStatsModal/
 │       ├── AdvancedStatsModal.tsx
@@ -284,7 +282,7 @@ src/
 - [x] Atalhos de teclado (Space, N, P, D)
 
 #### UI/UX
-- [x] Componentes responsivos (TimerDisplay, ScrambleBox, InspectionDisplay, StatCard, Toast)
+- [x] Componentes responsivos (TimerDisplay, ScrambleBox, InspectionDisplay, StatCard da Home, Toast)
 - [x] Animações fluidas com Framer Motion
 - [x] Design mobile-first com breakpoints responsivos
 - [x] Feedback visual aprimorado (toasts, animações, transições)

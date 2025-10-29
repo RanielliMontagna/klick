@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
-import { cls } from '@/utils/cls';
-
+import { cn } from '@/utils';
 
 interface ToggleButtonProps {
   value: boolean;
@@ -15,7 +14,7 @@ export function ToggleButton({ value, onValueChange, className, ...props }: Togg
       onClick={onValueChange}
       role="switch"
       aria-checked={value}
-      className={cls(
+      className={cn(
         'relative w-12 h-6 rounded-full transition-colors p-0 justify-start focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
         value ? 'bg-primary' : 'bg-border',
         className

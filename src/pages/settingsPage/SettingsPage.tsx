@@ -3,7 +3,7 @@ import { Settings as SettingsIcon } from 'lucide-react';
 import { SettingsContent } from './components/SettingsContent';
 import { PageHeader } from '@/components';
 import { useI18nStore } from '@/stores/i18nStore';
-import { fadeIn } from '@/utils/animations';
+import { fadeIn } from '@/utils';
 
 export function SettingsPage() {
   const { t } = useI18nStore();

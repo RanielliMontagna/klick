@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { cls } from '@/utils/cls';
+import { cn } from '@/utils';
 
 const baseClasses =
   'inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 disabled:opacity-60 disabled:cursor-not-allowed';
@@ -37,7 +37,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     <button
       ref={ref}
       type={type ?? 'button'}
-      className={cls(baseClasses, variantClasses[variant], sizeClasses[size], className)}
+      className={cn(baseClasses, variantClasses[variant], sizeClasses[size], className)}
       {...props}
     >
       {children}

@@ -3,7 +3,7 @@ import { TrendingUp } from 'lucide-react';
 import { AdvancedStatsContent } from './components/advancedStats/AdvancedStatsContent';
 import { PageHeader } from '@/components';
 import { useI18nStore } from '@/stores/i18nStore';
-import { fadeIn } from '@/utils/animations';
+import { fadeIn } from '@/utils';
 
 export function StatsPage() {
   const { t } = useI18nStore();

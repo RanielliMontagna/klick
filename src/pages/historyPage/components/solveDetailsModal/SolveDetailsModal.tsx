@@ -1,7 +1,7 @@
 import { X, Copy, Clock, Calendar, AlertTriangle } from 'lucide-react';
 import { Button, Modal, Card } from '@/components/ui';
 import { useI18nStore } from '@/stores/i18nStore';
-import { formatTime } from '@/utils/formatTime';
+import { formatTime } from '@/utils';
 import { useSolveDetailsModal } from './useSolveDetailsModal';
 import type { Solve } from '@/commons/types';
 

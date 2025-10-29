@@ -1,8 +1,7 @@
-import { forwardRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { forwardRef, useEffect, useState } from 'react';
+import { cn } from '@/utils';
 
-const cls = (...classes: Array<string | false | null | undefined>) =>
-  classes.filter(Boolean).join(' ');
 
 export type RangeSliderProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'> & {
   value: number;
@@ -26,7 +25,7 @@ export const RangeSlider = forwardRef<HTMLInputElement, RangeSliderProps>(functi
   }, [internalValue, progressX]);
 
   return (
-    <div className={cls('relative flex-1 flex items-center group', className)}>
+    <div className={cn('relative flex-1 flex items-center group', className)}>
       {/* Track */}
       <div className="relative w-full h-2 rounded-full bg-border">
         {/* Progress */}

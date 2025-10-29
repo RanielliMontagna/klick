@@ -1,7 +1,7 @@
 import { CheckCircle, XCircle, Info, AlertCircle, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui';
-import { slideInRight } from '@/utils/animations';
+import { slideInRight } from '@/utils';
 import { useToast } from './useToast';
 
 type ToastType = 'success' | 'error' | 'info' | 'warning';
@@ -42,14 +42,14 @@ export function Toast({ message, type = 'info', duration = 3000, onClose }: Toas
         >
           {getIcon()}
           <p className="text-white font-medium text-sm sm:text-base flex-1">{message}</p>
-	          <Button
-	            onClick={handleClose}
-	            variant="ghost"
-	            size="icon"
-	            className="ml-2 text-gray-300 hover:text-white"
-	          >
-	            <X size={18} />
-	          </Button>
+          <Button
+            onClick={handleClose}
+            variant="ghost"
+            size="icon"
+            className="ml-2 text-gray-300 hover:text-white"
+          >
+            <X size={18} />
+          </Button>
         </motion.div>
       )}
     </AnimatePresence>

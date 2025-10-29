@@ -2,7 +2,7 @@ import { Copy, RefreshCw, Check, HelpCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui';
 import { useI18nStore } from '@/stores/i18nStore';
-import { slideDown } from '@/utils/animations';
+import { slideDown } from '@/utils';
 import { useScrambleBox } from './useScrambleBox';
 import { ScrambleGuideModal } from '../scrambleGuideModal/ScrambleGuideModal';
 import { useScrambleGuideModal } from '../scrambleGuideModal/useScrambleGuideModal';

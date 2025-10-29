@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { TimerState } from '@/commons/types';
-import { sounds, shouldPlaySound } from '@/utils/sounds';
+import { shouldPlaySound, sounds } from '@/utils';
 
 interface UseTimerReturn {
   state: TimerState;

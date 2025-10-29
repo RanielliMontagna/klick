@@ -6,7 +6,7 @@ import { SolveTable } from './components/solveTable/SolveTable';
 import { SolveDetailsModal } from './components/solveDetailsModal/SolveDetailsModal';
 import { useI18nStore } from '@/stores/i18nStore';
 import { useSessionsStore } from '@/stores/sessionsStore';
-import { fadeIn } from '@/utils/animations';
+import { fadeIn } from '@/utils';
 import type { Solve } from '@/commons/types';
 
 export function HistoryPage() {

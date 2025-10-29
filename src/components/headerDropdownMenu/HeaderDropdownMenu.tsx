@@ -8,7 +8,7 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { slideDown } from '@/utils/animations';
+import { slideDown } from '@/utils';
 
 interface HeaderDropdownMenuProps {
   isOpen: boolean;
@@ -103,11 +103,11 @@ export function HeaderDropdownMenu({
 
   const mobileStyle = isMobileViewport
     ? {
-        top: mobileStyles.top,
-        left: mobileStyles.left,
-        right: mobileStyles.right,
-        maxHeight: mobileStyles.maxHeight > 0 ? `${mobileStyles.maxHeight}px` : undefined,
-      }
+      top: mobileStyles.top,
+      left: mobileStyles.left,
+      right: mobileStyles.right,
+      maxHeight: mobileStyles.maxHeight > 0 ? `${mobileStyles.maxHeight}px` : undefined,
+    }
     : undefined;
 
   const desktopStyle = useMemo(() => {

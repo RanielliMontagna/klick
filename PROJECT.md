@@ -168,7 +168,6 @@ Implementação atual:
   /components
     TimerDisplay.tsx
     ScrambleBox.tsx
-    StatCard.tsx
     SolveTable.tsx
     SessionSwitcher.tsx
     Toast.tsx
@@ -185,9 +184,11 @@ Implementação atual:
     sessionsStore.ts  // Zustand
     settingsStore.ts
   /pages
-    index.tsx
-    settings.tsx
-    sessions.tsx
+    homePage/
+      HomePage.tsx
+      components/
+        StatCard.tsx
+        StatsInfoModal.tsx
   /hooks
   /utils
   /styles
@@ -278,7 +279,7 @@ Implementação atual:
    - TimerDisplay (responsivo, animado, com ícones)
    - ScrambleBox (adaptativo mobile/desktop, feedback ao copiar)
    - InspectionDisplay (animações de pulse, avisos visuais)
-   - StatCard (hover effects, animações scale)
+   - StatCard (HomePage) - hover effects, animações scale
    - Toast (responsivo, animação slide-in)
 
 5. **Sistema de animações:**

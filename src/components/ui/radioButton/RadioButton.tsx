@@ -1,5 +1,5 @@
 import { createContext, forwardRef, useContext } from 'react';
-import { cls } from '@/utils/cls';
+import { cn } from '@/utils';
 
 type RadioGroupContextValue = {
     name: string;
@@ -27,7 +27,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(function R
 
     return (
         <RadioGroupContext.Provider value={contextValue}>
-            <div ref={ref} role="radiogroup" className={cls('flex items-center gap-3', className)} {...props}>
+            <div ref={ref} role="radiogroup" className={cn('flex items-center gap-3', className)} {...props}>
                 {children}
             </div>
         </RadioGroupContext.Provider>

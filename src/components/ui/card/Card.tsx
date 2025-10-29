@@ -1,6 +1,5 @@
-import { forwardRef } from 'react';
-import type { HTMLAttributes } from 'react';
-import { cls } from '@/utils/cls';
+import { forwardRef, type HTMLAttributes } from 'react';
+import { cn } from '@/utils';
 
 const variantClasses = {
   surface: 'bg-surface border border-border',
@@ -30,7 +29,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
   return (
     <div
       ref={ref}
-      className={cls('rounded-xl', variantClasses[variant], paddingClasses[padding], className)}
+      className={cn('rounded-xl', variantClasses[variant], paddingClasses[padding], className)}
       {...props}
     >
       {children}

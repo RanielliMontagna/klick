@@ -1,16 +1,16 @@
 import { motion } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
 import { Keyboard, HelpCircle, Timer } from 'lucide-react';
-import { TimerDisplay, ScrambleBox, InspectionDisplay, StatCard, PageHeader, Button } from '@/components';
+import { TimerDisplay, ScrambleBox, InspectionDisplay, PageHeader, Button } from '@/components';
 import { StatsInfoModal } from './components/StatsInfoModal';
+import { StatCard } from './components/StatCard';
 import { useTimer } from '@/features/timer/useTimer';
 import { generate3x3Scramble } from '@/features/scramble/generate3x3';
 import { useSessionsStore } from '@/stores/sessionsStore';
 import { useSettingsStore } from '@/stores/settingsStore';
 import { useI18nStore } from '@/stores/i18nStore';
 import { useOnboardingStore } from '@/stores/onboardingStore';
-import { slideUp, fadeIn } from '@/utils/animations';
-import { formatAverage } from '@/utils/formatStats';
+import { slideUp, fadeIn, formatAverage } from '@/utils';
 import type { Penalty } from '@/commons/types';
 
 export function HomePage() {
@@ -183,7 +183,7 @@ export function HomePage() {
         </div>
       </motion.div>
 
-      {/* Atalhos */}
+      {/* Shortcuts */}
       <motion.div variants={slideUp} initial="hidden" animate="visible">
         <div className="flex items-center gap-2 mb-3">
           <Keyboard className="w-5 h-5 text-primary" />
