@@ -4,12 +4,12 @@ import { Button } from '@/components/ui';
 import { useTranslation } from '@/hooks/useTranslation';
 import { EvolutionChart } from './EvolutionChart';
 import { DistributionChart } from './DistributionChart';
-import { useAdvancedStatsModal, type Tab } from './useAdvancedStatsModal';
+import { useAdvancedStatsContent, type Tab } from './useAdvancedStatsModal';
 
 export function AdvancedStatsContent() {
   const { t } = useTranslation();
   const { activeTab, setActiveTab, chartData, advancedStats, hasEnoughData } =
-    useAdvancedStatsModal();
+    useAdvancedStatsContent();
 
   const tabs: { id: Tab; label: string; icon: typeof TrendingUp }[] = [
     { id: 'evolution', label: t.advancedStats.tabs.evolution, icon: TrendingUp },

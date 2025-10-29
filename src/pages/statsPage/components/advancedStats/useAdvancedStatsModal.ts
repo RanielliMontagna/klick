@@ -9,7 +9,7 @@ import {
 
 export type Tab = 'evolution' | 'consistency' | 'performance';
 
-export function useAdvancedStatsModal() {
+export function useAdvancedStatsContent() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>('evolution');
 
