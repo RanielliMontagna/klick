@@ -23,7 +23,7 @@ export function MainLayout() {
               <Link to="/" aria-label={t.navigation.home} className="inline-flex">
                 <Logo size="sm" />
               </Link>
-              <div className="sm:block">
+              <div className="sm:block hidden">
                 <p className="text-xs text-text-secondary">{t.app.tagline}</p>
               </div>
             </div>
