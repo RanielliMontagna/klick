@@ -55,8 +55,8 @@ export function LanguageSelector() {
         align="left"
         anchorRef={triggerRef}
       >
-        <div className="p-2">
-          <div className="mb-2 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-gray-400">
+        <div className="p-2 bg-gray-900">
+          <div className="mb-2 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
             {t.language.title}
           </div>
           {languages.map((lang) => (
@@ -64,7 +64,11 @@ export function LanguageSelector() {
               key={lang.code as string}
               onClick={() => handleLanguageChange(lang.code)}
               variant="ghost"
-              className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm hover:bg-gray-700 focus-visible:ring-primary/40"
+              className={`flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm transition-colors ${
+                language === lang.code
+                  ? 'bg-gray-800 text-white'
+                  : 'text-gray-300 hover:bg-gray-850'
+              }`}
             >
               <div className="flex items-center gap-3">
                 <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-gray-700 text-xs font-semibold uppercase tracking-wide text-gray-200">

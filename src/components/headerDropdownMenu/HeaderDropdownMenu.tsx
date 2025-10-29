@@ -1,6 +1,13 @@
-import { useEffect, useState, type ReactNode, type RefObject } from 'react';
+import {
+  useEffect,
+  useMemo,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+  type RefObject,
+} from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from '@/components/ui';
 import { slideDown } from '@/utils/animations';
 
 interface HeaderDropdownMenuProps {
@@ -20,7 +27,6 @@ export function HeaderDropdownMenu({
   align = 'left',
   anchorRef,
 }: HeaderDropdownMenuProps) {
-  const alignmentClass = align === 'right' ? 'right-0' : 'left-0';
   const EDGE_PADDING = 16;
 
   const [isMobileViewport, setIsMobileViewport] = useState(false);
@@ -29,6 +35,10 @@ export function HeaderDropdownMenu({
     left: EDGE_PADDING,
     right: EDGE_PADDING,
     maxHeight: 0,
+  });
+  const [desktopStyles, setDesktopStyles] = useState<{ top: number; left: number }>({
+    top: 0,
+    left: 0,
   });
 
   useEffect(() => {
@@ -46,22 +56,29 @@ export function HeaderDropdownMenu({
 
       setIsMobileViewport(isMobile);
 
-      if (!isMobile || !anchorRef?.current) {
+      const anchorRect = anchorRef?.current?.getBoundingClientRect();
+      if (!anchorRect) {
         return;
       }
 
-      const anchorRect = anchorRef.current.getBoundingClientRect();
-      const top = anchorRect.bottom + viewportOffsetTop + EDGE_PADDING;
-      const left = viewportOffsetLeft + EDGE_PADDING;
-      const right = viewportOffsetLeft + EDGE_PADDING;
-      const availableHeight = viewportHeight - (anchorRect.bottom + EDGE_PADDING * 2);
+      if (isMobile) {
+        const top = anchorRect.bottom + viewportOffsetTop + EDGE_PADDING;
+        const left = viewportOffsetLeft + EDGE_PADDING;
+        const right = viewportOffsetLeft + EDGE_PADDING;
+        const availableHeight = viewportHeight - (anchorRect.bottom + EDGE_PADDING * 2);
 
-      setMobileStyles({
-        top,
-        left,
-        right,
-        maxHeight: Math.max(200, availableHeight),
-      });
+        setMobileStyles({
+          top,
+          left,
+          right,
+          maxHeight: Math.max(200, availableHeight),
+        });
+      } else {
+        setDesktopStyles({
+          top: anchorRect.bottom + EDGE_PADDING,
+          left: align === 'right' ? anchorRect.right : anchorRect.left,
+        });
+      }
     };
 
     updatePosition();
@@ -78,11 +95,9 @@ export function HeaderDropdownMenu({
       viewport?.removeEventListener('resize', updatePosition);
       viewport?.removeEventListener('scroll', updatePosition);
     };
-  }, [isOpen, anchorRef]);
+  }, [isOpen, anchorRef, align]);
 
-  const menuPositionClass = isMobileViewport
-    ? 'fixed inset-x-4 sm:inset-auto sm:static mt-0'
-    : `absolute ${alignmentClass} top-full mt-2`;
+  const menuPositionClass = isMobileViewport ? 'fixed inset-x-4 sm:inset-auto sm:static' : 'fixed';
 
   const widthClass = isMobileViewport ? 'w-auto max-w-full' : width;
 
@@ -95,15 +110,32 @@ export function HeaderDropdownMenu({
       }
     : undefined;
 
-  return (
+  const desktopStyle = useMemo(() => {
+    if (isMobileViewport) {
+      return undefined;
+    }
+
+    const transform = align === 'right' ? 'translateX(-100%)' : undefined;
+    return {
+      top: desktopStyles.top,
+      left: desktopStyles.left,
+      transform,
+    } as CSSProperties;
+  }, [desktopStyles, isMobileViewport, align]);
+
+  if (typeof document === 'undefined') {
+    return null;
+  }
+
+  const content = (
     <AnimatePresence>
       {isOpen && (
         <>
           {/* Backdrop */}
-          <Button
+          <button
+            type="button"
             onClick={onClose}
-            variant="ghost"
-            className="fixed inset-0 z-40 cursor-default p-0 rounded-none focus-visible:outline-none focus-visible:ring-0"
+            className="fixed inset-0 z-999 cursor-default bg-black/20 backdrop-blur-xs focus:outline-none"
             onKeyDown={(e) => {
               if (e.key === 'Escape') onClose();
             }}
@@ -117,8 +149,8 @@ export function HeaderDropdownMenu({
             initial="hidden"
             animate="visible"
             exit="hidden"
-            className={`${menuPositionClass} ${widthClass} bg-gray-800 border border-gray-700 rounded-xl shadow-xl z-50 overflow-hidden`}
-            style={mobileStyle}
+            className={`${menuPositionClass} ${widthClass} bg-gray-800 border border-gray-700 rounded-xl shadow-xl z-1000 overflow-hidden`}
+            style={mobileStyle ?? desktopStyle}
           >
             {children}
           </motion.div>
@@ -126,4 +158,6 @@ export function HeaderDropdownMenu({
       )}
     </AnimatePresence>
   );
+
+  return createPortal(content, document.body);
 }

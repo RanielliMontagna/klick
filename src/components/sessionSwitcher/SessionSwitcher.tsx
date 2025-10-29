@@ -57,8 +57,8 @@ export function SessionSwitcher({
               variant="ghost"
               className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 justify-start text-left hover:bg-gray-700 border-b border-gray-700/50 last:border-b-0 focus-visible:ring-offset-gray-900 ${
                 session.id === activeSessionId
-                  ? 'bg-gray-700/50 ring-1 ring-inset ring-primary'
-                  : ''
+                  ? 'bg-gray-800 text-white'
+                  : 'text-gray-300 hover:bg-gray-850'
               }`}
             >
               <div className="flex items-center justify-between gap-2 w-full">
@@ -84,8 +84,8 @@ export function SessionSwitcher({
             setIsOpen(false);
             onManageClick();
           }}
-          variant="secondary"
-          className="w-full px-3 sm:px-4 py-2.5 sm:py-3 flex items-center gap-2 bg-gray-700/50 hover:bg-gray-700 border-t border-gray-600"
+          variant="ghost"
+          className="w-full px-3 sm:px-4 py-2.5 sm:py-3 flex items-center gap-2 justify-start text-gray-200 hover:bg-gray-850"
         >
           <Settings size={16} className="text-primary shrink-0 w-4 h-4" />
           <span className="text-xs sm:text-sm font-medium text-white">{t.sessions.manage}</span>

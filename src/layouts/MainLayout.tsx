@@ -1,13 +1,16 @@
+import { useState } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { Navbar, MobileNav } from '../components/navigation';
 import { Logo } from '../components/logo/Logo';
 import { LanguageSelector } from '../components/languageSelector/LanguageSelector';
+import { SessionSwitcher, SessionManagerModal } from '../components';
 import { Onboarding } from '../components/onboarding/Onboarding';
 import { PWAUpdatePrompt } from '../components/pwaUpdatePrompt/PWAUpdatePrompt';
 import { useTranslation } from '../hooks/useTranslation';
 
 export function MainLayout() {
   const { t } = useTranslation();
+  const [isSessionManagerOpen, setSessionManagerOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-background text-text-primary">
@@ -30,6 +33,7 @@ export function MainLayout() {
 
             {/* Right actions */}
             <div className="flex items-center gap-2">
+              <SessionSwitcher onManageClick={() => setSessionManagerOpen(true)} />
               <LanguageSelector />
               <MobileNav />
             </div>
@@ -45,6 +49,10 @@ export function MainLayout() {
       {/* Global components */}
       <Onboarding />
       <PWAUpdatePrompt />
+      <SessionManagerModal
+        isOpen={isSessionManagerOpen}
+        onClose={() => setSessionManagerOpen(false)}
+      />
     </div>
   );
 }
