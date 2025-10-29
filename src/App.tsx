@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useTheme } from './hooks/useTheme';
 import { MainLayout } from './layouts/MainLayout';
-import { HomePage, HistoryPage, StatsPage, TutorialPage, SettingsPage } from './pages';
+import { HistoryPage, HomePage, SettingsPage, StatsPage, TutorialPage, } from './pages';
 
 function App() {
   // Apply theme on mount

@@ -1,4 +1,4 @@
-import type { Solve } from '@/types';
+import type { Solve } from '@/commons/types';
 
 export type Average = {
   value: number; // in ms, Infinity for DNF

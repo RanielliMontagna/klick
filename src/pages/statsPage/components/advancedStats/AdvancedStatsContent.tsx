@@ -53,11 +53,10 @@ export function AdvancedStatsContent() {
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               variant="ghost"
-              className={`flex items-center gap-2 px-4 py-3 border-b-2 rounded-none transition-all duration-200 ${
-                isActive
+              className={`flex items-center gap-2 px-4 py-3 border-b-2 rounded-none transition-all duration-200 ${isActive
                   ? 'border-primary text-primary'
                   : 'border-transparent text-text-secondary hover:text-text-primary'
-              }`}
+                }`}
             >
               <Icon size={18} />
               <span className="hidden sm:inline font-medium">{tab.label}</span>

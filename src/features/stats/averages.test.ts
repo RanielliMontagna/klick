@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import type { Solve } from '@/types';
+import type { Solve } from '@/commons/types';
 import {
   calculateSingle,
   calculateAo5,

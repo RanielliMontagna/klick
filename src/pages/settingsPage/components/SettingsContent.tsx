@@ -1,6 +1,6 @@
 import { Download, Upload, Sun, Moon } from 'lucide-react';
 import { useRef, useState } from 'react';
-import { Button } from '@/components/ui';
+import { Button, ToggleButton, RangeSlider, RadioGroup, RadioButton } from '@/components/ui';
 import { useSettingsStore } from '@/stores/settingsStore';
 import { useSessionsStore } from '@/stores/sessionsStore';
 import { useI18nStore } from '@/stores/i18nStore';
@@ -97,11 +97,10 @@ export function SettingsContent() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className={`p-4 rounded-lg border ${
-              message.type === 'success'
-                ? 'bg-green-500/10 border-green-500/30 text-green-600 dark:text-green-400'
-                : 'bg-red-500/10 border-red-500/30 text-red-600 dark:text-red-400'
-            }`}
+            className={`p-4 rounded-lg border ${message.type === 'success'
+              ? 'bg-green-500/10 border-green-500/30 text-green-600 dark:text-green-400'
+              : 'bg-red-500/10 border-red-500/30 text-red-600 dark:text-red-400'
+              }`}
           >
             {message.text}
           </motion.div>
@@ -117,14 +116,12 @@ export function SettingsContent() {
           <p className="text-xs text-text-secondary">{t.settings.inspectionDuration.description}</p>
         </div>
         <div className="flex items-center gap-4">
-          <input
-            type="range"
-            min="5"
-            max="30"
-            step="1"
+          <RangeSlider
+            min={5}
+            max={30}
+            step={1}
             value={settings.inspectionDuration}
-            onChange={(e) => handleInspectionDurationChange(Number(e.target.value))}
-            className="flex-1 h-2 bg-border rounded-lg appearance-none cursor-pointer accent-primary"
+            onChange={handleInspectionDurationChange}
           />
           <span className="text-lg font-bold text-primary min-w-12 text-right">
             {settings.inspectionDuration}s
@@ -141,21 +138,11 @@ export function SettingsContent() {
             </div>
             <p className="text-xs text-text-secondary">{t.settings.soundsEnabled.description}</p>
           </div>
-          <Button
-            onClick={handleSoundsToggle}
-            variant="ghost"
-            size="icon"
-            className={`relative w-12 h-6 rounded-full transition-colors p-0 justify-start ${
-              settings.soundsEnabled ? 'bg-primary' : 'bg-border'
-            }`}
-            aria-pressed={settings.soundsEnabled}
-          >
-            <span
-              className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform ${
-                settings.soundsEnabled ? 'translate-x-6' : 'translate-x-0'
-              }`}
-            />
-          </Button>
+          <ToggleButton
+            value={settings.soundsEnabled}
+            onValueChange={handleSoundsToggle}
+            aria-label={t.settings.soundsEnabled.label}
+          />
         </div>
       </div>
 
@@ -170,21 +157,11 @@ export function SettingsContent() {
               {t.settings.autoInspectionPenalty.description}
             </p>
           </div>
-          <Button
-            onClick={handleAutoInspectionPenaltyToggle}
-            variant="ghost"
-            size="icon"
-            className={`relative w-12 h-6 rounded-full transition-colors p-0 justify-start ${
-              settings.autoInspectionPenalty ? 'bg-primary' : 'bg-border'
-            }`}
-            aria-pressed={settings.autoInspectionPenalty}
-          >
-            <span
-              className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform ${
-                settings.autoInspectionPenalty ? 'translate-x-6' : 'translate-x-0'
-              }`}
-            />
-          </Button>
+          <ToggleButton
+            value={settings.autoInspectionPenalty}
+            onValueChange={handleAutoInspectionPenaltyToggle}
+            aria-label={t.settings.autoInspectionPenalty.label}
+          />
         </div>
       </div>
 
@@ -200,11 +177,10 @@ export function SettingsContent() {
           <Button
             onClick={toggleTheme}
             variant="secondary"
-            className={`flex items-center gap-2 px-4 py-2 font-medium border transition-colors ${
-              theme === 'light'
-                ? 'bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 border-yellow-500/30'
-                : 'bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30'
-            }`}
+            className={`flex items-center gap-2 px-4 py-2 font-medium border transition-colors ${theme === 'light'
+              ? 'bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 border-yellow-500/30'
+              : 'bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30'
+              }`}
           >
             {theme === 'light' ? (
               <>
@@ -252,30 +228,14 @@ export function SettingsContent() {
 
         {/* Import section */}
         <div className="space-y-3 pt-3 border-t border-border">
-          <div className="flex items-center gap-3">
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="radio"
-                name="importMode"
-                value="merge"
-                checked={importMode === 'merge'}
-                onChange={(e) => setImportMode(e.target.value as 'merge' | 'replace')}
-                className="w-4 h-4 text-primary"
-              />
-              <span className="text-sm text-text-secondary">{t.settings.exportImport.merge}</span>
-            </label>
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="radio"
-                name="importMode"
-                value="replace"
-                checked={importMode === 'replace'}
-                onChange={(e) => setImportMode(e.target.value as 'merge' | 'replace')}
-                className="w-4 h-4 text-primary"
-              />
-              <span className="text-sm text-text-secondary">{t.settings.exportImport.replace}</span>
-            </label>
-          </div>
+          <RadioGroup
+            name="importMode"
+            value={importMode}
+            onValueChange={(v) => setImportMode(v as 'merge' | 'replace')}
+          >
+            <RadioButton value="merge">{t.settings.exportImport.merge}</RadioButton>
+            <RadioButton value="replace">{t.settings.exportImport.replace}</RadioButton>
+          </RadioGroup>
           <Button
             onClick={handleImportClick}
             variant="secondary"

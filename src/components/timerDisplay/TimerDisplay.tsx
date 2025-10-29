@@ -1,6 +1,6 @@
 import { Timer, Play, Square } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { TimerState } from '@/types';
+import type { TimerState } from '@/commons/types';
 import { useI18nStore } from '@/stores/i18nStore';
 import { formatTime } from '@/utils/formatTime';
 import { fadeIn } from '@/utils/animations';

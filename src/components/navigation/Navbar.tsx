@@ -1,5 +1,5 @@
+import { BookOpen, History, Home, Settings, TrendingUp } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
-import { Home, History, TrendingUp, BookOpen, Settings } from 'lucide-react';
 import { useTranslation } from '../../hooks/useTranslation';
 
 export function Navbar() {
@@ -20,10 +20,9 @@ export function Navbar() {
           key={to}
           to={to}
           className={({ isActive }) =>
-            `flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              isActive
-                ? 'bg-primary text-white'
-                : 'text-text-secondary hover:text-text-primary hover:bg-surface'
+            `flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${isActive
+              ? 'bg-primary text-fixed-white'
+              : 'text-text-secondary hover:text-text-primary hover:bg-surface'
             }`
           }
         >

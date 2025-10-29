@@ -7,7 +7,7 @@ import { ConfirmDialog } from '@/components';
 import { Button } from '@/components/ui';
 import { formatTime } from '@/utils/formatTime';
 import { fadeIn } from '@/utils/animations';
-import type { Solve } from '@/types';
+import type { Solve } from '@/commons/types';
 
 type FilterOption = 'all' | 'last5' | 'last12' | 'last50' | 'last100';
 
@@ -152,13 +152,12 @@ export function SolveTable({ onViewDetails }: SolveTableProps) {
                     </td>
                     <td className="px-4 py-3 text-sm">
                       <span
-                        className={`inline-flex px-2 py-1 rounded text-xs font-medium ${
-                          solve.penalty === 'DNF'
+                        className={`inline-flex px-2 py-1 rounded text-xs font-medium ${solve.penalty === 'DNF'
                             ? 'bg-red-500/20 text-red-400 border border-red-500/30'
                             : solve.penalty === '+2'
                               ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30'
                               : 'bg-gray-700 text-gray-400'
-                        }`}
+                          }`}
                       >
                         {getPenaltyDisplay(solve)}
                       </span>

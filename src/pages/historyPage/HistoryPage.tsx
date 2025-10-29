@@ -7,7 +7,7 @@ import { SolveDetailsModal } from './components/solveDetailsModal/SolveDetailsMo
 import { useI18nStore } from '@/stores/i18nStore';
 import { useSessionsStore } from '@/stores/sessionsStore';
 import { fadeIn } from '@/utils/animations';
-import type { Solve } from '@/types';
+import type { Solve } from '@/commons/types';
 
 export function HistoryPage() {
   const { t } = useI18nStore();

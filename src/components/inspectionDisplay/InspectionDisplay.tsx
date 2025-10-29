@@ -1,6 +1,6 @@
 import { AlertTriangle, Clock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { TimerState } from '@/types';
+import type { TimerState } from '@/commons/types';
 import { useI18nStore } from '@/stores/i18nStore';
 
 interface InspectionDisplayProps {
@@ -47,9 +47,9 @@ export function InspectionDisplay({ timeLeft, state }: InspectionDisplayProps) {
         animate={
           isCritical || isDanger
             ? {
-                scale: [1, 1.05, 1],
-                transition: { duration: 1, repeat: Infinity },
-              }
+              scale: [1, 1.05, 1],
+              transition: { duration: 1, repeat: Infinity },
+            }
             : {}
         }
       >

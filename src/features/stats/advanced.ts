@@ -1,4 +1,4 @@
-import type { Solve } from '@/types';
+import type { Solve } from '@/commons/types';
 
 export type AdvancedStats = {
   rollingAverages: {

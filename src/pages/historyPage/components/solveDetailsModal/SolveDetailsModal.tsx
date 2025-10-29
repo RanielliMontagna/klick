@@ -3,7 +3,7 @@ import { Button, Modal } from '@/components/ui';
 import { useI18nStore } from '@/stores/i18nStore';
 import { formatTime } from '@/utils/formatTime';
 import { useSolveDetailsModal } from './useSolveDetailsModal';
-import type { Solve } from '@/types';
+import type { Solve } from '@/commons/types';
 
 interface SolveDetailsModalProps {
   isOpen: boolean;
@@ -67,9 +67,8 @@ export function SolveDetailsModal({ isOpen, onClose, solve, solveNumber }: Solve
             <h3 className="text-lg font-bold text-white">{t.solveTable.details.penalty}</h3>
           </div>
           <span
-            className={`inline-flex px-4 py-2 rounded-lg text-sm font-medium border ${
-              penaltyInfo.bgColor
-            } ${penaltyInfo.color} ${penaltyInfo.borderColor}`}
+            className={`inline-flex px-4 py-2 rounded-lg text-sm font-medium border ${penaltyInfo.bgColor
+              } ${penaltyInfo.color} ${penaltyInfo.borderColor}`}
           >
             {penaltyInfo.label}
           </span>

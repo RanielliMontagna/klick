@@ -158,6 +158,11 @@
     color: var(--color-text-tertiary);
   }
 
+  /* Utility for elements that must stay white regardless of theme */
+  .text-fixed-white {
+    color: #f6f8fa !important;
+  }
+
   /* Modal backdrop - adjust opacity for light theme */
   :root.light .bg-black\/50 {
     background-color: rgba(0, 0, 0, 0.4) !important;
@@ -172,5 +177,4 @@
     --tw-ring-offset-color: var(--color-surface);
   }
 }
-
 

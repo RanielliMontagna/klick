@@ -11,7 +11,7 @@ import { useI18nStore } from '@/stores/i18nStore';
 import { useOnboardingStore } from '@/stores/onboardingStore';
 import { slideUp, fadeIn } from '@/utils/animations';
 import { formatAverage } from '@/utils/formatStats';
-import type { Penalty } from '@/types';
+import type { Penalty } from '@/commons/types';
 
 export function HomePage() {
   const [scramble, setScramble] = useState('');

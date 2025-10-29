@@ -1,2 +1,5 @@
-export { Button } from './button/Button';
-export { Modal } from './modal/Modal';
+export * from './button';
+export * from './modal';
+export * from './radioButton';
+export * from './rangeSlider';
+export * from './toggleButton';

@@ -1,10 +1,11 @@
 import { forwardRef } from 'react';
+import { cls } from '@/utils/cls';
 
 const baseClasses =
   'inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 disabled:opacity-60 disabled:cursor-not-allowed';
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-primary text-white hover:bg-primary/90',
+  primary: 'bg-primary text-fixed-white hover:bg-primary/90',
   secondary: 'bg-surface text-text-primary border border-border hover:bg-surface/80',
   ghost: 'text-text-secondary hover:text-text-primary hover:bg-surface',
   danger: 'bg-red-600 text-white hover:bg-red-500',
@@ -27,8 +28,6 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   size?: ButtonSize;
 }
 
-const cls = (...classes: Array<string | false | null | undefined>) =>
-  classes.filter(Boolean).join(' ');
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   { variant = 'primary', size = 'md', className, children, type, ...props },
