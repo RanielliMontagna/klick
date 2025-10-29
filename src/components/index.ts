@@ -2,18 +2,17 @@
 export { ConfirmDialog } from './confirmDialog/ConfirmDialog';
 export { HeaderDropdownButton } from './headerDropdownButton/HeaderDropdownButton';
 export { HeaderDropdownMenu } from './headerDropdownMenu/HeaderDropdownMenu';
+export { InspectionDisplay } from './inspectionDisplay/InspectionDisplay';
+export { LanguageSelector } from './languageSelector/LanguageSelector';
+export { Logo } from './logo/Logo';
+export { PageHeader } from './pageHeader/PageHeader';
 export { PWAUpdatePrompt } from './pwaUpdatePrompt/PWAUpdatePrompt';
 export { ScrambleBox } from './scrambleBox/ScrambleBox';
 export { ScrambleGuideModal } from './scrambleGuideModal/ScrambleGuideModal';
 export { SessionManagerModal } from './sessionManagerModal/SessionManagerModal';
 export { SessionSwitcher } from './sessionSwitcher/SessionSwitcher';
-export { SettingsModal } from './settingsModal/SettingsModal';
-export { SolveDetailsModal } from './solveDetailsModal/SolveDetailsModal';
-export { SolveTable } from './solveTable/SolveTable';
-export { StatsInfoModal } from './statsInfoModal/StatsInfoModal';
-export { Toast } from './toast/Toast';
-export { InspectionDisplay } from './inspectionDisplay/InspectionDisplay';
-export { Logo } from './logo/Logo';
 export { StatCard } from './statCard/StatCard';
 export { TimerDisplay } from './timerDisplay/TimerDisplay';
-export { LanguageSelector } from './languageSelector/LanguageSelector';
+export { Toast } from './toast/Toast';
+
+export * from './ui';

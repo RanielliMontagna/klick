@@ -498,9 +498,9 @@ Implementação atual:
       - `scramble.guide`: "Como ler o embaralhamento"
       - `scramble.guideModal.title`: "Guia de Embaralhamento"
       - **Faces**: Descrições detalhadas (R/L/U/D/F/B) com orientação espacial
-      - **Modifiers**: Explicação clara de rotações (nenhum = 90° horário, ' = anti-horário, 2 = 180°)
-      - **Examples**: Exemplos práticos (R, R', R2, sequência completa)
-      - **Tips**: 4 dicas importantes (ordem, orientação, prática, padrão WCA 25 movimentos)
+      - **Modificadores**: explicação clara das rotações (nenhum = 90° horário, ' = anti-horário, 2 = 180°)
+      - **Exemplos**: casos práticos (R, R', R2, sequência completa)
+      - **Dicas**: 4 recomendações chave (ordem, orientação, prática, padrão WCA de 25 movimentos)
     - **Componentes criados:**
       - `/src/components/scrambleGuideModal/ScrambleGuideModal.tsx`
       - `/src/components/scrambleGuideModal/useScrambleGuideModal.ts`
@@ -518,20 +518,13 @@ Implementação atual:
       - Integrado com settingsStore para persistência
     - **Toggle de tema no SettingsModal:**
       - Botão animado com ícones Sun (claro) / Moon (escuro)
-      - Cores dinâmicas (amarelo para light, azul para dark)
-      - Feedback visual imediato ao alternar
-      - Removido placeholder "coming soon"
-    - **Persistência:**
-      - Tema salvo em localStorage via settingsStore
-      - Tema aplicado automaticamente ao carregar app
-      - Type-safe com 'dark' | 'light' em Settings
-    - **Traduções:**
-      - settings.theme.label, description, dark, light
-      - Completo em pt-BR, en-US, es-ES
-    - **Performance:**
-      - Build otimizado: ~404 KB (gzip: ~123 KB)
-      - Sem impacto na performance de renderização
-      - Color-scheme CSS para otimização de browser
+
+19. **Biblioteca de UI Reutilizável (Fase 6.1):** ✅
+    - **Componente base `Button`:** variantes `primary`, `secondary`, `ghost`, `danger`, `success`, `warning` e tamanhos `sm`, `md`, `lg`, `icon`, com helper interno `cls` e tipo forte `ButtonProps`.
+    - **Migração total dos botões:** substituição de todos os `<button>` da aplicação por `Button` (modais, dropdowns, toasts, histórico, home, tutorial, configurações), preservando comportamentos especiais via `className`.
+    - **Compatibilidade com casos específicos:** toggles deslizantes, botões ícone-only, abas com borda customizada e estados desativados.
+    - **Export centralizado:** `src/components/ui/index.ts` agrega componentes reutilizáveis.
+    - **Build validado:** `pnpm build` executado com sucesso após a migração.
 
 19. **Estatísticas Avançadas (Fase 7):** ✅
     - **Métricas avançadas** (`/src/features/stats/advanced.ts`):
@@ -687,9 +680,69 @@ Implementação atual:
       - Build: ~765 KB (gzip: ~230 KB)
       - Lazy rendering (modal apenas quando isOpen)
       - AnimatePresence com mode="wait" para transições suaves
+    - **Validação de visualizações:**
+      - **whiteCross:** Corrigida para mostrar 4 centros laterais (R, F, L, B)
+      - **yellowCross:** Corrigida progressão Ponto → Linha → L → Cruz (padrões válidos do cubo)
+      - Todas as faces e algoritmos validados conforme regras do método de camadas
+
+22. **Routing & Estrutura de Páginas (Fase 10):** ✅
+    - **React Router DOM integrado:**
+      - Navegação client-side entre páginas
+      - URLs descritivas e limpas
+      - BrowserRouter com routes aninhadas
+    - **Estrutura de Pastas:**
+      - **/src/pages/**: Páginas principais
+        - `HomePage.tsx` - Timer, scramble, stats resumidas
+        - `HistoryPage.tsx` - Tabela completa de solves
+        - `StatsPage.tsx` - Dashboard de estatísticas avançadas
+        - `TutorialPage.tsx` - Tutorial completo layer-by-layer
+        - `SettingsPage.tsx` - Configurações do app
+      - **/src/layouts/**: Layouts compartilhados
+        - `MainLayout.tsx` - Header + navegação + Outlet para pages
+      - **/src/components/navigation/**: Componentes de navegação
+        - `Navbar.tsx` - Navegação desktop (links horizontais)
+        - `MobileNav.tsx` - Menu hamburger para mobile (drawer lateral)
+    - **Sistema de Navegação:**
+      - **Navbar (Desktop):**
+        - Links: Início, Histórico, Estatísticas, Tutorial, Configurações
+        - Estilo NavLink com estado ativo (bg-primary quando ativo)
+        - Ícones Lucide (Home, History, TrendingUp, BookOpen, Settings)
+        - Oculto em mobile (hidden md:flex)
+      - **MobileNav (Mobile):**
+        - Botão hamburger (Menu/X icon)
+        - Drawer lateral com animação (Framer Motion)
+        - Backdrop com overlay escuro
+        - Auto-close ao clicar em link
+        - Visible apenas em mobile (md:hidden)
+    - **MainLayout:**
+      - Header sticky com navegação
+      - Logo + título do app
+      - LanguageSelector integrado
+      - Container responsivo para conteúdo (Outlet)
+      - Componentes globais (Onboarding, PWAUpdatePrompt)
+    - **Páginas Implementadas:**
+      - **HomePage:** Timer funcional, scramble, stats cards, atalhos
+      - **HistoryPage:** SolveTable com filtros e ações
+      - **StatsPage:** AdvancedStatsModal com gráficos
+      - **TutorialPage:** Sistema de tutorial completo
+      - **SettingsPage:** Configurações do aplicativo
+    - **Traduções:**
+      - Seção `navigation` em 3 idiomas (pt-BR, en-US, es-ES)
+      - Labels: home, history, stats, tutorial, settings
+    - **Performance:**
+      - Build: ~816 KB (gzip: ~245 KB)
+      - React Router adiciona ~21 KB ao bundle
+      - Code splitting preparado para futuras otimizações
+    - **Benefícios:**
+      - ✅ **Organização:** Cada feature em página dedicada
+      - ✅ **UX:** Navegação clara e URLs descritivas
+      - ✅ **Manutenibilidade:** Código modular e desacoplado
+      - ✅ **Escalabilidade:** Fácil adicionar novas páginas
+      - ✅ **Mobile-first:** Menu hamburger responsivo
 
 ### Próximas fases
 
+- **Biblioteca de UI compartilhada:** consolidar padrões (botões, chips, toggles, modais-base) em `src/components/ui/*`, padronizando tokens, estados de foco e níveis de elevação para acelerar novas telas.
 - **Sincronização opcional:** investigar integração com armazenamento na nuvem (ex.: Supabase) mantendo local-first, incluindo merge de sessões e autenticação leve.
 - **Modo de treino por casos:** habilitar coleções focadas (PLL, OLL, F2L) com contadores de repetição, checkpoints e notas rápidas, ajudando o iniciante a praticar algoritmos específicos.
 

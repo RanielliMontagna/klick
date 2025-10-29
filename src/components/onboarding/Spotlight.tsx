@@ -18,15 +18,27 @@ export function Spotlight({ targetSelector, isActive }: SpotlightProps) {
     const updateTargetRect = () => {
       const element = document.querySelector(targetSelector);
       if (element) {
-        setTargetRect(element.getBoundingClientRect());
+        const rect = element.getBoundingClientRect();
+        setTargetRect(rect);
+      } else {
+        // Element not found, retry after a short delay
+        setTimeout(() => {
+          const retryElement = document.querySelector(targetSelector);
+          if (retryElement) {
+            setTargetRect(retryElement.getBoundingClientRect());
+          }
+        }, 100);
       }
     };
 
-    updateTargetRect();
+    // Initial delay to ensure DOM is ready
+    const timeoutId = setTimeout(updateTargetRect, 50);
+
     window.addEventListener('resize', updateTargetRect);
     window.addEventListener('scroll', updateTargetRect);
 
     return () => {
+      clearTimeout(timeoutId);
       window.removeEventListener('resize', updateTargetRect);
       window.removeEventListener('scroll', updateTargetRect);
     };

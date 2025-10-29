@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, RotateCw, RotateCcw } from 'lucide-react';
-import type { TutorialStep } from '../../stores/tutorialStore';
+import type { TutorialStep } from '@/stores/tutorialStore';
 
 interface CubeVisualizerProps {
   step: TutorialStep;

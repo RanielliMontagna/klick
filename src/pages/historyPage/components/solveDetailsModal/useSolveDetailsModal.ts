@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import type { Solve } from '@/types';
+import { useI18nStore } from '@/stores/i18nStore';
 
 interface PenaltyInfo {
   label: string;
@@ -9,6 +10,7 @@ interface PenaltyInfo {
 }
 
 export function useSolveDetailsModal(solve: Solve | null) {
+  const { t, language } = useI18nStore();
   const [copied, setCopied] = useState(false);
 
   const copyScramble = useCallback(() => {
@@ -19,22 +21,25 @@ export function useSolveDetailsModal(solve: Solve | null) {
     setTimeout(() => setCopied(false), 2000);
   }, [solve]);
 
-  const formatFullDate = useCallback((isoString: string) => {
-    const date = new Date(isoString);
-    return new Intl.DateTimeFormat('pt-BR', {
-      day: '2-digit',
-      month: 'long',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-    }).format(date);
-  }, []);
+  const formatFullDate = useCallback(
+    (isoString: string) => {
+      const date = new Date(isoString);
+      return new Intl.DateTimeFormat(language, {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      }).format(date);
+    },
+    [language],
+  );
 
   const getPenaltyInfo = useCallback((): PenaltyInfo => {
     if (!solve) {
       return {
-        label: 'Nenhuma',
+        label: t.penalties.none,
         color: 'text-gray-400',
         bgColor: 'bg-gray-700',
         borderColor: 'border-gray-600',
@@ -43,7 +48,7 @@ export function useSolveDetailsModal(solve: Solve | null) {
 
     if (solve.penalty === 'DNF') {
       return {
-        label: 'DNF (Did Not Finish)',
+        label: t.penalties.dnf,
         color: 'text-red-400',
         bgColor: 'bg-red-500/20',
         borderColor: 'border-red-500/30',
@@ -52,7 +57,7 @@ export function useSolveDetailsModal(solve: Solve | null) {
 
     if (solve.penalty === '+2') {
       return {
-        label: '+2 segundos',
+        label: t.penalties.plus2,
         color: 'text-yellow-400',
         bgColor: 'bg-yellow-500/20',
         borderColor: 'border-yellow-500/30',
@@ -60,12 +65,12 @@ export function useSolveDetailsModal(solve: Solve | null) {
     }
 
     return {
-      label: 'Nenhuma',
+      label: t.penalties.none,
       color: 'text-gray-400',
       bgColor: 'bg-gray-700',
       borderColor: 'border-gray-600',
     };
-  }, [solve]);
+  }, [solve, t.penalties]);
 
   return {
     copied,

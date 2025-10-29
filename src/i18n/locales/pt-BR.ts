@@ -3,6 +3,30 @@ export const ptBR = {
     title: 'Klick',
     tagline: 'gire, clique, evolua.',
   },
+  navigation: {
+    home: 'Início',
+    history: 'Histórico',
+    stats: 'Estatísticas',
+    tutorial: 'Tutorial',
+    settings: 'Configurações',
+  },
+  pages: {
+    home: {
+      description: 'Treine solves com inspeção guiada e estatísticas em tempo real.',
+    },
+    history: {
+      description: 'Veja todos os seus solves e acompanhe sua evolução.',
+    },
+    stats: {
+      description: 'Análise detalhada de performance e evolução.',
+    },
+    tutorial: {
+      description: 'Aprenda o método CFOP passo a passo.',
+    },
+    settings: {
+      description: 'Personalize o Klick do seu jeito.',
+    },
+  },
   language: {
     title: 'Idioma',
     'pt-BR': 'Português (BR)',
@@ -496,5 +520,20 @@ export const ptBR = {
       DPrime: "D' = Baixo 90° anti-horário",
       number2: '2 = 180° (ex: R2, U2)',
     },
+  },
+  pwa: {
+    update: {
+      title: 'Nova atualização disponível!',
+      description:
+        'Uma nova versão do Klick está disponível. Atualize para obter as últimas melhorias.',
+      updateNow: 'Atualizar agora',
+      later: 'Depois',
+    },
+    offline: {
+      title: 'App pronto para uso offline!',
+      description: 'O Klick agora pode funcionar offline!',
+      understood: 'Entendi',
+    },
+    close: 'Fechar',
   },
 } as const;
