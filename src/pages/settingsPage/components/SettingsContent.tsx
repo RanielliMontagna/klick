@@ -177,9 +177,8 @@ export function SettingsContent() {
           <Button
             onClick={toggleTheme}
             variant="secondary"
-            className={`flex items-center gap-2 px-4 py-2 font-medium border transition-colors ${theme === 'light'
-              ? 'bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 border-yellow-500/30'
-              : 'bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30'
+            className={`flex items-center gap-2 px-4 py-2 font-medium border transition-colors ${theme !== 'light'
+              && 'bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30'
               }`}
           >
             {theme === 'light' ? (
