@@ -1,5 +1,5 @@
 import { X, Copy, Clock, Calendar, AlertTriangle } from 'lucide-react';
-import { Button, Modal } from '@/components/ui';
+import { Button, Modal, Card } from '@/components/ui';
 import { useI18nStore } from '@/stores/i18nStore';
 import { formatTime } from '@/utils/formatTime';
 import { useSolveDetailsModal } from './useSolveDetailsModal';
@@ -42,7 +42,7 @@ export function SolveDetailsModal({ isOpen, onClose, solve, solveNumber }: Solve
       </div>
 
       <div className="overflow-y-auto p-6 space-y-6">
-        <div className="bg-gray-900/50 rounded-xl p-5 border border-gray-700">
+        <Card variant="overlay" padding="none" className="p-5">
           <div className="flex items-center gap-3 mb-3">
             <Clock className="text-primary" size={24} />
             <h3 className="text-lg font-bold text-white">{t.solveTable.details.time}</h3>
@@ -59,9 +59,9 @@ export function SolveDetailsModal({ isOpen, onClose, solve, solveNumber }: Solve
               )}
             </div>
           </div>
-        </div>
+        </Card>
 
-        <div className="bg-gray-900/50 rounded-xl p-5 border border-gray-700">
+        <Card variant="overlay" padding="none" className="p-5">
           <div className="flex items-center gap-3 mb-3">
             <AlertTriangle className={penaltyInfo.color} size={24} />
             <h3 className="text-lg font-bold text-white">{t.solveTable.details.penalty}</h3>
@@ -72,9 +72,9 @@ export function SolveDetailsModal({ isOpen, onClose, solve, solveNumber }: Solve
           >
             {penaltyInfo.label}
           </span>
-        </div>
+        </Card>
 
-        <div className="bg-gray-900/50 rounded-xl p-5 border border-gray-700">
+        <Card variant="overlay" padding="none" className="p-5">
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-lg font-bold text-white">
               {t.solveTable.details.scramble}
@@ -92,15 +92,15 @@ export function SolveDetailsModal({ isOpen, onClose, solve, solveNumber }: Solve
           <p className="text-gray-300 font-mono text-sm sm:text-base leading-relaxed wrap-break-word">
             {solve.scramble}
           </p>
-        </div>
+        </Card>
 
-        <div className="bg-gray-900/50 rounded-xl p-5 border border-gray-700">
+        <Card variant="overlay" padding="none" className="p-5">
           <div className="flex items-center gap-3 mb-3">
             <Calendar className="text-gray-400" size={24} />
             <h3 className="text-lg font-bold text-white">{t.solveTable.details.date}</h3>
           </div>
           <p className="text-gray-300 text-sm">{formatFullDate(solve.createdAt)}</p>
-        </div>
+        </Card>
       </div>
 
       <div className="p-6 border-t border-gray-700 shrink-0">

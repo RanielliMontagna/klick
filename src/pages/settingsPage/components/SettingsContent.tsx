@@ -1,6 +1,6 @@
 import { Download, Upload, Sun, Moon } from 'lucide-react';
 import { useRef, useState } from 'react';
-import { Button, ToggleButton, RangeSlider, RadioGroup, RadioButton } from '@/components/ui';
+import { Button, ToggleButton, RangeSlider, RadioGroup, RadioButton, Card } from '@/components/ui';
 import { useSettingsStore } from '@/stores/settingsStore';
 import { useSessionsStore } from '@/stores/sessionsStore';
 import { useI18nStore } from '@/stores/i18nStore';
@@ -108,7 +108,7 @@ export function SettingsContent() {
       </AnimatePresence>
 
       {/* Inspection Duration */}
-      <div className="bg-surface rounded-xl p-6 border border-border space-y-4">
+      <Card className="space-y-4">
         <div>
           <div className="block text-sm font-semibold text-text-primary mb-1">
             {t.settings.inspectionDuration.label}
@@ -127,10 +127,10 @@ export function SettingsContent() {
             {settings.inspectionDuration}s
           </span>
         </div>
-      </div>
+      </Card>
 
       {/* Sounds */}
-      <div className="bg-surface rounded-xl p-6 border border-border">
+      <Card>
         <div className="flex items-center justify-between">
           <div>
             <div className="block text-sm font-semibold text-text-primary mb-1">
@@ -144,10 +144,10 @@ export function SettingsContent() {
             aria-label={t.settings.soundsEnabled.label}
           />
         </div>
-      </div>
+      </Card>
 
       {/* Auto Inspection Penalty */}
-      <div className="bg-surface rounded-xl p-6 border border-border">
+      <Card>
         <div className="flex items-center justify-between">
           <div>
             <div className="block text-sm font-semibold text-text-primary mb-1">
@@ -163,10 +163,10 @@ export function SettingsContent() {
             aria-label={t.settings.autoInspectionPenalty.label}
           />
         </div>
-      </div>
+      </Card>
 
       {/* Theme */}
-      <div className="bg-surface rounded-xl p-6 border border-border">
+      <Card>
         <div className="flex items-center justify-between">
           <div>
             <div className="block text-sm font-semibold text-text-primary mb-1">
@@ -194,10 +194,10 @@ export function SettingsContent() {
             )}
           </Button>
         </div>
-      </div>
+      </Card>
 
       {/* Export/Import */}
-      <div className="bg-surface rounded-xl p-6 border border-border space-y-4">
+      <Card className="space-y-4">
         <div>
           <h3 className="text-sm font-semibold text-text-primary mb-1">
             {t.settings.exportImport.title}
@@ -251,7 +251,7 @@ export function SettingsContent() {
             className="hidden"
           />
         </div>
-      </div>
+      </Card>
     </div>
   );
 }

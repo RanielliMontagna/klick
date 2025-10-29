@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { TrendingUp, Target, Zap } from 'lucide-react';
-import { Button } from '@/components/ui';
+import { Button, Card } from '@/components/ui';
 import { useTranslation } from '@/hooks/useTranslation';
 import { EvolutionChart } from './EvolutionChart';
 import { DistributionChart } from './DistributionChart';
@@ -118,7 +118,7 @@ export function AdvancedStatsContent() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Standard Deviation */}
-                  <div className="bg-background rounded-xl p-6 border border-border">
+                  <Card variant="background">
                     <h4 className="text-lg font-semibold text-text-primary mb-2">
                       {t.advancedStats.consistency.standardDeviation.title}
                     </h4>
@@ -131,10 +131,10 @@ export function AdvancedStatsContent() {
                         {t.advancedStats.consistency.standardDeviation.value}
                       </span>
                     </div>
-                  </div>
+                  </Card>
 
                   {/* Coefficient of Variation */}
-                  <div className="bg-background rounded-xl p-6 border border-border">
+                  <Card variant="background">
                     <h4 className="text-lg font-semibold text-text-primary mb-2">
                       {t.advancedStats.consistency.coefficientOfVariation.title}
                     </h4>
@@ -150,7 +150,7 @@ export function AdvancedStatsContent() {
                     <div className={`text-sm font-medium ${consistencyLevel.color}`}>
                       {consistencyLevel.label}
                     </div>
-                  </div>
+                  </Card>
                 </div>
 
                 {/* Interpretation */}
@@ -183,7 +183,7 @@ export function AdvancedStatsContent() {
                 </div>
 
                 {/* Average TPS */}
-                <div className="bg-background rounded-xl p-6 border border-border">
+                <Card variant="background">
                   <h4 className="text-lg font-semibold text-text-primary mb-2">
                     {t.advancedStats.performance.averageTPS.title}
                   </h4>
@@ -199,7 +199,7 @@ export function AdvancedStatsContent() {
                   <p className="text-xs text-text-secondary">
                     {t.advancedStats.performance.averageTPS.note}
                   </p>
-                </div>
+                </Card>
 
                 {/* Distribution */}
                 <div>

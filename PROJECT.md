@@ -523,6 +523,8 @@ Implementação atual:
     - **Componente base `Button`:** variantes `primary`, `secondary`, `ghost`, `danger`, `success`, `warning` e tamanhos `sm`, `md`, `lg`, `icon`, com helper interno `cls` e tipo forte `ButtonProps`.
     - **Migração total dos botões:** substituição de todos os `<button>` da aplicação por `Button` (modais, dropdowns, toasts, histórico, home, tutorial, configurações), preservando comportamentos especiais via `className`.
     - **Compatibilidade com casos específicos:** toggles deslizantes, botões ícone-only, abas com borda customizada e estados desativados.
+    - **Card reutilizável:** componente `Card` com variantes (`surface`, `background`, `overlay`) e espaçamentos configuráveis, aplicado em Settings, Advanced Stats e Solve Details para unificar bordas, preenchimento e cores de superfície.
+    - **Refatoração de contêineres:** remoção de duplicação de classes utilitárias em painéis de configurações, métricas avançadas e modal de solves, migrando para `Card`.
     - **Export centralizado:** `src/components/ui/index.ts` agrega componentes reutilizáveis.
     - **Build validado:** `pnpm build` executado com sucesso após a migração.
 
