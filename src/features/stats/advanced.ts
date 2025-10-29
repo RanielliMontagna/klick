@@ -122,7 +122,9 @@ export function calculateCoefficientOfVariation(solves: Solve[]): number {
  * Assumes 25 turns per scramble (standard 3x3)
  */
 export function calculateAverageTPS(solves: Solve[]): number {
-  const validTimes = solves.map((s) => s.effectiveMs).filter((t) => t !== Number.POSITIVE_INFINITY);
+  const validTimes = solves
+    .map((s) => s.effectiveMs)
+    .filter((t) => t !== Number.POSITIVE_INFINITY && Number.isFinite(t) && t > 0);
 
   if (validTimes.length === 0) {
     return 0;
