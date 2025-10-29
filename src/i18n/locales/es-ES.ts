@@ -289,16 +289,18 @@ export const esES = {
     },
     consistency: {
       title: 'Análisis de Consistencia',
-      description: 'Métricas que muestran qué tan consistente eres',
+      description:
+        'Descubre cuánto fluctúan tus tiempos y cómo eso impacta tu confiabilidad en solves reales.',
       standardDeviation: {
         title: 'Desviación Estándar',
-        description: 'Mide la variación de tus tiempos. Cuanto menor, más consistente eres.',
+        description:
+          'Indica cuánto se aleja cada solve, en promedio, de tu tiempo medio. Números altos revelan solves "pico"; intenta reducirlos tras prácticas de ejecución controlada.',
         value: 'ms',
       },
       coefficientOfVariation: {
         title: 'Coeficiente de Variación',
         description:
-          'Variación relativa (%). Valores por debajo del 10% indican alta consistencia.',
+          'Porcentaje del desvío estándar respecto a la media. Menos del 10% es consistencia de competencia; más del 20% señala inestabilidad que conviene trabajar.',
         value: '%',
         excellent: 'Excelente (< 10%)',
         good: 'Bueno (10-15%)',
@@ -308,21 +310,24 @@ export const esES = {
       interpretation: {
         title: 'Interpretación',
         description:
-          'Una alta consistencia (CV bajo) es fundamental para competiciones y evolución continua.',
+          'La consistencia es tan importante como la velocidad. Revisa si tus variaciones disminuyen con el tiempo para validar entrenamientos de control e inspección.',
       },
     },
     performance: {
       title: 'Análisis de Rendimiento',
-      description: 'Métricas de velocidad y distribución de tiempos',
+      description:
+        'Sigue tu ritmo promedio y cómo se agrupan tus solves para ajustar bloques de entrenamiento.',
       averageTPS: {
         title: 'TPS Promedio',
-        description: 'Turns Per Second - Velocidad promedio de ejecución de movimientos',
+        description:
+          'Turns Per Second - cantidad promedio de movimientos por segundo. Ideal para ver mejoras después de practicar algoritmos o finger tricks.',
         value: 'movimientos/s',
-        note: 'Basado en 25 movimientos por mezcla',
+        note: 'Se calcula considerando 25 movimientos por solve (longitud estándar de mezcla 3x3).',
       },
       distribution: {
         title: 'Distribución de Tiempos',
-        description: 'Cómo se distribuyen tus solves por rangos de tiempo',
+        description:
+          'Muestra en qué rangos aparecen la mayoría de tus solves. Las colas largas evidencian outliers o caídas de concentración a investigar.',
         chartTitle: 'Histograma de Tiempos',
         xAxis: 'Rango de Tiempo',
         yAxis: 'Cantidad de Solves',

@@ -290,15 +290,18 @@ export const ptBR = {
     },
     consistency: {
       title: 'Análise de Consistência',
-      description: 'Métricas que mostram o quão consistente você é',
+      description:
+        'Entenda o quanto seus tempos oscilam e como isso impacta sua confiabilidade em solves reais.',
       standardDeviation: {
         title: 'Desvio Padrão',
-        description: 'Mede a variação dos seus tempos. Quanto menor, mais consistente você é.',
+        description:
+          'Mede quanto, em média, cada solve se afasta do seu tempo médio. Valores altos revelam tempos "picos"; busque reduzi-lo após treinos focados em execução.',
         value: 'ms',
       },
       coefficientOfVariation: {
         title: 'Coeficiente de Variação',
-        description: 'Variação relativa (%). Valores abaixo de 10% indicam alta consistência.',
+        description:
+          'Percentual do desvio padrão em relação à média. Abaixo de 10% indica consistência de competição; acima de 20% sugere instabilidade que merece atenção.',
         value: '%',
         excellent: 'Excelente (< 10%)',
         good: 'Bom (10-15%)',
@@ -308,21 +311,24 @@ export const ptBR = {
       interpretation: {
         title: 'Interpretação',
         description:
-          'Uma consistência alta (CV baixo) é fundamental para competições e evolução contínua.',
+          'Consistência é tão importante quanto velocidade. Acompanhe se suas variações estão caindo ao longo das sessões para validar treinos de controle e inspeção.',
       },
     },
     performance: {
       title: 'Análise de Performance',
-      description: 'Métricas de velocidade e distribuição de tempos',
+      description:
+        'Acompanhe seu ritmo médio de execução e onde seus tempos se concentram para ajustar treinamentos.',
       averageTPS: {
         title: 'TPS Médio',
-        description: 'Turns Per Second - Velocidade média de execução de movimentos',
+        description:
+          'Turns Per Second - quantos movimentos você executa por segundo em média. Ótimo para ver se drills de algoritmos ou finger tricks estão surtindo efeito.',
         value: 'movimentos/s',
-        note: 'Baseado em 25 movimentos por scramble',
+        note: 'Calculado considerando 25 movimentos por solve (notação padrão de 3x3).',
       },
       distribution: {
         title: 'Distribuição de Tempos',
-        description: 'Como seus solves estão distribuídos por faixas de tempo',
+        description:
+          'Visualize em quais faixas seus solves aparecem com mais frequência. Observe caudas longas para detectar tempos atípicos ou quedas de foco.',
         chartTitle: 'Histograma de Tempos',
         xAxis: 'Faixa de Tempo',
         yAxis: 'Quantidade de Solves',

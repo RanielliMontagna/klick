@@ -288,15 +288,18 @@ export const enUS = {
     },
     consistency: {
       title: 'Consistency Analysis',
-      description: 'Metrics showing how consistent you are',
+      description:
+        'See how much your times fluctuate and how that affects your reliability in real solves.',
       standardDeviation: {
         title: 'Standard Deviation',
-        description: 'Measures the variation of your times. Lower is more consistent.',
+        description:
+          'Shows how far, on average, each solve deviates from your mean time. Higher numbers reveal "spike" solves; target reductions after focused execution practice.',
         value: 'ms',
       },
       coefficientOfVariation: {
         title: 'Coefficient of Variation',
-        description: 'Relative variation (%). Values below 10% indicate high consistency.',
+        description:
+          'Percentage of standard deviation over the mean. Under 10% is competition-ready consistency; above 20% signals instability worth addressing.',
         value: '%',
         excellent: 'Excellent (< 10%)',
         good: 'Good (10-15%)',
@@ -306,21 +309,24 @@ export const enUS = {
       interpretation: {
         title: 'Interpretation',
         description:
-          'High consistency (low CV) is essential for competitions and continuous improvement.',
+          'Consistency matters as much as raw speed. Track whether your variation shrinks over sessions to confirm inspection and control drills are working.',
       },
     },
     performance: {
       title: 'Performance Analysis',
-      description: 'Speed and time distribution metrics',
+      description:
+        'Monitor execution pace and how your solves cluster so you can fine-tune training blocks.',
       averageTPS: {
         title: 'Average TPS',
-        description: 'Turns Per Second - Average execution speed of moves',
+        description:
+          'Turns Per Second - average number of moves you perform each second. Great for spotting gains after algorithm drills or finger-trick work.',
         value: 'turns/s',
-        note: 'Based on 25 turns per scramble',
+        note: 'Assumes 25 turns per solve (standard 3x3 scramble length).',
       },
       distribution: {
         title: 'Time Distribution',
-        description: 'How your solves are distributed across time ranges',
+        description:
+          'Highlights where most solves land. Long tails expose outliers or focus drops you may want to investigate.',
         chartTitle: 'Time Histogram',
         xAxis: 'Time Range',
         yAxis: 'Number of Solves',

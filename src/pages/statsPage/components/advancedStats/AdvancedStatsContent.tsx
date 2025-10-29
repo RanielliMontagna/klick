@@ -215,6 +215,7 @@ export function AdvancedStatsContent() {
             )}
           </AnimatePresence>
         )}
+
       </div>
     </div>
   );
