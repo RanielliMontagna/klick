@@ -4,7 +4,7 @@ import type { TutorialStep } from '@/stores/tutorialStore';
 
 const { WHITE, YELLOW, BLUE, ORANGE, GREEN, RED, GRAY } = CUBE_COLORS;
 
-type TutorialTranslation = (typeof import('@/i18n/translations').translations)['pt-BR']['tutorial'];
+type TutorialTranslation = Record<string, unknown>;
 
 const WHITE_CROSS_FACE = [
   GRAY,
@@ -162,11 +162,13 @@ export function getTutorialVisualizationConfig(
   step: TutorialStep,
   tutorial: TutorialTranslation,
 ): CubeVisualizationConfig | undefined {
+  const t = tutorial as Record<string, Record<string, string | string[] | Record<string, string>>>;
+
   switch (step) {
     case 'whiteCross':
       return {
-        title: tutorial.whiteCross.title,
-        subtitle: tutorial.whiteCross.goal,
+        title: (t.whiteCross as Record<string, string>).title,
+        subtitle: (t.whiteCross as Record<string, string>).goal,
         gradient: 'from-indigo-500/10 to-sky-500/10',
         faces: [
           {
@@ -174,12 +176,12 @@ export function getTutorialVisualizationConfig(
             label: '⬆️',
           },
         ],
-        tip: tutorial.whiteCross.intuitive ?? tutorial.whiteCross.tips?.[0],
+        tip: (t.whiteCross as Record<string, string>).intuitive ?? ((t.whiteCross as Record<string, string[]>).tips?.[0] || ''),
       };
     case 'whiteCorners':
       return {
-        title: tutorial.whiteCorners.title,
-        subtitle: tutorial.whiteCorners.algorithm,
+        title: (t.whiteCorners as Record<string, string>).title,
+        subtitle: (t.whiteCorners as Record<string, string>).algorithm,
         gradient: 'from-emerald-500/10 to-blue-500/10',
         faces: [
           {
@@ -187,12 +189,12 @@ export function getTutorialVisualizationConfig(
             label: '⬆️',
           },
         ],
-        tip: tutorial.whiteCorners.tip,
+        tip: (t.whiteCorners as Record<string, string>).tip,
       };
     case 'secondLayer':
       return {
-        title: tutorial.secondLayer.title,
-        subtitle: tutorial.secondLayer.goal,
+        title: (t.secondLayer as Record<string, string>).title,
+        subtitle: (t.secondLayer as Record<string, string>).goal,
         gradient: 'from-amber-500/10 to-emerald-500/10',
         faces: [
           {
@@ -200,13 +202,13 @@ export function getTutorialVisualizationConfig(
             label: '⬅️',
           },
         ],
-        content: buildSecondLayerContent(tutorial.secondLayer.algorithms as Record<string, string>),
-        tip: tutorial.secondLayer.tip,
+        content: buildSecondLayerContent((t.secondLayer as Record<string, Record<string, string>>).algorithms as Record<string, string>),
+        tip: (t.secondLayer as Record<string, string>).tip,
       };
     case 'yellowCross':
       return {
-        title: tutorial.yellowCross.title,
-        subtitle: tutorial.yellowCross.algorithm,
+        title: (t.yellowCross as Record<string, string>).title,
+        subtitle: (t.yellowCross as Record<string, string>).algorithm,
         gradient: 'from-yellow-500/10 to-orange-500/10',
         faces: [
           {
@@ -214,13 +216,13 @@ export function getTutorialVisualizationConfig(
             label: '⬆️',
           },
         ],
-        content: buildPatternsContent(tutorial.yellowCross.patterns as Record<string, string>),
-        tip: tutorial.yellowCross.tip,
+        content: buildPatternsContent((t.yellowCross as Record<string, Record<string, string>>).patterns as Record<string, string>),
+        tip: (t.yellowCross as Record<string, string>).tip,
       };
     case 'yellowEdges':
       return {
-        title: tutorial.yellowEdges.title,
-        subtitle: tutorial.yellowEdges.algorithm,
+        title: (t.yellowEdges as Record<string, string>).title,
+        subtitle: (t.yellowEdges as Record<string, string>).algorithm,
         gradient: 'from-yellow-500/10 to-emerald-500/10',
         faces: [
           {
@@ -228,12 +230,12 @@ export function getTutorialVisualizationConfig(
             label: '⬆️',
           },
         ],
-        tip: tutorial.yellowEdges.tip,
+        tip: (t.yellowEdges as Record<string, string>).tip,
       };
     case 'yellowCorners':
       return {
-        title: tutorial.yellowCorners.title,
-        subtitle: tutorial.yellowCorners.algorithm,
+        title: (t.yellowCorners as Record<string, string>).title,
+        subtitle: (t.yellowCorners as Record<string, string>).algorithm,
         gradient: 'from-purple-500/10 to-blue-500/10',
         faces: [
           {
@@ -241,12 +243,12 @@ export function getTutorialVisualizationConfig(
             label: '⬆️',
           },
         ],
-        tip: tutorial.yellowCorners.tip,
+        tip: (t.yellowCorners as Record<string, string>).tip,
       };
     case 'solveCorners':
       return {
-        title: tutorial.solveCorners.title,
-        subtitle: tutorial.solveCorners.algorithm,
+        title: (t.solveCorners as Record<string, string>).title,
+        subtitle: (t.solveCorners as Record<string, string>).algorithm,
         gradient: 'from-green-500/10 to-blue-500/10',
         faces: [
           {
@@ -262,7 +264,7 @@ export function getTutorialVisualizationConfig(
             label: '➡️',
           },
         ],
-        tip: tutorial.solveCorners.important,
+        tip: (t.solveCorners as Record<string, string>).important,
       };
     default:
       return undefined;
