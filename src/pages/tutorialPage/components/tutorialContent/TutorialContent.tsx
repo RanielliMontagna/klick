@@ -2,10 +2,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui';
 import { useTutorialContent } from './useTutorialContent';
-import { CubeVisualizer } from '../cubeVisualizer/CubeVisualizer';
 import { useI18nStore } from '@/stores/i18nStore';
 import { translations } from '@/i18n/translations';
 import type { TutorialStep } from '@/stores/tutorialStore';
+import { CubeVisualizer } from '@/components/cubeVisualizer';
+import { getTutorialVisualizationConfig } from './tutorialVisualizations';
 
 function TutorialStepContent({ step }: { step: TutorialStep }) {
   const { language } = useI18nStore();
@@ -49,10 +50,11 @@ function TutorialStepContent({ step }: { step: TutorialStep }) {
     string,
     string | string[] | Record<string, string>
   >;
+  const visualizationConfig = getTutorialVisualizationConfig(step, tutorial);
 
   return (
     <div className="space-y-4">
-      <CubeVisualizer step={step} />
+      {visualizationConfig && <CubeVisualizer config={visualizationConfig} />}
       <div>
         <h3 className="text-xl font-bold mb-2">{stepData.title as string}</h3>
         <p className="text-text-secondary mb-4">{stepData.description as string}</p>

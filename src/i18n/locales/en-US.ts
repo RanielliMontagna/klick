@@ -7,6 +7,7 @@ export const enUS = {
     home: 'Home',
     history: 'History',
     stats: 'Statistics',
+    training: 'Training',
     tutorial: 'Tutorial',
     settings: 'Settings',
   },
@@ -19,6 +20,9 @@ export const enUS = {
     },
     stats: {
       description: 'Dive into detailed performance analytics and trends.',
+    },
+    training: {
+      description: 'Drill specific cases with goals, checkpoints, and quick notes.',
     },
     tutorial: {
       description: 'Learn the CFOP method step by step.',
@@ -375,6 +379,102 @@ export const enUS = {
       title: 'All set! 🎊',
       description:
         'Now you know Klick! Start solving and track your progress. You can revisit this tour anytime by clicking the "?" button in the header.',
+    },
+  },
+  training: {
+    title: 'Training Mode',
+    description: 'Focus on specific cases and track your reps with goals and checkpoints.',
+    categories: {
+      pll: {
+        label: 'PLL',
+        description: 'Permute last-layer corners and edges.',
+      },
+      oll: {
+        label: 'OLL',
+        description: 'Orient every piece on the last layer.',
+      },
+      f2l: {
+        label: 'F2L',
+        description: 'Pair up and insert pieces for the first two layers.',
+      },
+    },
+    statuses: {
+      learning: 'Learning',
+      refining: 'Polishing',
+      mastered: 'Automatic',
+    },
+    actions: {
+      repetitionLabel: 'Repetitions',
+      add1: '+1',
+      add5: '+5',
+      add10: '+10',
+      reset: 'Reset',
+      goalLabel: 'Goal',
+      goalPlaceholder: 'e.g. 50',
+      statusLabel: 'Checkpoint',
+      algorithmLabel: 'Algorithm',
+      noteLabel: 'Quick notes',
+      notePlaceholder: 'Capture triggers, finger tricks, or reminders.',
+      copyAlgorithm: 'Copy algorithm',
+      copiedAlgorithm: 'Algorithm copied!',
+    },
+    progress: {
+      target: '{current} of {goal} reps',
+      noGoal: '{current} reps logged',
+      goalReached: 'Goal reached! Keep reinforcing.',
+    },
+    cases: {
+      pll: {
+        tPerm: {
+          title: 'T-Perm',
+          description: 'Swaps two adjacent edges while keeping everything else solved.',
+          tip: 'Use wide R moves and keep your grip relaxed to avoid pauses.',
+        },
+        jPerm: {
+          title: 'J-Perm (right)',
+          description: 'Swaps two adjacent corners and two opposite edges.',
+          tip: 'The opening F\' sets the block; plan the final U move ahead of time.',
+        },
+        zPerm: {
+          title: 'Z-Perm',
+          description: 'Swaps two pairs of opposite edges without moving the corners.',
+          tip: 'Prioritise smooth M slices and maintain a steady rhythm.',
+        },
+      },
+      oll: {
+        sune: {
+          title: 'Sune',
+          description: 'Classic case with one oriented corner; orients the remaining yellows.',
+          tip: 'Drill the R U R\' trigger and keep the elbow anchored for speed.',
+        },
+        antisune: {
+          title: 'Anti-Sune',
+          description: 'Mirror version of Sune starting with anti-clockwise moves.',
+          tip: 'Stabilise with the left thumb and visualise the pattern before executing.',
+        },
+        hPattern: {
+          title: 'H-Pattern',
+          description: 'All corners oriented with edges flipped in opposite pairs.',
+          tip: 'Run the F...f\' block as two smooth halves without stopping.',
+        },
+      },
+      f2l: {
+        basicPair: {
+          title: 'Basic Front Pair',
+          description: 'Corner and edge form a pair inserted in the front-right slot.',
+          tip: 'Use a setup U to align the pair before insertion to avoid extra rotations.',
+        },
+        backSlot: {
+          title: 'Back Slot Insertion',
+          description: 'Corner and edge ready for the back-right slot.',
+          tip: 'Watch the slot while performing R U\' R\'; keep the wrist relaxed.',
+        },
+        edgeOver: {
+          title: 'Edge Over Slot',
+          description: 'Edge hovering above the slot forming a pair with a frontal turn.',
+          tip: 'Use U\' F\' to pair and restore the front face with control.',
+        },
+      },
     },
   },
   tutorial: {

@@ -183,12 +183,17 @@ Implementação atual:
   /stores
     sessionsStore.ts  // Zustand
     settingsStore.ts
+    trainingStore.ts
   /pages
     homePage/
       HomePage.tsx
       components/
         StatCard.tsx
         StatsInfoModal.tsx
+    trainingPage/
+      TrainingPage.tsx
+      components/
+        TrainingCaseCard.tsx
   /hooks
   /utils
   /styles
@@ -521,7 +526,7 @@ Implementação atual:
       - Botão animado com ícones Sun (claro) / Moon (escuro)
 
 19. **Biblioteca de UI Reutilizável (Fase 6.1):** ✅
-    - **Componente base `Button`:** variantes `primary`, `secondary`, `ghost`, `danger`, `success`, `warning` e tamanhos `sm`, `md`, `lg`, `icon`, com helper interno `cls` e tipo forte `ButtonProps`.
+    - **Componente base `Button`:** variantes `primary`, `secondary`, `ghost`, `danger`, `success`, `warning` e tamanhos `sm`, `md`, `lg`, `icon`, com helper interno `cn` e tipo forte `ButtonProps`.
     - **Migração total dos botões:** substituição de todos os `<button>` da aplicação por `Button` (modais, dropdowns, toasts, histórico, home, tutorial, configurações), preservando comportamentos especiais via `className`.
     - **Compatibilidade com casos específicos:** toggles deslizantes, botões ícone-only, abas com borda customizada e estados desativados.
     - **Card reutilizável:** componente `Card` com variantes (`surface`, `background`, `overlay`) e espaçamentos configuráveis, aplicado em Settings, Advanced Stats e Solve Details para unificar bordas, preenchimento e cores de superfície.
@@ -561,6 +566,14 @@ Implementação atual:
     - **Validações:**
       - Estado vazio tratado (mensagem + dica: "Execute ao menos 12 solves")
       - Gráficos só aparecem com dados suficientes (≥ 5 solves)
+
+20. **Modo de Treino por Casos (Fase 8):** ✅
+    - **Página dedicada `/training`:** acessível via navegação com ícone Dumbbell e header `Training Mode`.
+    - **Coleções focadas:** categorias PLL, OLL e F2L, cada uma com descrição traduzida e três casos representativos.
+    - **Cards de casos reutilizando `Card`:** título, descrição, dica contextual, lista de algoritmos com botão de copiar e feedback visual.
+    - **Progresso persistido (`useTrainingStore`):** repetições, meta numérica, status (Aprendendo → Ajustando → Automático) e notas rápidas, salvos em `localStorage`.
+    - **Ferramentas de treino:** botões de incremento (+1/+5/+10), barra de progresso contra meta, alerta quando meta atingida, reset individual.
+    - **Traduções:** labels, descrições de categorias, dicas e textos de ação em pt-BR, en-US e es-ES com placeholders parametrizados para progresso.
 
 20. **Onboarding Interativo (Fase 8):** ✅
     - **Sistema completo de onboarding em 7 passos:**
@@ -731,7 +744,7 @@ Implementação atual:
       - **SettingsPage:** Configurações do aplicativo
     - **Traduções:**
       - Seção `navigation` em 3 idiomas (pt-BR, en-US, es-ES)
-      - Labels: home, history, stats, tutorial, settings
+      - Labels: home, history, stats, training, tutorial, settings
     - **Performance:**
       - Build: ~816 KB (gzip: ~245 KB)
       - React Router adiciona ~21 KB ao bundle
@@ -747,7 +760,6 @@ Implementação atual:
 
 - **Biblioteca de UI compartilhada:** consolidar padrões (botões, chips, toggles, modais-base) em `src/components/ui/*`, padronizando tokens, estados de foco e níveis de elevação para acelerar novas telas.
 - **Sincronização opcional:** investigar integração com armazenamento na nuvem (ex.: Supabase) mantendo local-first, incluindo merge de sessões e autenticação leve.
-- **Modo de treino por casos:** habilitar coleções focadas (PLL, OLL, F2L) com contadores de repetição, checkpoints e notas rápidas, ajudando o iniciante a praticar algoritmos específicos.
 
 ---
 

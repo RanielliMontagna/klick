@@ -193,71 +193,51 @@ Clique no botão **Estatísticas Avançadas** (📈) no header para acessar:
 
 ```
 src/
-├── components/         # React components
-│   ├── TimerDisplay.tsx
-│   ├── ScrambleBox.tsx
-│   ├── InspectionDisplay.tsx
-│   ├── SolveTable.tsx
-│   ├── Toast.tsx
-│   ├── PWAUpdatePrompt.tsx
-│   ├── LanguageSelector.tsx
-│   ├── SessionSwitcher.tsx
-│   ├── settingsModal/
-│   │   ├── SettingsModal.tsx
-│   │   └── index.ts
-│   ├── sessionManagerModal/
-│   │   ├── SessionManagerModal.tsx
-│   │   ├── useSessionManager.ts
-│   │   └── index.ts
-│   ├── scrambleGuideModal/
-│   │   ├── ScrambleGuideModal.tsx
-│   │   ├── useScrambleGuideModal.ts
-│   │   └── index.ts
-│   ├── statsInfoModal/
-│   │   └── index.ts
+├── components/         # React components compartilhados
+│   ├── navigation/
+│   ├── pageHeader/
+│   ├── timerDisplay/
+│   ├── scrambleBox/
+│   ├── onboarding/
 │   ├── advancedStatsModal/
-│       ├── AdvancedStatsModal.tsx
-│       ├── useAdvancedStatsModal.ts
-│       ├── EvolutionChart.tsx
-│       ├── DistributionChart.tsx
-│       └── index.ts
-│   └── onboarding/
-│       ├── Onboarding.tsx
-│       ├── Spotlight.tsx
-│       ├── OnboardingTooltip.tsx
-│       └── index.ts
-├── features/           # Business logic
+│   ├── sessionManagerModal/
+│   └── ui/
+├── features/           # Regras de negócio e dados
 │   ├── timer/
-│   │   └── useTimer.ts
 │   ├── scramble/
-│   │   ├── generate3x3.ts
-│   │   └── generate3x3.test.ts
-│   └── stats/
-│       ├── averages.ts
-│       ├── averages.test.ts
-│       └── advanced.ts
-│   └── onboarding/
-│       └── config.ts
+│   ├── stats/
+│   ├── onboarding/
+│   └── training/
 ├── stores/             # Zustand stores
 │   ├── sessionsStore.ts
 │   ├── settingsStore.ts
+│   ├── trainingStore.ts
 │   ├── i18nStore.ts
 │   └── onboardingStore.ts
-├── i18n/              # Internationalization
+├── pages/
+│   ├── homePage/
+│   │   ├── HomePage.tsx
+│   │   └── components/
+│   │       ├── StatCard.tsx
+│   │       └── StatsInfoModal.tsx
+│   ├── trainingPage/
+│   │   ├── TrainingPage.tsx
+│   │   └── components/
+│   │       └── TrainingCaseCard.tsx
+│   ├── historyPage/
+│   ├── statsPage/
+│   ├── tutorialPage/
+│   └── settingsPage/
+├── i18n/               # Internacionalização
 │   └── locales/
 │       ├── pt-BR.ts
 │       ├── en-US.ts
 │       └── es-ES.ts
-├── hooks/             # Custom hooks
+├── hooks/              # Custom hooks
 │   ├── useTranslation.ts
 │   └── useTheme.ts
-├── utils/             # Utility functions
-│   ├── formatTime.ts
-│   ├── formatStats.ts
-│   ├── animations.ts
-│   └── sounds.ts
-├── types/             # TypeScript definitions
-│   └── index.ts
+├── utils/              # Utilitários (formatters, animações, sons)
+├── types/              # Tipagens compartilhadas
 └── test/              # Test configuration
     └── setup.ts
 ```
@@ -280,6 +260,8 @@ src/
 - [x] Sistema de penalidades (+2, DNF) com atalhos de teclado
 - [x] Persistência automática em localStorage
 - [x] Atalhos de teclado (Space, N, P, D)
+- [x] Modo de treino por casos (PLL, OLL, F2L)
+- [x] Tutorial de resolução para iniciantes
 
 #### UI/UX
 - [x] Componentes responsivos (TimerDisplay, ScrambleBox, InspectionDisplay, StatCard da Home, Toast)
@@ -363,10 +345,7 @@ src/
 - [x] Configuração Vitest + React Testing Library
 
 ### 🚧 Próximos passos
-
-- [ ] Modo de treino por casos (PLL, OLL, F2L)
 - [ ] Sincronização opcional na nuvem
-- [ ] Tutorial de resolução para iniciantes
 
 ## 🧪 Testes
 

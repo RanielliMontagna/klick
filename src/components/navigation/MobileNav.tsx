@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu, X, Home, History, TrendingUp, BookOpen, Settings } from 'lucide-react';
+import { Menu, X, Home, History, TrendingUp, BookOpen, Settings, Dumbbell } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import { Button } from '@/components/ui';
@@ -14,6 +14,7 @@ export function MobileNav() {
     { to: '/', icon: Home, label: t.navigation.home },
     { to: '/history', icon: History, label: t.navigation.history },
     { to: '/stats', icon: TrendingUp, label: t.navigation.stats },
+    { to: '/training', icon: Dumbbell, label: t.navigation.training },
     { to: '/tutorial', icon: BookOpen, label: t.navigation.tutorial },
     { to: '/settings', icon: Settings, label: t.navigation.settings },
   ];

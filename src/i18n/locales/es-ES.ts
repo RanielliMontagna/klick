@@ -7,6 +7,7 @@ export const esES = {
     home: 'Inicio',
     history: 'Historial',
     stats: 'Estadísticas',
+    training: 'Entrenamiento',
     tutorial: 'Tutorial',
     settings: 'Configuración',
   },
@@ -19,6 +20,9 @@ export const esES = {
     },
     stats: {
       description: 'Análisis detallado de rendimiento y evolución.',
+    },
+    training: {
+      description: 'Practica casos específicos con metas, checkpoints y notas rápidas.',
     },
     tutorial: {
       description: 'Aprende el método CFOP paso a paso.',
@@ -376,6 +380,103 @@ export const esES = {
       title: '¡Todo listo! 🎊',
       description:
         '¡Ahora conoces Klick! Comienza a resolver y sigue tu progreso. Puedes revisar este tour en cualquier momento haciendo clic en el botón "?" en el encabezado.',
+    },
+  },
+  training: {
+    title: 'Modo de Entrenamiento',
+    description: 'Enfócate en casos puntuales y registra tus repeticiones con metas y checkpoints.',
+    categories: {
+      pll: {
+        label: 'PLL',
+        description: 'Permutar esquinas y aristas de la última capa.',
+      },
+      oll: {
+        label: 'OLL',
+        description: 'Orientar todas las piezas de la última capa.',
+      },
+      f2l: {
+        label: 'F2L',
+        description: 'Formar e insertar pares para las dos primeras capas.',
+      },
+    },
+    statuses: {
+      learning: 'Aprendiendo',
+      refining: 'Puliendo',
+      mastered: 'Automático',
+    },
+    actions: {
+      repetitionLabel: 'Repeticiones',
+      add1: '+1',
+      add5: '+5',
+      add10: '+10',
+      reset: 'Reiniciar',
+      goalLabel: 'Meta',
+      goalPlaceholder: 'ej: 50',
+      statusLabel: 'Checkpoint',
+      algorithmLabel: 'Algoritmo',
+      noteLabel: 'Notas rápidas',
+      notePlaceholder: 'Anota gatillos, finger tricks o recordatorios personales.',
+      copyAlgorithm: 'Copiar algoritmo',
+      copiedAlgorithm: '¡Algoritmo copiado!',
+    },
+    progress: {
+      target: '{current} de {goal} repeticiones',
+      noGoal: '{current} repeticiones registradas',
+      goalReached: '¡Meta alcanzada! Sigue reforzando.',
+    },
+    cases: {
+      pll: {
+        tPerm: {
+          title: 'T-Perm',
+          description: 'Intercambia dos aristas adyacentes manteniendo el resto resuelto.',
+          tip: 'Usa movimientos R amplios y mantén el agarre relajado para evitar pausas.',
+        },
+        jPerm: {
+          title: 'J-Perm (derecha)',
+          description: 'Intercambia dos esquinas adyacentes y dos aristas opuestas.',
+          tip: 'El inicio con F\' prepara el bloque; planifica el último U con anticipación.',
+        },
+        zPerm: {
+          title: 'Z-Perm',
+          description: 'Intercambia dos pares de aristas opuestas sin mover las esquinas.',
+          tip: 'Prioriza cortes M suaves y un ritmo constante.',
+        },
+      },
+      oll: {
+        sune: {
+          title: 'Sune',
+          description:
+            'Caso clásico con una esquina orientada; orienta las piezas amarillas restantes.',
+          tip: 'Practica el gatillo R U R\' y mantén el codo fijo para ganar velocidad.',
+        },
+        antisune: {
+          title: 'Anti-Sune',
+          description: 'Versión espejada del Sune iniciando con movimientos antihorarios.',
+          tip: 'Estabiliza con el pulgar izquierdo y visualiza el patrón antes de ejecutar.',
+        },
+        hPattern: {
+          title: 'Patrón H',
+          description: 'Todas las esquinas orientadas con aristas invertidas en pares opuestos.',
+          tip: 'Ejecuta el bloque F...f\' como dos mitades fluidas sin detenerte.',
+        },
+      },
+      f2l: {
+        basicPair: {
+          title: 'Par Frontal Básico',
+          description: 'Esquina y arista forman par e ingresan en el hueco frontal derecho.',
+          tip: 'Usa un movimiento U antes de insertar para alinear el par y evitar giros extra.',
+        },
+        backSlot: {
+          title: 'Inserción Hueco Trasero',
+          description: 'Esquina y arista listas para el hueco trasero derecho.',
+          tip: 'Observa el hueco mientras ejecutas R U\' R\'; mantén la muñeca relajada.',
+        },
+        edgeOver: {
+          title: 'Arista sobre el Hueco',
+          description: 'Arista colocada encima del hueco formando par con un giro frontal.',
+          tip: 'Usa U\' F\' para formar el par y devuelve la cara frontal con control.',
+        },
+      },
     },
   },
   tutorial: {

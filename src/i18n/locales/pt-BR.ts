@@ -7,6 +7,7 @@ export const ptBR = {
     home: 'Início',
     history: 'Histórico',
     stats: 'Estatísticas',
+    training: 'Treino',
     tutorial: 'Tutorial',
     settings: 'Configurações',
   },
@@ -19,6 +20,9 @@ export const ptBR = {
     },
     stats: {
       description: 'Análise detalhada de performance e evolução.',
+    },
+    training: {
+      description: 'Pratique algoritmos por caso com metas e notas rápidas.',
     },
     tutorial: {
       description: 'Aprenda o método CFOP passo a passo.',
@@ -358,7 +362,7 @@ export const ptBR = {
       description:
         'Segure a barra de ESPAÇO para armar o timer. Solte para iniciar a inspeção (15s). Pressione ESPAÇO novamente para iniciar/parar o cronômetro.',
     },
-    stats: {
+  stats: {
       title: 'Estatísticas',
       description:
         'Acompanhe seu desempenho com métricas como Single (melhor tempo), ao5 e ao12 (médias). Clique em "📈" para ver estatísticas avançadas!',
@@ -377,6 +381,102 @@ export const ptBR = {
       title: 'Tudo pronto! 🎊',
       description:
         'Agora você conhece o Klick! Comece a resolver e acompanhe sua evolução. Você pode revisitar este tour a qualquer momento clicando no botão "?" no header.',
+    },
+  },
+  training: {
+    title: 'Modo de Treino',
+    description: 'Foque em casos específicos e acompanhe seu progresso com metas e checkpoints.',
+    categories: {
+      pll: {
+        label: 'PLL',
+        description: 'Permutar cantos e arestas da última camada.',
+      },
+      oll: {
+        label: 'OLL',
+        description: 'Orientar todas as peças da última camada.',
+      },
+      f2l: {
+        label: 'F2L',
+        description: 'Formar e inserir pares das duas primeiras camadas.',
+      },
+    },
+    statuses: {
+      learning: 'Aprendendo',
+      refining: 'Ajustando',
+      mastered: 'Automático',
+    },
+    actions: {
+      repetitionLabel: 'Repetições',
+      add1: '+1',
+      add5: '+5',
+      add10: '+10',
+      reset: 'Zerar',
+      goalLabel: 'Meta',
+      goalPlaceholder: 'ex: 50',
+      statusLabel: 'Checkpoint',
+      algorithmLabel: 'Algoritmo',
+      noteLabel: 'Notas rápidas',
+      notePlaceholder: 'Anote dicas, gatilhos ou ajustes pessoais.',
+      copyAlgorithm: 'Copiar algoritmo',
+      copiedAlgorithm: 'Algoritmo copiado!',
+    },
+    progress: {
+      target: '{current} de {goal} repetições',
+      noGoal: '{current} repetições registradas',
+      goalReached: 'Meta alcançada! Continue reforçando.',
+    },
+    cases: {
+      pll: {
+        tPerm: {
+          title: 'T-Perm',
+          description: 'Permuta duas arestas adjacentes mantendo o restante resolvido.',
+          tip: 'Use movimentos amplos com R e mantenha o punho firme para evitar pausas.',
+        },
+        jPerm: {
+          title: 'J-Perm (direita)',
+          description: 'Permuta dois cantos adjacentes e duas arestas opostas.',
+          tip: 'O início em F\' prepara o bloco; mantenha o ritmo e planeje o U final.',
+        },
+        zPerm: {
+          title: 'Z-Perm',
+          description: 'Permuta dois pares de arestas opostas sem mover os cantos.',
+          tip: 'Priorize camadas M suaves e ritmo constante para não travar a execução.',
+        },
+      },
+      oll: {
+        sune: {
+          title: 'Sune',
+          description: 'Caso clássico com um canto orientado; orienta todas as peças amarelas.',
+          tip: 'Treine o gatilho R U R\' e mantenha o cotovelo parado para ganhar velocidade.',
+        },
+        antisune: {
+          title: 'Anti-Sune',
+          description: 'Versão espelhada do Sune, começando com movimentos anti-horários.',
+          tip: 'Use o polegar esquerdo para estabilizar e visualize o padrão antes de executar.',
+        },
+        hPattern: {
+          title: 'H-Pattern',
+          description: 'Todos os cantos orientados e arestas invertidas em pares opostos.',
+          tip: 'Execute o bloco F...f\' sem pausar; pense em duas metades fluidas.',
+        },
+      },
+      f2l: {
+        basicPair: {
+          title: 'Par Básico Frontal',
+          description: 'Canto e aresta formam par e entram no slot frontal direito.',
+          tip: 'Use U antes de inserir para alinhar o par e evitar giros desnecessários.',
+        },
+        backSlot: {
+          title: 'Inserção Slot Traseiro',
+          description: 'Canto e aresta prontos para o slot traseiro direito.',
+          tip: 'Visualize o slot enquanto executa R U\' R\'; mantenha o punho solto.',
+        },
+        edgeOver: {
+          title: 'Aresta sobre o Slot',
+          description: 'Aresta posicionada acima do slot formando par com giro frontal.',
+          tip: 'Use U\' F\' para criar o par e devolva a face frontal com controle.',
+        },
+      },
     },
   },
   tutorial: {
