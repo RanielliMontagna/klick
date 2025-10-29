@@ -521,4 +521,19 @@ export const ptBR = {
       number2: '2 = 180° (ex: R2, U2)',
     },
   },
+  pwa: {
+    update: {
+      title: 'Nova atualização disponível!',
+      description:
+        'Uma nova versão do Klick está disponível. Atualize para obter as últimas melhorias.',
+      updateNow: 'Atualizar agora',
+      later: 'Depois',
+    },
+    offline: {
+      title: 'App pronto para uso offline!',
+      description: 'O Klick agora pode funcionar offline!',
+      understood: 'Entendi',
+    },
+    close: 'Fechar',
+  },
 } as const;

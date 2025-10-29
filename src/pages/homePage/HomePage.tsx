@@ -8,6 +8,7 @@ import { generate3x3Scramble } from '@/features/scramble/generate3x3';
 import { useSessionsStore } from '@/stores/sessionsStore';
 import { useSettingsStore } from '@/stores/settingsStore';
 import { useI18nStore } from '@/stores/i18nStore';
+import { useOnboardingStore } from '@/stores/onboardingStore';
 import { slideUp, fadeIn } from '@/utils/animations';
 import { formatAverage } from '@/utils/formatStats';
 import type { Penalty } from '@/types';
@@ -21,6 +22,9 @@ export function HomePage() {
   const { settings } = useSettingsStore();
   const { addSolve, updateSolvePenalty, getSingle, getAo5, getAo12, getBestAo5, getBestAo12 } =
     useSessionsStore();
+  const hasCompletedOnboarding = useOnboardingStore((state) => state.hasCompletedOnboarding);
+  const onboardingActive = useOnboardingStore((state) => state.isActive);
+  const startOnboarding = useOnboardingStore((state) => state.startOnboarding);
 
   const { state, timeMs, inspectionTimeLeft, reset } = useTimer({
     inspectionDuration: settings.inspectionDuration,
@@ -38,6 +42,11 @@ export function HomePage() {
   useEffect(() => {
     generateNewScramble();
   }, [generateNewScramble]);
+  useEffect(() => {
+    if (!hasCompletedOnboarding && !onboardingActive) {
+      startOnboarding();
+    }
+  }, [hasCompletedOnboarding, onboardingActive, startOnboarding]);
 
   // Salvar solve quando o timer parar
   useEffect(() => {

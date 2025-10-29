@@ -12,9 +12,14 @@ const MotionButton = motion(Button);
 interface ScrambleBoxProps {
   scramble: string;
   onNewScramble: () => void;
+  'data-onboarding'?: string;
 }
 
-export function ScrambleBox({ scramble, onNewScramble }: ScrambleBoxProps) {
+export function ScrambleBox({
+  scramble,
+  onNewScramble,
+  'data-onboarding': dataOnboarding,
+}: ScrambleBoxProps) {
   const { t } = useI18nStore();
   const { copied, copyToClipboard } = useScrambleBox(scramble);
   const { isOpen, openGuide, closeGuide } = useScrambleGuideModal();
@@ -26,6 +31,7 @@ export function ScrambleBox({ scramble, onNewScramble }: ScrambleBoxProps) {
         variants={slideDown}
         initial="hidden"
         animate="visible"
+        data-onboarding={dataOnboarding}
       >
         <div className="bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-3">

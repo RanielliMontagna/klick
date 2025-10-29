@@ -33,7 +33,10 @@ export function MainLayout() {
 
             {/* Right actions */}
             <div className="flex items-center gap-2">
-              <SessionSwitcher onManageClick={() => setSessionManagerOpen(true)} />
+              <SessionSwitcher
+                onManageClick={() => setSessionManagerOpen(true)}
+                data-onboarding="sessions"
+              />
               <LanguageSelector />
               <MobileNav />
             </div>

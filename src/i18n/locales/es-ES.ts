@@ -521,4 +521,19 @@ export const esES = {
       number2: '2 = 180° (ej: R2, U2)',
     },
   },
+  pwa: {
+    update: {
+      title: '¡Nueva actualización disponible!',
+      description:
+        'Una nueva versión de Klick está disponible. Actualiza para obtener las últimas mejoras.',
+      updateNow: 'Actualizar ahora',
+      later: 'Después',
+    },
+    offline: {
+      title: '¡App lista para uso sin conexión!',
+      description: '¡Klick ahora puede funcionar sin conexión!',
+      understood: 'Entendido',
+    },
+    close: 'Cerrar',
+  },
 } as const;

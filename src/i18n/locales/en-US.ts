@@ -519,4 +519,18 @@ export const enUS = {
       number2: '2 = 180° (e.g., R2, U2)',
     },
   },
+  pwa: {
+    update: {
+      title: 'New update available!',
+      description: 'A new version of Klick is available. Update to get the latest improvements.',
+      updateNow: 'Update now',
+      later: 'Later',
+    },
+    offline: {
+      title: 'App ready for offline use!',
+      description: 'Klick can now work offline!',
+      understood: 'Got it',
+    },
+    close: 'Close',
+  },
 } as const;

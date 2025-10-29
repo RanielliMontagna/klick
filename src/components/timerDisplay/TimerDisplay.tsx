@@ -8,9 +8,14 @@ import { fadeIn } from '@/utils/animations';
 interface TimerDisplayProps {
   timeMs: number;
   state: TimerState;
+  'data-onboarding'?: string;
 }
 
-export function TimerDisplay({ timeMs, state }: TimerDisplayProps) {
+export function TimerDisplay({
+  timeMs,
+  state,
+  'data-onboarding': dataOnboarding,
+}: TimerDisplayProps) {
   const { t } = useI18nStore();
 
   const getStateColor = () => {
@@ -59,7 +64,10 @@ export function TimerDisplay({ timeMs, state }: TimerDisplayProps) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-4 px-4">
+    <div
+      className="flex flex-col items-center justify-center space-y-4 px-4"
+      data-onboarding={dataOnboarding}
+    >
       <AnimatePresence mode="wait">
         {state !== 'running' && state !== 'stopped' && (
           <motion.div
