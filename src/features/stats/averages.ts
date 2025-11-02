@@ -5,6 +5,33 @@ export type Average = {
   isDNF: boolean;
 };
 
+function resolveEffectiveMs(solve: Solve): number | null {
+  const { effectiveMs, timeMs, penalty } = solve;
+
+  if (typeof effectiveMs === 'number' && !Number.isNaN(effectiveMs)) {
+    return effectiveMs;
+  }
+
+  if (penalty === 'DNF') {
+    return Number.POSITIVE_INFINITY;
+  }
+
+  if (typeof timeMs === 'number' && !Number.isNaN(timeMs)) {
+    if (penalty === '+2') {
+      return timeMs + 2000;
+    }
+    return timeMs;
+  }
+
+  return null;
+}
+
+function getEffectiveTimes(solves: Solve[]): number[] {
+  return solves
+    .map((solve) => resolveEffectiveMs(solve))
+    .filter((value): value is number => value !== null);
+}
+
 /**
  * Calculate single (best solve)
  */
@@ -13,7 +40,13 @@ export function calculateSingle(solves: Solve[]): Average {
     return { value: 0, isDNF: false };
   }
 
-  const best = Math.min(...solves.map((s) => s.effectiveMs));
+  const times = getEffectiveTimes(solves);
+
+  if (times.length === 0) {
+    return { value: 0, isDNF: false };
+  }
+
+  const best = Math.min(...times);
   return {
     value: best,
     isDNF: best === Number.POSITIVE_INFINITY,
@@ -34,7 +67,11 @@ export function calculateAverageOfN(solves: Solve[], n: number): Average | null 
 
   // Get last N solves
   const window = solves.slice(-n);
-  const times = window.map((s) => s.effectiveMs);
+  const times = getEffectiveTimes(window);
+
+  if (times.length < n) {
+    return null;
+  }
 
   // Count DNFs (Infinity values)
   const dnfCount = times.filter((t) => t === Number.POSITIVE_INFINITY).length;

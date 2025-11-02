@@ -34,6 +34,16 @@ describe('calculateSingle', () => {
     expect(result.isDNF).toBe(false);
   });
 
+  it('should use timeMs when effectiveMs is missing', () => {
+    const legacySolve = {
+      ...createSolve(10000, 'NONE'),
+      effectiveMs: null as unknown as number,
+    };
+    const result = calculateSingle([legacySolve, createSolve(12000, 'NONE')]);
+    expect(result.value).toBe(10000);
+    expect(result.isDNF).toBe(false);
+  });
+
   it('should return best time without penalties', () => {
     const solves = [
       createSolve(10000, 'NONE'),
@@ -79,6 +89,23 @@ describe('calculateAo5', () => {
   it('should return null when less than 5 solves', () => {
     const solves = [createSolve(10000, 'NONE'), createSolve(11000, 'NONE')];
     expect(calculateAo5(solves)).toBeNull();
+  });
+
+  it('should handle legacy solves without effectiveMs', () => {
+    const solves = [
+      { ...createSolve(10000, 'NONE'), effectiveMs: null as unknown as number },
+      { ...createSolve(12000, 'NONE'), effectiveMs: null as unknown as number },
+      createSolve(8000, 'NONE'),
+      createSolve(11000, 'NONE'),
+      createSolve(9000, 'NONE'),
+    ];
+
+    const result = calculateAo5(solves);
+    expect(result).not.toBeNull();
+    if (result) {
+      expect(result.value).toBe(10000);
+      expect(result.isDNF).toBe(false);
+    }
   });
 
   it('should calculate ao5 without penalties', () => {
