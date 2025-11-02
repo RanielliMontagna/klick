@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/RanielliMontagna/klick/compare/v1.1.0...v1.2.0) (2025-11-02)
+
+
+### Features
+
+* enhance average calculation to handle legacy solves and improve effective time resolution ([2667d3e](https://github.com/RanielliMontagna/klick/commit/2667d3eac5eb510ac6d8d35e2f079db6ee63ef2e))
+
 ## [1.1.0](https://github.com/RanielliMontagna/klick/compare/v1.0.0...v1.1.0) (2025-10-29)
 
 
